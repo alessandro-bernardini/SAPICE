@@ -1,0 +1,71 @@
+* EESchema Netlist Version 1.1 (Spice format) creation date: Sat 16 Feb 2013 05:47:49 PM CET
+
+* To exclude a component from the Spice Netlist add [Spice_Netlist_Enabled] user FIELD set to: N
+* To reorder the component spice node sequence add [Spice_Node_Sequence] user FIELD and define sequence: 2,1,0
+
+.temp 35.01
+
+*Sheet Name:/
+R5  1 0 5000		
+C5  1 0 20pF
+C4  6 0 2842pF		
+C3  1 6 218pF  IC=50V		
+C2  2 1 0.0033uF		
+L1  7 2 1.2uH		
+R2  8 0 3700		
+R4  5 0 700		
+R3  6 4 44		
+L2  6 5 10uH		
+Q1  2 8 4 Q2N3866		
+C1  8 0 0.0033uF		
+R1  7 8 12k		
+RI  7 0 1
+I1  7 0 -17
+
+.model Q2N3866 NPN (
++ IS = 9.798605E-15
++ BF = 145.568899
++ NF = 1.007933
++ VAF = 64.3030691
++ IKF = 0.3661244
++ ISE = 1.806705E-14
++ NE = 1.6207001
++ BR = 10.471
++ NR = 1.0003673
++ VAR = 8.322
++ IKR = 0.1449443
++ ISC = 3.326752E-15
++ NC = 1.1076801
++ RB = 15.986
++ IRB = 2.530217E-3
++ RBM = 0.01
++ RE = 0.02604
++ RC = 1.0359
++ CJE = 9.055532E-12
++ VJE = 0.6761546
++ MJE = 0.2754969
++ TF = 1.25476E-10
++ XTF = 13.0616413
++ VTF = 0.4699
++ ITF = 0.2828
++ PTF = 18.9645325
++ CJC = 7.054363E-12
++ VJC = 0.5769848
++ MJC = 0.3139067
++ XCJC = 1
++ TR = 5.698362E-8
++ CJS = 0
++ VJS = .75
++ MJS = 0
++ XTB = 1.831
++ EG = 1.11
++ XTI = 5.0205
++ KF = 0
++ AF = 1
++ FC = 0.9
++ )
+
+.OP
+
+.end
+

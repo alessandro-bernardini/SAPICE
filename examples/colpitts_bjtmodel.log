@@ -1,0 +1,262 @@
+
+Circuit: * eeschema netlist version 1.1 (spice format) creation date: sat 16 feb 2013 05:47:49 pm cet
+
+Doing analysis at TEMP = 35.010000 and TNOM = 27.000000
+
+
+No. of Data Rows : 1
+	Node                                  Voltage
+	----                                  -------
+	----	-------
+	V(4)                             3.249738e+00
+	V(5)                             3.057549e+00
+	V(8)                             3.931842e+00
+	V(7)                             1.699457e+01
+	V(2)                             1.699457e+01
+	V(6)                             3.057549e+00
+	V(1)                             0.000000e+00
+
+	Source	Current
+	------	-------
+
+	l1#branch                        4.342026e-03
+	l2#branch                        4.367927e-03
+
+ BJT models (Bipolar Junction Transistor)
+      model               q2n3866
+
+       type                   npn
+       tnom                    27
+         is            9.7986e-15
+         bf               145.569
+         nf               1.00793
+        vaf               64.3031
+        ikf              0.366124
+        ise            1.8067e-14
+         ne                1.6207
+         br                10.471
+         nr               1.00037
+        var                 8.322
+        ikr              0.144944
+        isc           3.32675e-15
+         nc               1.10768
+         rb                15.986
+        irb            0.00253022
+        rbm                  0.01
+         re               0.02604
+         rc                1.0359
+        cje           9.05553e-12
+        vje              0.676155
+        mje              0.275497
+         tf           1.25476e-10
+        xtf               13.0616
+        vtf                0.4699
+        itf                0.2828
+        ptf               18.9645
+        cjc           7.05436e-12
+        vjc              0.576985
+        mjc              0.313907
+       xcjc                     1
+         tr           5.69836e-08
+        cjs                     0
+        vjs                  0.75
+        mjs                     0
+        xtb                 1.831
+         eg                  1.11
+        xti                5.0205
+         fc                   0.9
+         kf                     0
+         af                     1
+        iss                     0
+         ns                     1
+       tlev                     0
+      tlevc                     0
+       tbf1                     0
+       tbf2                     0
+       tbr1                     0
+       tbr2                     0
+      tikf1                     0
+      tikf2                     0
+      tikr1                     0
+      tikr2                     0
+      tirb1                     0
+      tirb2                     0
+       tnc1                     0
+       tnc2                     0
+       tne1                     0
+       tne2                     0
+       tnf1                     0
+       tnf2                     0
+       tnr1                     0
+       tnr2                     0
+       trb1                     0
+       trb2                     0
+       trc1                     0
+       trc2                     0
+       tre1                     0
+       tre2                     0
+       trm1                     0
+       trm2                     0
+      tvaf1                     0
+      tvaf2                     0
+      tvar1                     0
+      tvar2                     0
+        ctc                     0
+        cte                     0
+        cts                     0
+       tvjc                     0
+       tvje                     0
+       tvjs                     0
+      titf1                     0
+      titf2                     0
+       ttf1                     0
+       ttf2                     0
+       ttr1                     0
+       ttr2                     0
+      tmje1                     0
+      tmje2                     0
+      tmjc1                     0
+      tmjc2                     0
+      tmjs1                     0
+      tmjs2                     0
+       tns1                     0
+       tns2                     0
+        nkf                   0.5
+
+ Capacitor models (Fixed capacitor)
+      model                     C
+
+        cap                     0
+         cj                     0
+       cjsw                     0
+       defw                 1e-05
+       defl                     0
+     narrow                     0
+      short                     0
+        tc1                     0
+        tc2                     0
+         di                     0
+      thick                     0
+
+ Inductor models (Fixed inductor)
+      model                     L
+
+        ind                     0
+        tc1                     0
+        tc2                     0
+      csect                     0
+     length                     0
+         nt                     0
+         mu                     0
+
+ Resistor models (Simple linear resistor)
+      model                     R
+
+        rsh                     0
+     narrow                     0
+      short                     0
+        tc1                     0
+        tc2                     0
+       defw                 1e-05
+         kf                     0
+         af                     0
+
+ BJT: Bipolar Junction Transistor
+     device                    q1
+      model               q2n3866
+         ic            0.00434203
+         ib           2.59006e-05
+         ie           -0.00436793
+        vbe              0.681586
+        vbc              -13.0586
+         gm              0.160021
+        gpi           0.000963735
+        gmu                 1e-12
+         gx             0.0640377
+         go           6.02263e-05
+        cpi           4.08197e-11
+        cmu           2.61687e-12
+        cbx                     0
+       csub                     0
+
+ Capacitor: Fixed capacitor
+     device                    c1                    c2                    c3
+      model                     C                     C                     C
+capacitance               3.3e-09               3.3e-09              2.18e-10
+        cap               3.3e-09               3.3e-09              2.18e-10
+          c               3.3e-09               3.3e-09              2.18e-10
+      dtemp                     0                     0                     0
+          i                     0                     0                     0
+          p                     0                     0                    -0
+
+ Capacitor: Fixed capacitor
+     device                    c4                    c5
+      model                     C                     C
+capacitance             2.842e-09                 2e-11
+        cap             2.842e-09                 2e-11
+          c             2.842e-09                 2e-11
+      dtemp                     0                     0
+          i                     0                     0
+          p                     0                     0
+
+ Inductor: Fixed inductor
+     device                    l2                    l1
+      model                     L                     L
+ inductance                 1e-05               1.2e-06
+      dtemp                     0                     0
+         nt                     0                     0
+       flux                     0                     0
+          v                     0                     0
+          i            0.00436793            0.00434203
+          p                     0                     0
+
+ Isource: Independent current source
+     device                    i1
+         dc                   -17
+      acmag                     0
+      pulse         -
+       sine         -
+        sin         -
+        exp         -
+        pwl         -
+       sffm         -
+         am         -
+    trnoise         -
+   trrandom         -
+          v              -16.9946
+          p              -288.908
+    current                   -17
+
+ Resistor: Simple linear resistor
+     device                    ri                    r1                    r3
+      model                     R                     R                     R
+ resistance                     1                 12000                    44
+         ac                     1                 12000                    44
+      dtemp                     0                     0                     0
+      noisy                     1                     1                     1
+          i               16.9946            0.00108856           -0.00436793
+          p               288.815             0.0142196           0.000839467
+
+ Resistor: Simple linear resistor
+     device                    r4                    r2                    r5
+      model                     R                     R                     R
+ resistance                   700                  3700                  5000
+         ac                   700                  3700                  5000
+      dtemp                     0                     0                     0
+      noisy                     1                     1                     1
+          i            0.00436793            0.00106266                     0
+          p             0.0133551            0.00417821                     0
+
+elapsed time since last call: 0.016 seconds.
+
+Total elapsed time: 0.016 seconds.
+
+Total DRAM available = 7816.363281 MB.
+DRAM currently available = 5524.054688 MB.
+Total ngspice program size = 5.520508 MB.
+Resident set size = 738.000 kB.
+Shared ngspice pages = 551.000 kB.
+Text (code) pages = 1.095703 MB.
+Stack = 0 bytes.
+Library pages = 3.092773 MB.
+

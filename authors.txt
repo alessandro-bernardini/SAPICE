@@ -1,0 +1,5 @@
+Author: Alessandro Bernardini
+alessandro.bernardini.tum@gmail.com
+
+ligense: GNU GPL.
+see license file and documentation
