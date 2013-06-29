@@ -67,6 +67,7 @@ class small_signal_linear_circuit:
             self.spice_batch_output_file = []
         f = open(filename, 'r')
         self.circuit_file = f.readlines()
+	self.original_circuit_file = self.circuit_file
         self.circuit_Graph = nx.MultiGraph()
         self.sources = []
         self.circuit_variables = []
@@ -295,7 +296,7 @@ class small_signal_linear_circuit:
                             + '_VT') == sage.var('GLOBAL_K_BOLTZMANN')
                             * sage.var('GLOBAL_TEMP')
                             / sage.var('GLOBAL_q')]
-                    self.circuit_file = self.circuit_file[:pos] + ['RO_'
+                    self.circuit_file = self.circuit_file[:pos-1] + ['RO_'
                              + bjt_id + '  ' + data_bjt_strip[0] + ' '
                             + data_bjt_strip[2] + ' {RO_' + bjt_id
                             + '} \t\t\n'] + ['GM_' + bjt_id + '  '

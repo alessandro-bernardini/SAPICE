@@ -145,11 +145,52 @@ retuns the nodal voltages as a list.\\
 
 prints an explanation of used symbols.
 
+\section{Some typical uses}
+\subsection{Computation of poles and zeros}
+
+Describe the circuit in a ngspice netlist (in a .cir file) including small signal independent current sources when computing transfer functions. If the DC current of the indipendent source has to be zero, then use a description of the form
+\begin{displaymath}
+{\tt I}n\quad n+\quad n-\quad 0
+\end{displaymath}
+
+Follow the steps previously described in this documentation.\\
+
+Once the {\tt circuitinstance} is created (as previously described) do:
+\begin{verbatim}
+NODALVOLTAGES = circuitinstance.solve_nodal_equations()
+NODALVOLTAGESNUM = circuitinstance.solve_nodal_equations_with_substitutions()
+\end{verbatim}
+With
+\begin{verbatim}
+NODALVOLTAGES[0][0]
+NODALVOLTAGES[0][1]
+...
+NODALVOLTAGES[0][n]
+
+NODALVOLTAGESNUM[0][0]
+NODALVOLTAGESNUM[0][1]
+...
+NODALVOLTAGESNUM[0][n]
+\end{verbatim}
+you obtain the expressions for the nodal voltages in symbolic and numerical form. {\tt n=}$number\_of\_nodes$ (different from ground).\\
+
+For the numerical computation of the poles do 
+\begin{verbatim}
+R = RR[s]
+R(NODALVOLTAGESNUM[0][index].rhs().denominator()).roots(CDF)
+\end{verbatim}
+with {\tt index} in $0,\ldots, n $ (for example {\tt index=0}).\\
+
+This will return the complex roots of the denominator of the expression for the voltage {\tt NODALVOLTAGESNUM[0][index].lhs()} for the considered $index$.\\
+
+See the sagemath documentation for details.
+
+
 \section{Known issues}
 
-The software is only in the initial stage and was NOT really tested. This is only the first commit.
+The software is only in the initial stage and was NOT really tested. 
 
-Please contribute in testing the software and report bugs.
+Please contribute in testing the software and report bugs and/or writing a better documentation.
 
 
 \end{document}
