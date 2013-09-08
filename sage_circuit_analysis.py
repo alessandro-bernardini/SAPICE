@@ -575,7 +575,7 @@ class small_signal_linear_circuit:
                         self.nodal_equations[data_cap_strip[1]] = \
                             (sage.var('V_' + data_cap_strip[1])
                              - sage.var('V_' + data_cap_strip[0])) \
-                            * (sage.var('s') * sage.var(resistor_id)) \
+                            * (sage.var('s') * sage.var(capacitor_id)) \
                             - sage.var(capacitor_id) \
                             * -sage.var('V_initial_' + capacitor_id
                                 + '_' + data_cap_strip[0] + '_'
