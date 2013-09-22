@@ -34,6 +34,7 @@ import sage.all as sage
 import networkx as nx
 import re
 import sys
+import copy
 
 resistor_expr = re.compile('^(\s)*(R|r)\w+')
 capacitor_expr = re.compile('^(\s)*(C|c)\w+')
@@ -50,8 +51,9 @@ class small_signal_linear_circuit:
 
     def __init__(
         self,
-        filename,
-        spice_batch_output_file='',
+        filename=None,  #a filename containing a circuit netlist
+        spice_batch_output_file= None,
+        circuit_netlist=None, #a string describing a LINEAR circuit in ngspice form
         check_operating_region=True,
         set_default_IC_to_zero=True,
         ignore_all_IC=False,
@@ -60,24 +62,42 @@ class small_signal_linear_circuit:
     # operating_region is the operating region of the semiconductor devices; with check_operating_region a linearized model in dependence of the operating region will be choosen
     # for each semiconductor devices. Otherwise it will be assumed that a standard model is velid. In this case a BJT transistor will be considered in its active region
 
-        if spice_batch_output_file != '':
-            bof = open(spice_batch_output_file, 'r')
-            self.spice_batch_output_file = bof.readlines()
+
+        if filename != None:
+            if circuit_netlist != None:
+                raise Exception("You cannot give both a circuit file and a linear circuit netlist in string form when constructing a small_signal_linear_circuit.")
+            else:
+                try:
+                    f = open(filename, 'r')
+                except:
+                    raise IOError("File does not exist")
+                self.circuit_file = f.readlines()
+                self.original_circuit_file = self.circuit_file
+                if spice_batch_output_file != None:
+                    bof = open(spice_batch_output_file, 'r')
+                    self.spice_batch_output_file = bof.readlines()
+                else:
+                    self.spice_batch_output_file = []
         else:
-            self.spice_batch_output_file = []
-        f = open(filename, 'r')
-        self.circuit_file = f.readlines()
-	self.original_circuit_file = self.circuit_file
+            if circuit_netlist == None:
+                raise Exception("Provide a circuit file or a linear circuit netlist string when constructing a small_signal_linear_circuit object.")
+            else:
+                self.circuit_file = circuit_netlist
+                self.original_circuit_file = circuit_netlist
+
+    # initialize to empty entities and set default temperature.
+
         self.circuit_Graph = nx.MultiGraph()
         self.sources = []
         self.circuit_variables = []
         self.circuit_parameters = []
         self.default_substitutions = {}  # stores the default substitutions with string values
-        self.default_substitutions_values = {sage.var('V_0'): '0'}  # stores the values for the default substitutions; initialized with V_0 = 0
+        self.default_substitutions_values = {sage.var('V_0'): 0}  # stores the values for the default substitutions; initialized with V_0 = 0
         self.nodal_equations = {}  # currents flowing out of a node are considered to be positive.
         self.nodal_equations_substitutions = []
         self.additional_equations = []
         self.additional_equations_explicit = {}
+        self.additional_equations_explicit_substitutions = {}
         self.initial_conditions = []
         self.thermal_voltages = {}
         self.nodal_voltages = []
@@ -85,7 +105,7 @@ class small_signal_linear_circuit:
         self.operating_regions = {}  # remember the operating regions for the semiconductor devices
         self.temp = 300.15  # default value. Can be overridden if a .temp line is present
 
-# first for over self.circuit_file lines
+# first for loop over self.circuit_file lines
 # in this part preliminary preparatives are taken for a later nodal analysis.
 
         for line in self.circuit_file:
@@ -101,8 +121,7 @@ class small_signal_linear_circuit:
                     print 'Error in setting the temperature. Default value of 27 C = 300.15 K is assumed'
 
             if v_expr.match(line):
-                print 'Voltage sources are for now not supported. Replace them with an electrically equivalent current source (source transformation)'
-                sys.exit()
+                raise  Exception('Voltage sources are for now not supported. Replace them with an electrically equivalent current source (source transformation)')
 
             if bjt_expr.match(line):
                 bjt_lineptr = bjt_expr.match(line)
@@ -140,11 +159,10 @@ class small_signal_linear_circuit:
                 try:
                     model = data_bjt_strip[3]
                 except IndexError:
-                    print 'Provide transistor model for transistor connected to nodes ' \
+                    raise Exception('Provide transistor model for transistor connected to nodes ' \
                         + data_bjt_strip[0] + ' ' + data_bjt_strip[1] \
                         + ' ' + data_bjt_strip[2] \
-                        + ' (respectively C B E nodes) '
-                    sys.exit()
+                        + ' (respectively C B E nodes) ')
                 BJTmodeldescriptionreached = False
                 modelforpresentBJTreached = False
                 skipnextline = False
@@ -174,7 +192,7 @@ class small_signal_linear_circuit:
                                         print matchline.group('field') \
     + ' ' + matchline.group('value') + ' is not supported'
                                         print matchline.group(0)
-                                        sys.exit()
+                                        raise Exception("Device is not supported")
                             skipnextline = False
                             if re.match('^\s*\n', i) != None:
                                 BJTmodeldescriptionreached = False
@@ -334,14 +352,12 @@ class small_signal_linear_circuit:
 
                             raise RuntimeError
                     except:
-                        print 'An error has occurred in solving the additional equations for ' \
-                            + bjt_id
-                        sys.exit()
+                        raise Exception('An error has occurred in solving the additional equations for ' \
+                            + bjt_id)
                 else:
 
-                    print 'transistor ' + bjt_id \
-                        + ' is not operating in a supported region'
-                    sys.exit()
+                    raise Exception('transistor ' + bjt_id \
+                        + ' is not operating in a supported region')
 
 # second for  over self.circuit_file lines
 # proper nodal analysis done here:
@@ -609,7 +625,7 @@ class small_signal_linear_circuit:
                             + capacitor_id
                         print 'Capacitor data was ',
                         print data_cap_strip
-                        sys.exit()
+                        raise Exception("Error in reading initial condition for capacitor " + capacitor_id)
                 else:
                     self.default_substitutions[sage.var('V_initial_'
                             + capacitor_id + '_' + data_cap_strip[0]
@@ -728,7 +744,7 @@ class small_signal_linear_circuit:
                             + inductor_id
                         print 'Inductor data was ',
                         print data_ind_strip
-                        sys.exit()
+                        raise Exception("Error in reading initial condition for inductor " + inductor_id)
                 else:
                     self.default_substitutions[sage.var('I_initial_'
                             + inductor_id + '_' + data_ind_strip[0]
@@ -788,7 +804,7 @@ class small_signal_linear_circuit:
                         + vccs_id
                     print 'Data was '
                     print data_vccs_strip
-                    sys.exit()
+                    raise Exception("Error with the value of transconductance of voltage controlled current source " + vccs_id)
 
                 try:
 
@@ -811,7 +827,7 @@ class small_signal_linear_circuit:
                         + vccs_id
                     print 'Data was '
                     print data_vccs_strip
-                    sys.exit()
+                    raise Exception("Error with the value of transconductance of voltage controlled current source " + vccs_id)
 
     # following must be at the end of the constructor:
     # finalize equations - must be at the end of the constructor
@@ -853,7 +869,7 @@ class small_signal_linear_circuit:
                 + key
             print 'Error with ' + wd.data
             self.print_information()
-            sys.exit()
+            raise Exception("Error in data conversion. Error with " + wd.data)
 
     # leave this at the very end of the constructor - in the right order !
 
@@ -876,11 +892,21 @@ class small_signal_linear_circuit:
                             ): 0, sage.var('V_gnd'): 0, sage.var('V_GND'
                             ): 0}).substitute(subs_zero_IC)  # substitute V_0 and the zero initial conditions if ignora_all_IC is true.
 
+        # return numerical nodal equations.
+
         for key in self.nodal_equations.keys():
             self.nodal_equations_substitutions += \
                 [self.nodal_equations[key].substitute(self.additional_equations_explicit).substitute(self.default_substitutions_values)]
 
-        # first substitute additional_equations_explicit and then the numerical values
+        # return a dictonary with the numerical values for the additional equations
+
+        for key in self.additional_equations_explicit.keys():
+            self.additional_equations_explicit_substitutions[key] = self.additional_equations_explicit[key].substitute(self.default_substitutions_values) 
+
+#end of constructor
+
+    def clone(self):
+        return copy.deepcopy(self)
 
     def solve_nodal_equations(self):
         return sage.solve(self.nodal_equations.values(),
@@ -1001,5 +1027,4 @@ class WrongData:
         self.data = data
 
 
-# to do: implement voltage sources and current sources
 
