@@ -43,7 +43,7 @@ v_expr = re.compile('^(\s)*(V|v)\w+')
 i_expr = re.compile('^(\s)*(I|i)\w+')
 vccs_expr = re.compile('^(\s)*(G|g)\w+')
 bjt_expr = re.compile('^(\s)*(Q|q)\w+')
-data_field = re.compile('\s+\w+\=\w*\.?\w+|\s+\w*\.?\w+|\s+\{\w+\}')
+data_field = re.compile('\s+\w+\=-?\w*\.?\w+|\s+-?\w*\.?\w+|\s+\{\w+\}')
 temp_expr = re.compile('^(\s)*(\.temp)\s+\w+', re.IGNORECASE)
 
 
@@ -56,11 +56,11 @@ class small_signal_linear_circuit:
         circuit_netlist=None, #a string describing a LINEAR circuit in ngspice form
         check_operating_region=True,
         set_default_IC_to_zero=True,
-        ignore_all_IC=False,
+        ignore_all_IC=False
         ):
 
     # operating_region is the operating region of the semiconductor devices; with check_operating_region a linearized model in dependence of the operating region will be choosen
-    # for each semiconductor devices. Otherwise it will be assumed that a standard model is velid. In this case a BJT transistor will be considered in its active region
+    # for each semiconductor devices. Otherwise it will be assumed that a standard model is valid. In this case a BJT transistor will be considered in its active region
 
 
         if filename != None:
@@ -70,11 +70,14 @@ class small_signal_linear_circuit:
                 try:
                     f = open(filename, 'r')
                 except:
-                    raise IOError("File does not exist")
+                    raise IOError(filename + " file does not exist")
                 self.circuit_file = f.readlines()
                 self.original_circuit_file = self.circuit_file
                 if spice_batch_output_file != None:
-                    bof = open(spice_batch_output_file, 'r')
+                    try:
+                        bof = open(spice_batch_output_file, 'r')
+                    except:
+                        raise IOError(spice_batch_output_file + " file does not exist")
                     self.spice_batch_output_file = bof.readlines()
                 else:
                     self.spice_batch_output_file = []
@@ -87,8 +90,10 @@ class small_signal_linear_circuit:
 
     # initialize to empty entities and set default temperature.
 
-        self.circuit_Graph = nx.MultiGraph()
+        self.circuit_Graph = nx.MultiDiGraph()
+        self.circuit_Graph_substitutions = None #will be generated later
         self.sources = []
+        self.sources_names = []
         self.circuit_variables = []
         self.circuit_parameters = []
         self.default_substitutions = {}  # stores the default substitutions with string values
@@ -101,9 +106,9 @@ class small_signal_linear_circuit:
         self.initial_conditions = []
         self.thermal_voltages = {}
         self.nodal_voltages = []
-        pos = 0
         self.operating_regions = {}  # remember the operating regions for the semiconductor devices
         self.temp = 300.15  # default value. Can be overridden if a .temp line is present
+        pos = 0
 
 # first for loop over self.circuit_file lines
 # in this part preliminary preparatives are taken for a later nodal analysis.
@@ -182,8 +187,8 @@ class small_signal_linear_circuit:
                                     , i, re.IGNORECASE)
                             if matchline != None:
                                 if matchline.group('field') != 'type':
-                                    self.default_substitutions[bjt_id
-        + '_' + matchline.group('field').upper()] = \
+                                    self.default_substitutions[sage.var(bjt_id
+        + '_' + matchline.group('field').upper())] = \
     matchline.group('value')
                                 else:
                                     if not matchline.group('value') \
@@ -218,8 +223,8 @@ class small_signal_linear_circuit:
                             if matchline != None:
                                 if matchline.group('field') in ['vbe',
                                         'vbc', 'ic', 'ib']:
-                                    self.default_substitutions[bjt_id
-        + '_' + matchline.group('field').upper() + '_Q'] = \
+                                    self.default_substitutions[sage.var(bjt_id
+        + '_' + matchline.group('field').upper() + '_Q')] = \
     matchline.group('value')
                             skipnextline = False
                         elif re.match('^\s*\n', i) != None:
@@ -229,10 +234,10 @@ class small_signal_linear_circuit:
                     else:
                         skipnextline = False
                 try:
-                    if extract_value(self.default_substitutions[bjt_id
-                            + '_VBC_Q']) < 0 \
-                        and extract_value(self.default_substitutions[bjt_id
-                            + '_VBE_Q']) > 0:
+                    if extract_value(self.default_substitutions[sage.var(bjt_id
+                            + '_VBC_Q')]) < 0 \
+                        and extract_value(self.default_substitutions[sage.var(bjt_id
+                            + '_VBE_Q')]) > 0:
                         operating_region = 'active'
                         self.operating_regions[bjt_id] = 'active'
                     else:
@@ -396,7 +401,7 @@ class small_signal_linear_circuit:
         # only the small signal offset will be considered as a current source. For DC currents (or DC components) a current equal to zero is considered. In case of only a DC current no modification to the nodal equations is needed.
 
                 self.circuit_Graph.add_edge(data_i_strip[0],
-                        data_i_strip[1], type='I', id=i_id)
+                        data_i_strip[1], type='I', id=i_id, value=data_i_strip[2:], ngspice_line_data=data_i_strip[0:2])
                 try:
                     if data_i_strip[0] != '0' and data_i_strip[0] \
                         != 'gnd' and data_i_strip[0] != 'GND':
@@ -435,6 +440,9 @@ class small_signal_linear_circuit:
                 self.sources += [sage.function(i_id + '_small_signal_'
                                  + data_i_strip[0] + '_'
                                  + data_i_strip[1], sage.var('s'))]
+                self.sources_names += [ i_id + '_small_signal_'
+                                 + data_i_strip[0] + '_'
+                                 + data_i_strip[1] ] 
 
         # i_id + '_small_signal_' + data_i_strip[0] + '_' + data_i_strip[1] is the current imposed by source i_id flowing from data_i_strip[0] to data_i_strip[1] through the current source i_id itself.........
 
@@ -469,7 +477,7 @@ class small_signal_linear_circuit:
                 self.circuit_variables = self.circuit_variables \
                     + [sage.var(resistor_id)]
                 try:
-                    self.default_substitutions[resistor_id] = \
+                    self.default_substitutions[sage.var(resistor_id)] = \
                         data_res_strip[2]  # adjust this for extracting numerical value
                     self.circuit_Graph.add_edge(data_res_strip[0],
                             data_res_strip[1], type='R',
@@ -541,7 +549,7 @@ class small_signal_linear_circuit:
                 self.circuit_variables = self.circuit_variables \
                     + [sage.var(capacitor_id)]
                 try:
-                    self.default_substitutions[capacitor_id] = \
+                    self.default_substitutions[sage.var(capacitor_id)] = \
                         data_cap_strip[2]  # adjust this for extracting numerical value
                     self.circuit_Graph.add_edge(data_cap_strip[0],
                             data_cap_strip[1], type='C',
@@ -665,7 +673,7 @@ class small_signal_linear_circuit:
                 self.circuit_variables = self.circuit_variables \
                     + [sage.var(inductor_id)]
                 try:
-                    self.default_substitutions[inductor_id] = \
+                    self.default_substitutions[sage.var(inductor_id)] = \
                         data_ind_strip[2]  # adjust this for extracting numerical value
                     self.circuit_Graph.add_edge(data_ind_strip[0],
                             data_ind_strip[1], type='L',
@@ -779,9 +787,9 @@ class small_signal_linear_circuit:
                                 + [sage.var('V_' + data_vccs_strip[i])]
                 self.circuit_variables = self.circuit_variables \
                     + [sage.var(vccs_id)]
-                self.circuit_Graph.add_edge(data_vccs_strip[1],
-                        data_vccs_strip[0], type='G', id=vccs_id,
-                        value=data_vccs_strip[2:])  # adjust this for extracting numerical value
+                self.circuit_Graph.add_edge(data_vccs_strip[0],
+                        data_vccs_strip[1], type='G', id=vccs_id,
+                        value=data_vccs_strip[4:], ngspice_line_data=data_vccs_strip[0:4])  
                 try:
                     if data_vccs_strip[0] != '0' and data_vccs_strip[0] \
                         != 'gnd' and data_vccs_strip[0] != 'GND':
@@ -842,7 +850,7 @@ class small_signal_linear_circuit:
         self.default_substitutions_values = {}
         try:
             for key in self.default_substitutions.keys():
-                self.default_substitutions_values[sage.var(key)] = \
+                self.default_substitutions_values[key] = \
                     extract_value(self.default_substitutions[key])
 
         # set the TEMP temperature and tha values for Kb (Boltzmann constant) and q (proton charge)
@@ -863,7 +871,7 @@ class small_signal_linear_circuit:
             self.default_substitutions[sage.var('V_0')] = 0
             self.default_substitutions[sage.var('V_GND')] = 0
             self.default_substitutions[sage.var('V_gnd')] = 0
-        except WrongData, wd:
+        except WrongData as wd:
             print 'Error in converting value ' \
                 + self.default_substitutions[key] + ' associated with ' \
                 + key
@@ -872,25 +880,32 @@ class small_signal_linear_circuit:
             raise Exception("Error in data conversion. Error with " + wd.data)
 
     # leave this at the very end of the constructor - in the right order !
+        subs_zero_IC = {}
+        for ic in self.initial_conditions:
+            if self.default_substitutions[ic] == '0':
+                subs_zero_IC[ic] = 0
 
         for i in self.nodal_equations.keys():
+            #for loop over the nodal equations
             if not ignore_all_IC:
                 self.nodal_equations[i] = \
                     self.nodal_equations[i].substitute({sage.var('V_0'
                         ): 0, sage.var('V_gnd'): 0, sage.var('V_GND'
                         ): 0})
+                if set_default_IC_to_zero:
+                    self.nodal_equations[i] = self.nodal_equations[i].substitute(subs_zero_IC)
+ 
             else:
 
             # ignore all Initial Conditions
 
                 subs_zero_IC = {}  # substitutions for zero initial conditions
-                for i in self.initial_conditions:
-                    subs_zero_IC[i] = 0
-                for key in self.nodal_equations.keys():
-                    self.nodal_equations[key] = \
-                        self.nodal_equations[key].substitute({sage.var('V_0'
-                            ): 0, sage.var('V_gnd'): 0, sage.var('V_GND'
-                            ): 0}).substitute(subs_zero_IC)  # substitute V_0 and the zero initial conditions if ignora_all_IC is true.
+                for ic in self.initial_conditions:
+                    subs_zero_IC[ic] = 0 #set to zero all initial conditions
+                self.nodal_equations[i] = \
+                    self.nodal_equations[i].substitute({sage.var('V_0'
+                    ): 0, sage.var('V_gnd'): 0, sage.var('V_GND'
+                    ): 0}).substitute(subs_zero_IC)  # substitute V_0 and all zero initial conditions if ignore_all_IC is true.
 
         # return numerical nodal equations.
 
@@ -903,18 +918,43 @@ class small_signal_linear_circuit:
         for key in self.additional_equations_explicit.keys():
             self.additional_equations_explicit_substitutions[key] = self.additional_equations_explicit[key].substitute(self.default_substitutions_values) 
 
+        self.circuit_Graph_substitutions = self.circuit_Graph.copy()
+        for key in self.circuit_Graph_substitutions.adj.keys():
+            for key_2 in self.circuit_Graph_substitutions.adj[key].keys():
+                for element in self.circuit_Graph_substitutions.adj[key][key_2].keys():
+                    if  sage.var(self.circuit_Graph_substitutions.adj[key][key_2][element]['id']) in self.additional_equations_explicit_substitutions:
+                        self.circuit_Graph_substitutions.adj[key][key_2][element]['value'] = [ str(self.additional_equations_explicit_substitutions[sage.var(self.circuit_Graph_substitutions.adj[key][key_2][element]['id'])]) ]
+
 #end of constructor
 
     def clone(self):
         return copy.deepcopy(self)
 
-    def solve_nodal_equations(self):
-        return sage.solve(self.nodal_equations.values(),
-                          self.nodal_voltages)
+    def solve_nodal_equations_symbolically(self, set_independent_ss_sources_to_zero=False):
+        if not set_independent_ss_sources_to_zero:
+            return sage.solve(self.nodal_equations.values(),
+                              self.nodal_voltages)                
+        else:
+            nod_eqn = self.nodal_equations.values()
+            nod_eqn_adj = []
+            for eqn in nod_eqn:
+                for i in self.sources_names:
+                    eqn = eqn.substitute_function(function(i), (0*sage.var('s')).function(sage.var('s')))
+                nod_eqn_adj += [ eqn ]
+            return sage.solve(nod_eqn_adj, self.nodal_voltages)
 
-    def solve_nodal_equations_with_substitutions(self):
-        return sage.solve(self.nodal_equations_substitutions,
-                          self.nodal_voltages)
+    def solve_nodal_equations_with_numeric_substitutions(self, set_independent_ss_sources_to_zero=False):
+        if not set_independent_ss_sources_to_zero:
+            return sage.solve(self.nodal_equations_substitutions,
+                              self.nodal_voltages)
+        else:
+            nod_eqn = self.nodal_equations_substitutions
+            nod_eqn_adj = []
+            for eqn in nod_eqn:
+                for i in self.sources_names:
+                    eqn = eqn.substitute_function(function(i), (0*sage.var('s')).function(sage.var('s')))
+                nod_eqn_adj += [ eqn ]
+            return sage.solve(nod_eqn_adj, self.nodal_voltages)
 
     def print_information(self):
         print 'Sources: '
@@ -944,6 +984,9 @@ class small_signal_linear_circuit:
         print 'Additional equations in explicit form: '
         print self.additional_equations_explicit
         print
+        print 'Additional equations in explicit form with substitution of default values: '
+        print self.additional_equations_explicit_substitutions
+        print
         print 'Nodal equations after substitution of default values: '
         print self.nodal_equations_substitutions
         print
@@ -954,6 +997,109 @@ class small_signal_linear_circuit:
         for i in self.circuit_file:
             print i,
 
+    def get_lin_circuit_as_string(self):
+        ret_val = ''
+        for i in self.circuit_file:
+            ret_val = ret_val + i
+        return ret_val
+
+    def write_lin_circuit_to_file(self, filename):
+        try:
+            lin_cir_file = open(filename, 'w')
+        except:
+            raise IOError("Cannot write to file ")
+        for i in self.circuit_file:
+            lin_cir_file.write(i)
+        lin_cir_file.close()
+    
+    def export_lin_circuit_graph(self, shorts=None, remove=None, with_substitutions=True):
+        if shorts==None:
+            shorts = {}
+        if remove==None:
+            remove=[]
+        try:
+            for node in shorts.keys():
+                if not sage.var('V_'+node) in self.nodal_voltages + [ sage.var('V_0'), sage.var('V_gnd'), sage.var('V_GND') ]:
+                    raise Exception("Dictionary of short circuits not given in a valid form")
+            for node in shorts.values():
+                if not sage.var('V_'+node) in self.nodal_voltages + [ sage.var('V_0'), sage.var('V_gnd'), sage.var('V_GND') ]:
+                    raise Exception("Dictionary of short circuits not given in a valid form")
+            for edge in remove:
+                if not sage.var(edge) in self.circuit_variables:
+                    raise Exception("List of linear components to remove not given in a valid form")
+            for node in shorts.keys():
+                if shorts[node] in shorts.keys():
+                    raise Exception("For the dictonary of short circuits a value should not be a key")
+        except:
+            # re-raise the exception
+            raise
+        
+        try:
+            if with_substitutions:
+                gr = self.circuit_Graph_substitutions.copy()
+            else:
+                gr = self.circuit_Graph.copy()
+            for edge in gr.edges(data=True, keys=True):
+                new_node1 = None
+                new_node2 = None
+                new_attribute_dict = None
+                tmp = None
+                if edge[0] in shorts.keys():
+                    new_node1 = shorts[edge[0]]
+                else:
+                    new_node1 = edge[0]
+                if edge[1] in shorts.keys():
+                    new_node2 = shorts[edge[1]]
+                else:
+                    new_node2 = edge[1]
+                new_attribute_dict = edge[3]
+                if 'ngspice_line_data' in new_attribute_dict.keys():
+                    tmp = []
+                    for nn in new_attribute_dict['ngspice_line_data']:
+                        if nn in shorts.keys():
+                            tmp += [ shorts[nn] ]
+                        else:
+                            tmp += [ nn ]
+                    new_attribute_dict['ngspice_line_data'] = tmp
+                gr.remove_edge(edge[0],edge[1],key=edge[2])
+                if not(new_node1 == new_node2 and new_attribute_dict['type'] in [ 'R','L','C' ]):
+                    gr.add_edge(new_node1, new_node2, attr_dict=new_attribute_dict)
+                else:
+                    pass
+  
+            for edge in gr.edges(data=True, keys=True):
+                if edge[3]['id'] in remove:
+                    gr.remove_edge(edge[0], edge[1], key=edge[2]) #key identifies the edge in a multi-graph
+            return gr
+        except: 
+            raise Exception("An error occurred when calling export_lin_circuit_graph")
+
+    def export_lin_circuit_string(self, shorts=None, remove=None, with_substitutions=True, write_to_file=None):
+        gr = self.export_lin_circuit_graph(shorts=shorts, remove=remove, with_substitutions=with_substitutions)
+        circuit_string = ''
+        for edge in gr.edges(data=True, keys=True):
+            fields_string = ''
+            try:
+                for field in edge[3]['value']:
+                    fields_string += ' ' + field
+            except:
+                raise Exception("Error in export_lin_circuit_string")
+            if not 'ngspice_line_data' in edge[3].keys(): 
+                circuit_string += edge[3]['id'] + '  '  + edge[0] + ' ' + edge[1] + ' ' + fields_string + ' \n'
+            else:
+                tmp = ''
+                for nn in edge[3]['ngspice_line_data']:
+                    tmp += ' ' + nn
+                circuit_string += edge[3]['id'] + ' ' + tmp + ' ' + fields_string + ' \n'
+        if write_to_file != None:
+            try:
+                of = open(write_to_file,'w')
+            except:
+                raise IOError("cannot open file")
+            of.write(circuit_string)
+            of.close()
+        return circuit_string
+        
     def print_symbols(self):
         '''displays information on the symbols adopted by the program'''
 
@@ -968,10 +1114,17 @@ class small_signal_linear_circuit:
         for infokey in keysinfodict:
             print infokey + '  ->  ' + infodict[infokey]
 
-    def create_circuit_graph(self, output_graph_file='circuit_graph.dot'
+    def write_circuit_graph_dot(self, output_graph_file='circuit_graph.dot', with_substitutions=True, edge_labels=True
                              ):
-        pass
-
+        try:
+            if with_substitutions:
+                gr = sage.Graph(self.circuit_Graph_substitutions)
+                gr.graphviz_to_file_named(output_graph_file, edge_labels=edge_labels)
+            else:
+                gr = sage.Graph(self.circuit_Graph)
+                gr.graphviz_to_file_named(output_graph_file, edge_labels=edge_labels)
+        except:
+            raise Exception("Error in generating dot file")
 
 def extract_value(data):
     '''extracts numerical value from a data field. For example 0.003 from 3m. data must be a stripped string'''
