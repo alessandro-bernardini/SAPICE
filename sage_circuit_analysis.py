@@ -49,6 +49,7 @@ temp_expr = re.compile('^(\s)*(\.temp)\s+\w+', re.IGNORECASE)
 
 class small_signal_linear_circuit:
 
+    #when implementing modified nodal analysis a set of MNA_equations will be needed togheter with additional MNA_unknowns, that usually will represent currents in branches (edges)
     def __init__(
         self,
         filename=None,  #a filename containing a circuit netlist
@@ -85,8 +86,9 @@ class small_signal_linear_circuit:
             if circuit_netlist == None:
                 raise Exception("Provide a circuit file or a linear circuit netlist string when constructing a small_signal_linear_circuit object.")
             else:
-                self.circuit_file = circuit_netlist
-                self.original_circuit_file = circuit_netlist
+                #circuit_netlist != None
+                self.circuit_file = circuit_netlist.splitlines()
+                self.original_circuit_file = circuit_netlist.splitlines()
 
     # initialize to empty entities and set default temperature.
 
@@ -94,6 +96,7 @@ class small_signal_linear_circuit:
         self.circuit_Graph_substitutions = None #will be generated later
         self.sources = []
         self.sources_names = []
+        self.sources_component_id = []
         self.circuit_variables = []
         self.circuit_parameters = []
         self.default_substitutions = {}  # stores the default substitutions with string values
@@ -443,6 +446,7 @@ class small_signal_linear_circuit:
                 self.sources_names += [ i_id + '_small_signal_'
                                  + data_i_strip[0] + '_'
                                  + data_i_strip[1] ] 
+                self.sources_component_id += [ i_id ]
 
         # i_id + '_small_signal_' + data_i_strip[0] + '_' + data_i_strip[1] is the current imposed by source i_id flowing from data_i_strip[0] to data_i_strip[1] through the current source i_id itself.........
 
@@ -787,6 +791,13 @@ class small_signal_linear_circuit:
                                 + [sage.var('V_' + data_vccs_strip[i])]
                 self.circuit_variables = self.circuit_variables \
                     + [sage.var(vccs_id)]
+                try:
+                    self.default_substitutions[sage.var(vccs_id)] = data_vccs_strip[4]
+                except IndexError:
+                    raise IndexError("Provide a symbolic or numeric value for the vccs " + vccs_id)
+                except WrongData as wd:
+                    raise Exception("Error in data conversion. Error in converting " + wd.data)
+
                 self.circuit_Graph.add_edge(data_vccs_strip[0],
                         data_vccs_strip[1], type='G', id=vccs_id,
                         value=data_vccs_strip[4:], ngspice_line_data=data_vccs_strip[0:4])  
@@ -797,7 +808,8 @@ class small_signal_linear_circuit:
                             self.nodal_equations[data_vccs_strip[0]] \
                             + (sage.var('V_' + data_vccs_strip[2])
                                - sage.var('V_' + data_vccs_strip[3])) \
-                            * extract_value(data_vccs_strip[4])
+                               * sage.var(vccs_id)
+#* extract_value(data_vccs_strip[4])
                 except KeyError:
 
                     if data_vccs_strip[0] != '0' and data_vccs_strip[0] \
@@ -805,14 +817,8 @@ class small_signal_linear_circuit:
                         self.nodal_equations[data_vccs_strip[0]] = \
                             (sage.var('V_' + data_vccs_strip[2])
                              - sage.var('V_' + data_vccs_strip[3])) \
-                            * extract_value(data_vccs_strip[4])
-                except WrongData:
-
-                    print 'Error with the value of transconductance of voltage controlled current source ' \
-                        + vccs_id
-                    print 'Data was '
-                    print data_vccs_strip
-                    raise Exception("Error with the value of transconductance of voltage controlled current source " + vccs_id)
+                             * sage.var(vccs_id)
+                           # * extract_value(data_vccs_strip[4])
 
                 try:
 
@@ -822,20 +828,16 @@ class small_signal_linear_circuit:
                             self.nodal_equations[data_vccs_strip[1]] \
                             - (sage.var('V_' + data_vccs_strip[2])
                                - sage.var('V_' + data_vccs_strip[3])) \
-                            * extract_value(data_vccs_strip[4])
+                               * sage.var(vccs_id)
+                           # * extract_value(data_vccs_strip[4])
                 except KeyError:
                     if data_vccs_strip[1] != '0' and data_vccs_strip[1] \
                         != 'gnd' and data_vccs_strip[1] != 'GND':
                         self.nodal_equations[data_vccs_strip[1]] = \
                             -(sage.var('V_' + data_vccs_strip[2])
                               - sage.var('V_' + data_vccs_strip[3])) \
-                            * extract_value(data_vccs_strip[4])
-                except WrongData:
-                    print 'Error with the value of transconductance of voltage controlled current source ' \
-                        + vccs_id
-                    print 'Data was '
-                    print data_vccs_strip
-                    raise Exception("Error with the value of transconductance of voltage controlled current source " + vccs_id)
+                              * sage.var(vccs_id)
+                           # * extract_value(data_vccs_strip[4])
 
     # following must be at the end of the constructor:
     # finalize equations - must be at the end of the constructor
@@ -930,6 +932,7 @@ class small_signal_linear_circuit:
     def clone(self):
         return copy.deepcopy(self)
 
+    #when implementing modified nodal analysis, include modified nodal analysis equations and additional current unknowns
     def solve_nodal_equations_symbolically(self, set_independent_ss_sources_to_zero=False):
         if not set_independent_ss_sources_to_zero:
             return sage.solve(self.nodal_equations.values(),
@@ -943,6 +946,7 @@ class small_signal_linear_circuit:
                 nod_eqn_adj += [ eqn ]
             return sage.solve(nod_eqn_adj, self.nodal_voltages)
 
+    #when implementing modified nodal analysis, include modified nodal analyis equations and additional current unknowns
     def solve_nodal_equations_with_numeric_substitutions(self, set_independent_ss_sources_to_zero=False):
         if not set_independent_ss_sources_to_zero:
             return sage.solve(self.nodal_equations_substitutions,
@@ -955,6 +959,61 @@ class small_signal_linear_circuit:
                     eqn = eqn.substitute_function(function(i), (0*sage.var('s')).function(sage.var('s')))
                 nod_eqn_adj += [ eqn ]
             return sage.solve(nod_eqn_adj, self.nodal_voltages)
+
+    #when implementing modified nodal analysis replace all independent voltage sources with a short
+    def impedance(self, port, with_substitutions=True, symbolic=True):
+        try:
+            if type(port) != tuple:
+                raise Exception("Pass a tuple of two nodes (strings) as an argument in the form ('N1','N2') ")
+            elif len(port) != 2:
+                raise Exception("Pass a port as a tuple of TWO nodes (string) for calculating an impedance ('N1', 'N2') ")
+            elif sage.var('V_' + port[0]) not in self.nodal_voltages + [ sage.var('V_0'), sage.var('V_gnd'), sage.var('V_GND') ]:
+                raise Exception("First node of the tuple is not a valid node (must be a string describing a node) ")
+            elif sage.var('V_' + port[1]) not in self.nodal_voltages + [ sage.var('V_0'), sage.var('V_gnd'), sage.var('V_GND') ]:
+                raise Exception("Second node of the tuple is not a valid node (must be a string describing a node) ")
+        except:
+            #re-raise the exception
+            raise
+        #get the present circuit as a string and remove the independent sources (for now current sources)
+        #when implementing modified nodal analysis replace independent current sources with a short
+        circ_without_sources = self.export_lin_circuit_string(remove=self.sources_component_id, with_substitutions=with_substitutions)
+        if not sage.var('Iss_imp') in mycirc.sources_component_id:
+            src = sage.var('Iss_imp')
+            circ_imp_calc_string = circ_without_sources + 'Iss_imp' + '  ' + port[0] + ' ' + port[1] + ' \n'
+        else:
+            count = 0
+            while (sage.var('Iss_imp' + str(count)) in mycirc.sources_component_id):
+                       count += 1
+            src = sage.var('Iss_imp' + str(count))
+            circ_imp_calc_string = circ_without_sources + 'Iss_imp'+str(count) + '  ' + port[0] + ' ' + port[1] + ' \n'
+        #now we create a circuit for the impedance calculation, with all initial condition set to zero and containing only the independent source described with src.
+        circ_imp_calc = small_signal_linear_circuit(circuit_netlist=circ_imp_calc_string, ignore_all_IC=True)
+        if symbolic:
+            node_voltages = circ_imp_calc.solve_nodal_equations_symbolically(set_independent_ss_sources_to_zero=False)
+            try:
+                if node_voltages[0][0] == []:
+                    raise Exception("An error has occurred")
+            except:
+                # re-raise exception or index error
+                raise
+            Vnode0 = 0
+            Vnode1 = 0
+            for eqn in node_voltages[0]:
+                if sage.var('V_' + port[0]) == eqn.lhs():
+                    Vnode0 = eqn.rhs()
+                if sage.var('V_' + port[1]) == eqn.lhs():
+                    Vnode1 = eqn.rhs()
+            if sage.var('V_'+port[0]) in [ sage.var('V_0'), sage.var('V_gnd'), sage.var('V_GND') ]:
+                Vnode0 = 0
+            if sage.var('V_'+port[1]) in [ sage.var('V_0'), sage.var('V_gnd'), sage.var('V_GND') ]:
+                Vnode1 = 0
+            if len(circ_imp_calc.sources) != 1:
+                raise Exception("An error has occurred")
+            return (Vnode0 - Vnode1).substitute_function(sage.function(circ_imp_calc.sources_names[0]), (1+0*s).function(s))
+        else:
+            #to implement
+            pass
+        
 
     def print_information(self):
         print 'Sources: '
@@ -1065,6 +1124,7 @@ class small_signal_linear_circuit:
                 if not(new_node1 == new_node2 and new_attribute_dict['type'] in [ 'R','L','C' ]):
                     gr.add_edge(new_node1, new_node2, attr_dict=new_attribute_dict)
                 else:
+                    #else do nothing
                     pass
   
             for edge in gr.edges(data=True, keys=True):
