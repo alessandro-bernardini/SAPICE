@@ -51,6 +51,7 @@ import networkx as nx
 import re
 import sys
 import copy
+import string
 
 RESISTOR_EXPR = re.compile('^(\s)*(R|r)\w+')
 CAPACITOR_EXPR = re.compile('^(\s)*(C|c)\w+')
@@ -63,7 +64,7 @@ DATA_FIELD = re.compile('\s+\w+\=-?\w*\.?\w+|\s+-?\w*\.?\w+|\s+\{\w+\}')
 TEMP_EXPR = re.compile('^(\s)*(\.temp)\s+\w+', re.IGNORECASE)
 
 
-class Smallsignallinearcircuit:
+class SmallSignalLinearCircuit:
 
     # when implementing modified nodal analysis a set of MNA_equations will 
     # be needed togheter with additional MNA_unknowns, that usually will 
@@ -98,7 +99,7 @@ class Smallsignallinearcircuit:
             if circuit_netlist != None:
                 raise Exception('You cannot give both a circuit file and a '
                                 'linear circuit netlist in string form when '
-                                'constructing a Smallsignallinearcircuit.'
+                                'constructing a SmallSignaLinearCircuit.'
                                 )
             else:
                 try:
@@ -120,7 +121,7 @@ class Smallsignallinearcircuit:
             if circuit_netlist == None:
                 raise Exception('Provide a circuit file or a linear circuit '
                                 'netlist string when constructing a '
-                                'Smallsignallinearcircuit object.'
+                                'SmallSignaLinearCircuit object.'
                                 )
             else:
 
@@ -276,7 +277,7 @@ class Smallsignallinearcircuit:
                                     , key_neq, re.IGNORECASE)
                             if matchline != None:
                                 if matchline.group('field') in ['vbe',
-                                        'vbc', 'init_cond', 'ib']:
+                                        'vbc', 'ib', 'ic']:
 
                                     self.default_substitutions[sage.var(bjt_id
         + '_' + matchline.group('field').upper() + '_Q')] = \
@@ -711,7 +712,7 @@ class Smallsignallinearcircuit:
                     try:
                         for key_neq in data_cap_strip[3:]:
                             if key_neq[:3] == 'IC=' or key_neq[:3] \
-                                == 'init_cond=':
+                                == 'ic=':
 
                         # set initial condition for the capacitor capacitor_id
 
@@ -841,7 +842,7 @@ class Smallsignallinearcircuit:
                     try:
                         for key_neq in data_ind_strip[3:]:
                             if key_neq[:3] == 'IC=' or key_neq[:3] \
-                                == 'init_cond=':
+                                == 'ic=':
 
                         # set initial condition for the capacitor capacitor_id
 
@@ -1010,8 +1011,11 @@ class Smallsignallinearcircuit:
 
         subs_zero_ic = {}
         for init_cond in self.initial_conditions:
-            if self.default_substitutions[init_cond] == '0':
-                subs_zero_ic[init_cond] = 0
+            try:
+                if self.default_substitutions[init_cond] == '0':
+                    subs_zero_ic[init_cond] = 0
+            except:
+                pass
 
         for key_neq in self.nodal_equations.keys():
 
@@ -1074,6 +1078,16 @@ class Smallsignallinearcircuit:
     # analysis equations and additional current unknowns
 
     def solve_nodal_equations_symb(self, set_ind_ss_src_to_zero=False):
+        """Returns a symbolic solutions of the nodal equations. 
+        
+        The solution will be a list containing a list of equations that
+        have on the left hand side the nodal voltages and on the right hand 
+        side the symbolic expression representing the solution.
+        
+        set_ind_ss_src_to_zero=True will set all the independent small signal
+        sources (in the small signal linearized circuit) to zero
+        """
+        
         if not set_ind_ss_src_to_zero:
             return sage.solve(self.nodal_equations.values(),
                               self.nodal_voltages)
@@ -1090,6 +1104,7 @@ class Smallsignallinearcircuit:
 
     # when implementing modified nodal analysis, include modified nodal analyis
     # equations and additional current unknowns
+    
 
     def solve_nodal_equations_num(self,
             set_ind_ss_sources_to_zero=False):
@@ -1109,6 +1124,7 @@ class Smallsignallinearcircuit:
     # when implementing modified nodal analysis replace all independent voltage
     # sources with a short
 
+        
     def impedance(
         self,
         port,
@@ -1162,7 +1178,7 @@ class Smallsignallinearcircuit:
         # source described with src.
 
         circ_imp_calc = \
-            Smallsignallinearcircuit(circuit_netlist=circ_imp_calc_string,
+            SmallSignalLinearCircuit(circuit_netlist=circ_imp_calc_string,
                 ignore_all_ic=True)
         if symbolic:
             node_voltages = \
@@ -1199,6 +1215,22 @@ class Smallsignallinearcircuit:
 
             pass
 
+    def dict_default_vals(self):
+        dict_num = {}
+        dict_sym = {}
+        for key in self.default_substitutions_values.keys():
+            if self.default_substitutions_values[key] in sage.RR:
+                dict_num[key] = self.default_substitutions_values[key]
+            else:
+                if key in self.additional_equations_exp_sub.keys():
+                    if self.additional_equations_exp_sub[key] in sage.RR:
+                        dict_num[key] = self.additional_equations_exp_sub[key]
+                    else:
+                        dict_sym[key] = self.additional_equations_exp_sub[key]
+                else:
+                    dict_sym[key] = self.default_substitutions_values[key]
+        return (dict_num, dict_sym)
+        
     def print_information(self):
         print 'Sources: '
         print self.sources
@@ -1466,4 +1498,65 @@ class WrongData:
         print data
         self.data = data
 
+def simplify_sum(expr, dict, treshhold=0):
+    if treshhold > 1 or treshhold < 0:
+        raise ValueError("treshhold must be between 0 and 1")
+    try:
+        exp_expr = expr.expand()
+        operat = str(exp_expr.operator())
+        if operat == '<built-in function add>':
+            terms = exp_expr.operands()
+            max = 0
+            for term in terms:
+                if not term.substitute(dict) in CC:
+                    raise ValueError("Expression expr must be made by terms that when"
+                                     " ths substitutions are carried out evaluate"
+                                     "to complex numbers. Substitutions are described"
+                                     "with the dictionary dict.")
+                term_value = abs(term.substitute(dict))
+                if term_value > max:
+                    max = term_value
+            # max holds the maximim value of the (absolute value of the) 
+            # terms in the sum.
+            simplified_expr = 0
+            for term in terms:
+                if abs(term.substitute(dict)) < max*treshhold:
+                    pass
+                else:
+                    simplified_expr = simplified_expr + term
+        return (simplified_expr, expr-simplified_expr)
+                
+    except:
+        return (expr, 0)
+        
+def simplify_polynomial(polinom, dict, treshhold=0, variable=sage.var('s'), safe_check=True):
+    if treshhold < 0 or treshhold > 1:
+        raise ValueError("treshhold must be between 0 and 1")
+    if safe_check:
+        if polinom.denominator() != 1:
+            raise ValueError("polinom must be a polinom in variable variable")
+    try:
+        coeff = polinom.coeffs(variable)
+        result = 0
+        for term in coeff:
+            simplified_term = simplify_sum(expr=term[0], dict=dict, treshhold=treshhold)
+            #simplify_sum returns a tuple 
+            result = result + (simplified_term[0])*variable**term[1]
+        return (result, polinom-result)
+    except:
+        return (polinom, 0)
 
+def simplify_rational_func(rational_func, dict, treshhold=0, variable=sage.var('s'), safe_check=True):
+    if treshhold < 0 or treshhold > 1:
+        raise ValueError("treshhold must be between 0 and 1")
+    try:
+        (num, den) = rational_func.numerator_denominator()
+        num_simp = simplify_polynomial(polinom=num,dict=dict,treshhold=treshhold,variable=variable, safe_check=safe_check)
+        den_simp = simplify_polynomial(polinom=den,dict=dict,treshhold=treshhold,variable=variable, safe_check=safe_check)
+        # simplify_polynomial retunrs a tuple
+        result = num_simp[0]/den_simp[0]
+        return (result, rational_func - result)
+    except:
+        return (rational_func, 0)
+
+        
