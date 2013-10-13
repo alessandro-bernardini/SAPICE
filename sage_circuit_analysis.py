@@ -1089,8 +1089,12 @@ class SmallSignalLinearCircuit:
         """
         
         if not set_ind_ss_src_to_zero:
-            return sage.solve(self.nodal_equations.values(),
-                              self.nodal_voltages)
+            if len(self.nodal_voltages) > 1:
+                return sage.solve(self.nodal_equations.values(),
+                                  self.nodal_voltages)
+            else:
+                return [ sage.solve(self.nodal_equations.values(),
+                                    self.nodal_voltages) ]
         else:
             nod_eqn = self.nodal_equations.values()
             nod_eqn_adj = []
@@ -1100,7 +1104,10 @@ class SmallSignalLinearCircuit:
                     eqn = eqn.substitute_function(sage.function(i), (0
                             * sage.var('s')).function(sage.var('s')))
                 nod_eqn_adj += [eqn]
-            return sage.solve(nod_eqn_adj, self.nodal_voltages)
+            if len(self.nodal_voltages) > 1:
+                return sage.solve(nod_eqn_adj, self.nodal_voltages)
+            else:
+                return [ sage.solve(nod_eqn_adj, self.nodal_voltages) ]
 
     # when implementing modified nodal analysis, include modified nodal analyis
     # equations and additional current unknowns
@@ -1109,8 +1116,12 @@ class SmallSignalLinearCircuit:
     def solve_nodal_equations_num(self,
             set_ind_ss_sources_to_zero=False):
         if not set_ind_ss_sources_to_zero:
-            return sage.solve(self.nodal_equations_substitutions,
-                              self.nodal_voltages)
+            if len(self.nodal_voltages) > 1:
+                return sage.solve(self.nodal_equations_substitutions,
+                                  self.nodal_voltages)
+            else:
+                return [ sage.solve(self.nodal_equations_substitutions,
+                                    self.nodal_voltages) ]
         else:
             nod_eqn = self.nodal_equations_substitutions
             nod_eqn_adj = []
@@ -1119,7 +1130,10 @@ class SmallSignalLinearCircuit:
                     eqn = eqn.substitute_function(sage.function(i), (0
                             * sage.var('s')).function(sage.var('s')))
                 nod_eqn_adj += [eqn]
-            return sage.solve(nod_eqn_adj, self.nodal_voltages)
+            if len(self.nodal_voltages) > 1:
+                return sage.solve(nod_eqn_adj, self.nodal_voltages)
+            else:
+                return [ sage.solve(nod_eqn_adj, self.nodal_voltages) ]
 
     # when implementing modified nodal analysis replace all independent voltage
     # sources with a short
@@ -1206,8 +1220,8 @@ class SmallSignalLinearCircuit:
                 v_node1 = 0
             if len(circ_imp_calc.sources) != 1:
                 raise Exception('An error has occurred')
-            return (v_node0
-                    - v_node1).substitute_function(sage.function(circ_imp_calc.sources_names[0]),
+            return (v_node1
+                    - v_node0).substitute_function(sage.function(circ_imp_calc.sources_names[0]),
                     (1 + 0 * sage.var('s')).function(sage.var('s')))
         else:
 
