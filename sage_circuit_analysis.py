@@ -1229,6 +1229,7 @@ class SmallSignalLinearCircuit:
 
             pass
 
+
     def dict_default_vals(self):
         dict_num = {}
         dict_sym = {}
@@ -1564,7 +1565,7 @@ def simplify_rational_func(rational_func, dict, treshhold=0, variable=sage.var('
     if treshhold < 0 or treshhold > 1:
         raise ValueError("treshhold must be between 0 and 1")
     try:
-        (num, den) = rational_func.numerator_denominator()
+        (num, den) = rational_func.numerator_denominator(safe_check)
         num_simp = simplify_polynomial(polinom=num,dict=dict,treshhold=treshhold,variable=variable, safe_check=safe_check)
         den_simp = simplify_polynomial(polinom=den,dict=dict,treshhold=treshhold,variable=variable, safe_check=safe_check)
         # simplify_polynomial retunrs a tuple
@@ -1573,4 +1574,40 @@ def simplify_rational_func(rational_func, dict, treshhold=0, variable=sage.var('
     except:
         return (rational_func, 0)
 
+def rational_func(large_expression):
+    try:
+        (num_init_expr, den_init_expr) = large_expression.numerator_denominator(False)
+        num_init = num_init_expr.expand()
+        den_init = den_init_expr.expand()
+        mult = 1
+        if str(num_init.operator()) == '<built-in function add>':
+            num_init_operands = num_init.operands()
+            for term in num_init_operands:
+                (term_num, term_denom) = rational_func(term)
+                if (mult/term_denom).denominator(True) !=1:
+                    mult = mult*term_denom
+            if str(den_init.operator()) == '<built-in function add>':
+                den_init_operands = den_init.operands()
+                for term in den_init_operands:
+                    (term_num, term_denom) = rational_func(term)
+                    if (mult/term_denom).denominator(True) != 1:
+                        mult = mult*term_denom
+            else:
+                (numerator, denominator) = den_init.numerator_denominator(True)
+                if (mult/denominator).denominator(True) != 1:
+                    mult = mult*denominator
+                den_init_operands = [ den_init ]
+            result_numerator = 0
+            for term in num_init_operands:
+                result_numerator += ((term*mult).expand())
+            result_denominator = 0
+            for term in den_init_operands:
+                result_denominator += ((term*mult).expand())
+            return (result_numerator, result_denominator)
+        else:
+            return large_expression.numerator_denominator(True)
+            
+    except:
+        raise ValueError("Expansion to rational function not successfull")
+        #raise
         
