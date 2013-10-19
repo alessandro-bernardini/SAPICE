@@ -1609,5 +1609,4 @@ def rational_func(large_expression):
             
     except:
         raise ValueError("Expansion to rational function not successfull")
-        #raise
         
