@@ -127,9 +127,9 @@ class SmallSignalLinearCircuit:
 
                 # circuit_netlist != None
 
-                self.circuit_file = circuit_netlist.splitlines()
+                self.circuit_file = circuit_netlist.splitlines(True)
                 self.original_circuit_file = \
-                    circuit_netlist.splitlines()
+                    circuit_netlist.splitlines(True)
 
     # initialize to empty entities and set default temperature.
 
@@ -1523,7 +1523,7 @@ def simplify_sum(expr, dict, treshhold=0):
             terms = exp_expr.operands()
             max = 0
             for term in terms:
-                if not term.substitute(dict) in CC:
+                if not term.substitute(dict) in sage.CC:
                     raise ValueError("Expression expr must be made by terms that when"
                                      " ths substitutions are carried out evaluate"
                                      "to complex numbers. Substitutions are described"

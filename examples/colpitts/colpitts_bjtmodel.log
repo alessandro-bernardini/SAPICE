@@ -8,19 +8,19 @@ No. of Data Rows : 1
 	Node                                  Voltage
 	----                                  -------
 	----	-------
-	V(4)                             3.249738e+00
-	V(5)                             3.057549e+00
-	V(8)                             3.931842e+00
-	V(7)                             1.699457e+01
-	V(2)                             1.699457e+01
-	V(6)                             3.057549e+00
-	V(1)                             0.000000e+00
+	V(5)                             0.000000e+00
+	V(8)                             3.057549e+00
+	V(7)                             3.057549e+00
+	V(6)                             3.249738e+00
+	V(3)                             3.931842e+00
+	V(4)                             1.699457e+01
+	V(1)                             1.699457e+01
 
 	Source	Current
 	------	-------
 
-	l1#branch                        4.342026e-03
-	l2#branch                        4.367927e-03
+	lt#branch                        4.342026e-03
+	lrfc#branch                      4.367927e-03
 
  BJT models (Bipolar Junction Transistor)
       model               q2n3866
@@ -180,29 +180,29 @@ No. of Data Rows : 1
        csub                     0
 
  Capacitor: Fixed capacitor
-     device                    c1                    c2                    c3
+     device                  cicc                    cf                    c2
       model                     C                     C                     C
-capacitance               3.3e-09               3.3e-09              2.18e-10
-        cap               3.3e-09               3.3e-09              2.18e-10
-          c               3.3e-09               3.3e-09              2.18e-10
+capacitance               3.3e-09                 2e-11             2.842e-09
+        cap               3.3e-09                 2e-11             2.842e-09
+          c               3.3e-09                 2e-11             2.842e-09
       dtemp                     0                     0                     0
           i                     0                     0                     0
-          p                     0                     0                    -0
+          p                     0                     0                     0
 
  Capacitor: Fixed capacitor
-     device                    c4                    c5
-      model                     C                     C
-capacitance             2.842e-09                 2e-11
-        cap             2.842e-09                 2e-11
-          c             2.842e-09                 2e-11
-      dtemp                     0                     0
-          i                     0                     0
-          p                     0                     0
+     device                    c1                    cc                    cb
+      model                     C                     C                     C
+capacitance              2.18e-10               3.3e-09               3.3e-09
+        cap              2.18e-10               3.3e-09               3.3e-09
+          c              2.18e-10               3.3e-09               3.3e-09
+      dtemp                     0                     0                     0
+          i                     0                     0                     0
+          p                    -0                     0                     0
 
  Inductor: Fixed inductor
-     device                    l2                    l1
+     device                  lrfc                    lt
       model                     L                     L
- inductance                 1e-05               1.2e-06
+ inductance                 5e-05               1.2e-06
       dtemp                     0                     0
          nt                     0                     0
        flux                     0                     0
@@ -211,7 +211,7 @@ capacitance             2.842e-09                 2e-11
           p                     0                     0
 
  Isource: Independent current source
-     device                    i1
+     device                   icc
          dc                   -17
       acmag                     0
       pulse         -
@@ -228,31 +228,31 @@ capacitance             2.842e-09                 2e-11
     current                   -17
 
  Resistor: Simple linear resistor
-     device                    ri                    r1                    r3
+     device                  ricc                    rl                   ree
       model                     R                     R                     R
- resistance                     1                 12000                    44
-         ac                     1                 12000                    44
+ resistance                     1                  5371                   700
+         ac                     1                  5371                   700
       dtemp                     0                     0                     0
       noisy                     1                     1                     1
-          i               16.9946            0.00108856           -0.00436793
-          p               288.815             0.0142196           0.000839467
+          i               16.9946                     0            0.00436793
+          p               288.815                     0             0.0133551
 
  Resistor: Simple linear resistor
-     device                    r4                    r2                    r5
+     device                    re                    r2                    r1
       model                     R                     R                     R
- resistance                   700                  3700                  5000
-         ac                   700                  3700                  5000
+ resistance                    44                  3700                 12000
+         ac                    44                  3700                 12000
       dtemp                     0                     0                     0
       noisy                     1                     1                     1
-          i            0.00436793            0.00106266                     0
-          p             0.0133551            0.00417821                     0
+          i            0.00436793            0.00106266            0.00108856
+          p           0.000839467            0.00417821             0.0142196
 
-elapsed time since last call: 0.016 seconds.
+elapsed time since last call: 0.014 seconds.
 
-Total elapsed time: 0.016 seconds.
+Total elapsed time: 0.014 seconds.
 
 Total DRAM available = 7816.363281 MB.
-DRAM currently available = 5524.054688 MB.
+DRAM currently available = 4709.578125 MB.
 Total ngspice program size = 5.520508 MB.
 Resident set size = 738.000 kB.
 Shared ngspice pages = 551.000 kB.

@@ -1,6 +1,6 @@
 * simplest RLC example circuit
 
-R1 1 0 1
+R1 1 0 0.5
 L1 1 0 1H
 C1 1 0 1
 I1 1 0 1

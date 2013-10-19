@@ -6,21 +6,22 @@
 .temp 35.01
 
 *Sheet Name:/
-R5  1 0 5000		
-C5  1 0 20pF
-C4  6 0 2842pF		
-C3  1 6 218pF  IC=50V		
-C2  2 1 0.0033uF		
-L1  7 2 1.2uH		
-R2  8 0 3700		
-R4  5 0 700		
-R3  6 4 44		
-L2  6 5 10uH		
-Q1  2 8 4 Q2N3866		
-C1  8 0 0.0033uF		
-R1  7 8 12k		
-RI  7 0 1
-I1  7 0 -17
+Lt 1 4 1.2uH
+R1 1 3 12k
+R2 3 0 3700
+Cb 3 0 0.0033uF
+Q1 4 3 6 Q2N3866
+Re 6 7 44
+LRFC 7 8 50uH
+REE 8 0 700
+CC 4 5 0.0033uF
+C1 5 7 218pF
+C2 7 0 2842pF IC=1V
+Cf 5 0 20pF
+RL 5 0 5371
+ICC 1 0 -17
+RICC 1 0 1
+CICC 1 0 0.0033uF
 
 .model Q2N3866 NPN (
 + IS = 9.798605E-15
