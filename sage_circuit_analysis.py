@@ -60,6 +60,7 @@ V_EXPR = re.compile('^(\s)*(V|v)\w+')
 I_EXPR = re.compile('^(\s)*(I|i)\w+')
 VCCS_EXPR = re.compile('^(\s)*(G|g)\w+')
 BJT_EXPR = re.compile('^(\s)*(Q|q)\w+')
+KIND_EXPR = re.compile('^(\s)*(K|k)\w+')
 DATA_FIELD = re.compile('\s+\w+\=-?\w*\.?\w+|\s+-?\w*\.?\w+|\s+\{\w+\}')
 TEMP_EXPR = re.compile('^(\s)*(\.temp)\s+\w+', re.IGNORECASE)
 
@@ -140,9 +141,17 @@ class SmallSignalLinearCircuit:
         self.sources_component_id = []
         self.circuit_variables = []
         self.circuit_parameters = []
+        self.coupled_inductors_matrix = {}
+        self.couplings = {}
+        self.coupled_inductors_data = {}
         self.default_substitutions = {}  # stores the default substitutions with string values
         self.default_substitutions_values = {sage.var('V_0'): 0}  # stores the values for the default substitutions; initialized with V_0 = 0
         self.nodal_equations = {}  # currents flowing out of a node are considered to be positive.
+        # self.nodal_equations is a dict. The keys are the node names
+        # the values are the KCL equations for the corresponding node
+        # currents flowing OUT of a given node are considered POSITIVE
+        # in the corresponding KCL equation (the value in the dict)
+        # for the considered node (the key in the dict)
         self.nodal_equations_substitutions = []
         self.additional_equations = []
         self.additional_equations_explicit = {}
@@ -157,6 +166,9 @@ class SmallSignalLinearCircuit:
 # first for loop over self.circuit_file lines
 # in this part preliminary preparatives are taken for a later nodal analysis.
 
+
+#------------------------------------------------------------------------ 
+        #first for loop over lines in circuit file for handling BJT, TEMP
         for line in self.circuit_file:
             pos = pos + 1
 
@@ -427,15 +439,82 @@ class SmallSignalLinearCircuit:
                                     + ' is not operating in a supported region'
                                     )
 
-# second for  over self.circuit_file lines
-# proper nodal analysis done here:
-
+#-------------------------------------------------------
+        #second for loop for handling COUPLED INDUCTORS:
         for line in self.circuit_file:
+            if KIND_EXPR.match(line):
+                kind_lineptr = KIND_EXPR.match(line)
+                kind_line_data = line[kind_lineptr.end():]
+                kind_id = line[:kind_lineptr.end()].strip()
+                data_kind = DATA_FIELD.findall(kind_line_data)
+                data_kind_strip = []
+                for key_neq in data_kind:
+                    data_kind_strip = data_kind_strip + [key_neq.strip()]
+                try:
+                    self.coupled_inductors_matrix[data_kind_strip[0]].update({data_kind_strip[1] : kind_id})
+                except KeyError:
+                    self.coupled_inductors_matrix[data_kind_strip[0]] = {data_kind_strip[1] : kind_id}
+                try:
+                    self.coupled_inductors_matrix[data_kind_strip[1]].update({data_kind_strip[0] : kind_id})
+                except KeyError:
+                    self.coupled_inductors_matrix[data_kind_strip[1]] = {data_kind_strip[0] : kind_id}
+
+                try:
+                    self.couplings[kind_id] = {'coupled_inductors': [None, None], 
+                                                            'coupling_coefficient': data_kind_strip[2]}
+                    self.circuit_variables += sage.var(kind_id)
+                    self.default_substitutions[sage.var(kind_id)] = data_kind_strip[2]
+                except IndexError:
+                    self.couplings[kind_id] = {'coupled_inductors': [None, None], 
+                                                            'coupling_coefficient': '{'+kind_id+'}'}
+                    self.circuit_variables += sage.var(kind_id)
+
+                for line2 in self.circuit_file:
+                    #nested for loop for finding the inductors that are coupled via K
+                    if INDUCTOR_EXPR.match(line2):
+                        ind_lineptr = INDUCTOR_EXPR.match(line2)
+                        ind_id = line2[:ind_lineptr.end()].strip()
+                        self.coupled_inductors_data[ind_id] = get_inductor_data(line2)
+                        if ind_id == data_kind_strip[0]:
+                            self.couplings[kind_id]['coupled_inductors'][0] = line2       
+                        elif ind_id == data_kind_strip[1]:
+                            self.couplings[kind_id]['coupled_inductors'][1] = line2
+
+        #coupled_inductor_matrix and coupling factors constructed.
+        for ind_id in self.coupled_inductors_data.keys():
+            self.circuit_variables += self.coupled_inductors_data[ind_id]['circuit_variables']
+            self.nodal_voltages += self.coupled_inductors_data[ind_id]['nodal_voltages']
+            self.initial_conditions += self.coupled_inductors_data[ind_id]['initial_conditions']
+            self.default_substitutions.update(self.coupled_inductors_data[ind_id]['default_substitutions'])
+            try:
+                self.circuit_graph.add_edge(self.coupled_inductors_data[ind_id]['node0'],
+                                            self.coupled_inductors_data[ind_id]['node1'],
+                                            type='L', id=self.coupled_inductors_data[ind_id]['id'],
+                                            coupled_to=self.couplings[ind_id],
+                                            value=self.coupled_inductors_data[ind_id]['value'])
+            except KeyError:
+                self.circuit_graph.add_edge(self.coupled_inductors_data[ind_id]['node0'],
+                                            self.coupled_inductors_data[ind_id]['node1'],
+                                            type='L', id=self.coupled_inductors_data[ind_id]['id'],
+                                            coupled_to=self.couplings[ind_id])                
+        for cpld_inductor in self.coupled_inductors_matrix:
+            #compute voltages equations and then nodal equations
+            #to do: finish
+            raise RuntimeError("Not implemented")
+        #coupled inductors handled
+                            
+
+#-------------------------------------------------------
+        # third  for loop  over self.circuit_file lines
+        # proper nodal analysis done here.
+        # nodal equations constructed here
+        for line in self.circuit_file:
+                           
             if I_EXPR.match(line):
                 i_lineptr = I_EXPR.match(line)
 
-        # line describes an independent current source in the spice circuit 
-        # netlist file
+            # line describes an independent current source in the spice circuit 
+            # netlist file
 
                 i_line_data = line[i_lineptr.end():]
                 i_id = line[:i_lineptr.end()].strip()
@@ -741,131 +820,134 @@ class SmallSignalLinearCircuit:
                 ind_lineptr = INDUCTOR_EXPR.match(line)
                 ind_line_data = line[ind_lineptr.end():]
                 inductor_id = line[:ind_lineptr.end()].strip()
-                data_ind = DATA_FIELD.findall(ind_line_data)
-                data_ind_strip = []
+                if inductor_id not in self.coupled_inductors_matrix.keys():
+                    data_ind = DATA_FIELD.findall(ind_line_data)
+                    data_ind_strip = []
 
-                # data_ind_strip describes the (stripped) data fileds of the 
-                # inductor line line.
+                    # data_ind_strip describes the (stripped) data fileds of the 
+                    # inductor line line.
 
-                for key_neq in data_ind:
-                    data_ind_strip = data_ind_strip + [key_neq.strip()]
+                    for key_neq in data_ind:
+                        data_ind_strip = data_ind_strip + [key_neq.strip()]
 
-                # data_ind_strip contains the stripped strings representing 
-                # the data fileds relative to the line line describing 
-                # an inductor in the spice file
-                
-                # the first two data fields describes the nodes to which the 
-                # inductor is connected
+                    # data_ind_strip contains the stripped strings representing 
+                    # the data fileds relative to the line line describing 
+                    # an inductor in the spice file
 
-                for key_neq in range(2):
-                    if not sage.var('V_' + data_ind_strip[key_neq]) \
-                        in self.circuit_variables:
-                        self.circuit_variables = self.circuit_variables \
-                            + [sage.var('V_' + data_ind_strip[key_neq])]
-                        if data_ind_strip[key_neq] != '0' \
-                            and data_ind_strip[key_neq] != 'gnd' \
-                            and data_ind_strip[key_neq] != 'GND':
-                            self.nodal_voltages = self.nodal_voltages \
-                                + [sage.var('V_'
-                                   + data_ind_strip[key_neq])]
-                self.circuit_variables = self.circuit_variables \
-                    + [sage.var('I_initial_' + inductor_id + '_'
-                       + data_ind_strip[0] + '_' + data_ind_strip[1])]
-                self.initial_conditions += [sage.var('I_initial_'
-                        + inductor_id + '_' + data_ind_strip[0] + '_'
-                        + data_ind_strip[1])]
-                self.circuit_variables = self.circuit_variables \
-                    + [sage.var(inductor_id)]
-                try:
-                    self.default_substitutions[sage.var(inductor_id)] = \
-                        data_ind_strip[2]  
-                    self.circuit_graph.add_edge(data_ind_strip[0],
-                            data_ind_strip[1], type='L',
-                            id=inductor_id, value=data_ind_strip[2:])  
-                except IndexError:
-                    self.circuit_graph.add_edge(data_ind_strip[0],
-                            data_ind_strip[1], type='L', id=inductor_id)
-                try:
-                    if data_ind_strip[0] != '0' and data_ind_strip[0] \
-                        != 'gnd' and data_ind_strip[0] != 'GND':
-                        self.nodal_equations[data_ind_strip[0]] = \
-                            self.nodal_equations[data_ind_strip[0]] \
-                            + (sage.var('V_' + data_ind_strip[0])
-                               - sage.var('V_' + data_ind_strip[1])) \
-                            / (sage.var('s') * sage.var(inductor_id)) \
-                            + sage.var('I_initial_' + inductor_id + '_'
-                                + data_ind_strip[0] + '_'
-                                + data_ind_strip[1]) / sage.var('s')
-                except KeyError:
-                    if data_ind_strip[0] != '0' and data_ind_strip[0] \
-                        != 'gnd' and data_ind_strip[0] != 'GND':
-                        self.nodal_equations[data_ind_strip[0]] = \
-                            (sage.var('V_' + data_ind_strip[0])
-                             - sage.var('V_' + data_ind_strip[1])) \
-                            / (sage.var('s') * sage.var(inductor_id)) \
-                            + sage.var('I_initial_' + inductor_id + '_'
-                                + data_ind_strip[0] + '_'
-                                + data_ind_strip[1]) / sage.var('s')
-                try:
-                    if data_ind_strip[1] != '0' and data_ind_strip[1] \
-                        != 'gnd' and data_ind_strip[1] != 'GND':
-                        self.nodal_equations[data_ind_strip[1]] = \
-                            self.nodal_equations[data_ind_strip[1]] \
-                            + (sage.var('V_' + data_ind_strip[1])
-                               - sage.var('V_' + data_ind_strip[0])) \
-                            / (sage.var('s') * sage.var(inductor_id)) \
-                            - sage.var('I_initial_' + inductor_id + '_'
-                                + data_ind_strip[0] + '_'
-                                + data_ind_strip[1]) / sage.var('s')
-                except KeyError:
-                    if data_ind_strip[1] != '0' and data_ind_strip[1] \
-                        != 'gnd' and data_ind_strip[1] != 'GND':
-                        self.nodal_equations[data_ind_strip[1]] = \
-                            (sage.var('V_' + data_ind_strip[1])
-                             - sage.var('V_' + data_ind_strip[0])) \
-                            / (sage.var('s') * sage.var(inductor_id)) \
-                            - sage.var('I_initial_' + inductor_id + '_'
-                                + data_ind_strip[0] + '_'
-                                + data_ind_strip[1]) / sage.var('s')
+                    # the first two data fields describes the nodes to which the 
+                    # inductor is connected
 
-        # set the initial value for the inductor
-        # if set_default_ic_to_zero == True set per default initial value to 0
-        # then try: if IC=value parameter is present, adjust initial value 
+                    for key_neq in range(2):
+                        if not sage.var('V_' + data_ind_strip[key_neq]) \
+                            in self.circuit_variables:
+                            self.circuit_variables = self.circuit_variables \
+                                + [sage.var('V_' + data_ind_strip[key_neq])]
+                            if data_ind_strip[key_neq] != '0' \
+                                and data_ind_strip[key_neq] != 'gnd' \
+                                and data_ind_strip[key_neq] != 'GND':
+                                self.nodal_voltages = self.nodal_voltages \
+                                    + [sage.var('V_'
+                                       + data_ind_strip[key_neq])]
+                    self.circuit_variables = self.circuit_variables \
+                        + [sage.var('I_initial_' + inductor_id + '_'
+                           + data_ind_strip[0] + '_' + data_ind_strip[1])]
+                    self.initial_conditions += [sage.var('I_initial_'
+                            + inductor_id + '_' + data_ind_strip[0] + '_'
+                            + data_ind_strip[1])]
+                    self.circuit_variables = self.circuit_variables \
+                        + [sage.var(inductor_id)]
+                    try:
+                        self.default_substitutions[sage.var(inductor_id)] = \
+                            data_ind_strip[2]  
+                        self.circuit_graph.add_edge(data_ind_strip[0],
+                                data_ind_strip[1], type='L',
+                                id=inductor_id, value=data_ind_strip[2:])  
+                    except IndexError:
+                        self.circuit_graph.add_edge(data_ind_strip[0],
+                                data_ind_strip[1], type='L', id=inductor_id)
+                    try:
+                        if data_ind_strip[0] != '0' and data_ind_strip[0] \
+                            != 'gnd' and data_ind_strip[0] != 'GND':
+                            self.nodal_equations[data_ind_strip[0]] = \
+                                self.nodal_equations[data_ind_strip[0]] \
+                                + (sage.var('V_' + data_ind_strip[0])
+                                   - sage.var('V_' + data_ind_strip[1])) \
+                                / (sage.var('s') * sage.var(inductor_id)) \
+                                + sage.var('I_initial_' + inductor_id + '_'
+                                    + data_ind_strip[0] + '_'
+                                    + data_ind_strip[1]) / sage.var('s')
+                    except KeyError:
+                        if data_ind_strip[0] != '0' and data_ind_strip[0] \
+                            != 'gnd' and data_ind_strip[0] != 'GND':
+                            self.nodal_equations[data_ind_strip[0]] = \
+                                (sage.var('V_' + data_ind_strip[0])
+                                 - sage.var('V_' + data_ind_strip[1])) \
+                                / (sage.var('s') * sage.var(inductor_id)) \
+                                + sage.var('I_initial_' + inductor_id + '_'
+                                    + data_ind_strip[0] + '_'
+                                    + data_ind_strip[1]) / sage.var('s')
+                    try:
+                        if data_ind_strip[1] != '0' and data_ind_strip[1] \
+                            != 'gnd' and data_ind_strip[1] != 'GND':
+                            self.nodal_equations[data_ind_strip[1]] = \
+                                self.nodal_equations[data_ind_strip[1]] \
+                                + (sage.var('V_' + data_ind_strip[1])
+                                   - sage.var('V_' + data_ind_strip[0])) \
+                                / (sage.var('s') * sage.var(inductor_id)) \
+                                - sage.var('I_initial_' + inductor_id + '_'
+                                    + data_ind_strip[0] + '_'
+                                    + data_ind_strip[1]) / sage.var('s')
+                    except KeyError:
+                        if data_ind_strip[1] != '0' and data_ind_strip[1] \
+                            != 'gnd' and data_ind_strip[1] != 'GND':
+                            self.nodal_equations[data_ind_strip[1]] = \
+                                (sage.var('V_' + data_ind_strip[1])
+                                 - sage.var('V_' + data_ind_strip[0])) \
+                                / (sage.var('s') * sage.var(inductor_id)) \
+                                - sage.var('I_initial_' + inductor_id + '_'
+                                    + data_ind_strip[0] + '_'
+                                    + data_ind_strip[1]) / sage.var('s')
 
-                if not ignore_all_ic:
-                    if set_default_ic_to_zero:
+            # set the initial value for the inductor
+            # if set_default_ic_to_zero == True set per default initial value to 0
+            # then try: if IC=value parameter is present, adjust initial value 
+
+                    if not ignore_all_ic:
+                        if set_default_ic_to_zero:
+
+                            self.default_substitutions[sage.var('I_initial_'
+                                     + inductor_id + '_'
+                                    + data_ind_strip[0] + '_'
+                                    + data_ind_strip[1])] = '0'
+                        try:
+                            for key_neq in data_ind_strip[3:]:
+                                if key_neq[:3] == 'IC=' or key_neq[:3] \
+                                    == 'ic=':
+
+                            # set initial condition for the inductor inductor_id
+
+                                    self.default_substitutions[sage.var('I_initial_'
+                                             + inductor_id + '_'
+                                            + data_ind_strip[0] + '_'
+                                            + data_ind_strip[1])] = \
+                                        key_neq[3:]
+                        except:
+
+                    # in case of IndexError or other Error do nothing
+
+                            print 'Error in reading initial condition for inductor ' \
+                                + inductor_id
+                            print 'Inductor data was ',
+                            print data_ind_strip
+                            raise Exception('Error in reading initial condition for inductor '
+                                     + inductor_id)
+                    else:
 
                         self.default_substitutions[sage.var('I_initial_'
-                                 + inductor_id + '_'
-                                + data_ind_strip[0] + '_'
-                                + data_ind_strip[1])] = '0'
-                    try:
-                        for key_neq in data_ind_strip[3:]:
-                            if key_neq[:3] == 'IC=' or key_neq[:3] \
-                                == 'ic=':
+                                + inductor_id + '_' + data_ind_strip[0]
+                                + '_' + data_ind_strip[1])] = '0'
 
-                        # set initial condition for the capacitor capacitor_id
-
-                                self.default_substitutions[sage.var('I_initial_'
-                                         + inductor_id + '_'
-                                        + data_ind_strip[0] + '_'
-                                        + data_ind_strip[1])] = \
-                                    key_neq[3:]
-                    except:
-
-                # in case of IndexError or other Error do nothing
-
-                        print 'Error in reading initial condition for inductor ' \
-                            + inductor_id
-                        print 'Inductor data was ',
-                        print data_ind_strip
-                        raise Exception('Error in reading initial condition for inductor '
-                                 + inductor_id)
-                else:
-
-                    self.default_substitutions[sage.var('I_initial_'
-                            + inductor_id + '_' + data_ind_strip[0]
-                            + '_' + data_ind_strip[1])] = '0'
+            
             elif VCCS_EXPR.match(line):
 
         # handle voltage controlled current sources
@@ -958,9 +1040,9 @@ class SmallSignalLinearCircuit:
                               - sage.var('V_' + data_vccs_strip[3])) \
                             * sage.var(vccs_id)
 
-
     # following must be at the end of the constructor:
     # finalize equations - must be at the end of the constructor
+            
 
         for key_neq in self.nodal_equations:
             self.nodal_equations[key_neq] = \
@@ -1224,10 +1306,10 @@ class SmallSignalLinearCircuit:
                     - v_node0).substitute_function(sage.function(circ_imp_calc.sources_names[0]),
                     (1 + 0 * sage.var('s')).function(sage.var('s')))
         else:
+            #to do: finish
+            raise RuntimeError("Not implemented")
 
-            # to implement
 
-            pass
 
 
     def dict_default_vals(self):
@@ -1513,7 +1595,7 @@ class WrongData:
         print data
         self.data = data
 
-def simplify_sum(expr, dict, treshhold=0):
+def simplify_sum(expr, dictionary, treshhold=0):
     if treshhold > 1 or treshhold < 0:
         raise ValueError("treshhold must be between 0 and 1")
     try:
@@ -1523,19 +1605,19 @@ def simplify_sum(expr, dict, treshhold=0):
             terms = exp_expr.operands()
             max = 0
             for term in terms:
-                if not term.substitute(dict) in sage.CC:
+                if not term.substitute(dictionary) in sage.CC:
                     raise ValueError("Expression expr must be made by terms that when"
                                      " ths substitutions are carried out evaluate"
                                      "to complex numbers. Substitutions are described"
-                                     "with the dictionary dict.")
-                term_value = abs(term.substitute(dict))
+                                     "with the dictionary dictionary.")
+                term_value = abs(term.substitute(dictionary))
                 if term_value > max:
                     max = term_value
             # max holds the maximim value of the (absolute value of the) 
             # terms in the sum.
             simplified_expr = 0
             for term in terms:
-                if abs(term.substitute(dict)) < max*treshhold:
+                if abs(term.substitute(dictionary)) < max*treshhold:
                     pass
                 else:
                     simplified_expr = simplified_expr + term
@@ -1544,7 +1626,7 @@ def simplify_sum(expr, dict, treshhold=0):
     except:
         return (expr, 0)
         
-def simplify_polynomial(polinom, dict, treshhold=0, variable=sage.var('s'), safe_check=True):
+def simplify_polynomial(polinom, dictionary, treshhold=0, variable=sage.var('s'), safe_check=True):
     if treshhold < 0 or treshhold > 1:
         raise ValueError("treshhold must be between 0 and 1")
     if safe_check:
@@ -1554,20 +1636,20 @@ def simplify_polynomial(polinom, dict, treshhold=0, variable=sage.var('s'), safe
         coeff = polinom.coeffs(variable)
         result = 0
         for term in coeff:
-            simplified_term = simplify_sum(expr=term[0], dict=dict, treshhold=treshhold)
+            simplified_term = simplify_sum(expr=term[0], dictionary=dictionary, treshhold=treshhold)
             #simplify_sum returns a tuple 
             result = result + (simplified_term[0])*variable**term[1]
         return (result, polinom-result)
     except:
         return (polinom, 0)
 
-def simplify_rational_func(rational_func, dict, treshhold=0, variable=sage.var('s'), safe_check=True):
+def simplify_rational_func(rational_func, dictionary, treshhold=0, variable=sage.var('s'), safe_check=True):
     if treshhold < 0 or treshhold > 1:
         raise ValueError("treshhold must be between 0 and 1")
     try:
         (num, den) = rational_func.numerator_denominator(safe_check)
-        num_simp = simplify_polynomial(polinom=num,dict=dict,treshhold=treshhold,variable=variable, safe_check=safe_check)
-        den_simp = simplify_polynomial(polinom=den,dict=dict,treshhold=treshhold,variable=variable, safe_check=safe_check)
+        num_simp = simplify_polynomial(polinom=num,dictionary=dictionary,treshhold=treshhold,variable=variable, safe_check=safe_check)
+        den_simp = simplify_polynomial(polinom=den,dictionary=dictionary,treshhold=treshhold,variable=variable, safe_check=safe_check)
         # simplify_polynomial retunrs a tuple
         result = num_simp[0]/den_simp[0]
         return (result, rational_func - result)
@@ -1609,4 +1691,57 @@ def rational_func(large_expression):
             
     except:
         raise ValueError("Expansion to rational function not successfull")
-        
+
+
+def get_inductor_data(line):
+    return_dict = {}
+    return_dict['circuit_variables'] = []
+    return_dict['nodal_voltages'] = []
+    return_dict['initial_conditions'] = []
+    return_dict['default_substitutions'] = {}
+    lineptr = INDUCTOR_EXPR.match(line)
+    line_data = line[lineptr.end():]
+    iid = line[:lineptr.end()].strip()
+    return_dict['id'] = iid
+    data = DATA_FIELD.findall(line_data)
+    data_strip = []
+    for element in data:
+        data_strip = data_strip + [ element.strip() ]
+    return_dict['node0'] = data_strip[0]
+    return_dict['node1'] = data_strip[1]
+    for index in range(2):
+        return_dict['circuit_variables'] += [ sage.var('V_' + data_strip[index]) ]
+        if data_strip[index] != 'gnd' and data_strip[index] != 'GND':
+            return_dict['nodal_voltages'] += [ sage.var('V_' + data_strip[index]) ]
+    return_dict['circuit_variables'] += [ sage.var('I_initial_' + iid + '_' 
+                                                   + data_strip[0] + '_' + data_strip[1]) ]
+    return_dict['initial_conditions'] += [ sage.var('I_initial_' + iid + '_' 
+                                                   + data_strip[0] + '_' + data_strip[1]) ]
+    try:
+        return_dict['default_substitutions'][sage.var(iid)] = data_strip[2]
+        return_dict['value'] = data_strip[2]
+    except IndexError:
+        pass
+    if not ignore_all_ic:
+        if set_default_ic_to_zero:
+            return_dict['default_substitutions'][sage.var('I_initial_' + iid + '_'
+                                                          + data_strip[0] + '_'
+                                                          + data_strip[1])] = '0'
+        try:
+            for field in data_strip[3:]:
+                if field[:3] == 'IC=' or field[:3] == 'ic=':
+                    return_dict['default_substitutions'][sage.var('I_initial_'
+                                                                  + iid + '_'
+                                                                  + data_strip[0] + '_'
+                                                                  + data_strip[1])] = \
+                                                                  field[3:]
+            
+        except:
+            raise Exception('Error in reading initial condition for coupled inductor ' + iid)
+    else:    
+        return_dict['default_substitutions']][sage.var('I_initial_'
+                                                       + iid + '_'
+                                                       + data_strip[0] + '_'
+                                                       + data_strip[1])] = '0'
+                                                       
+    return return_dict
