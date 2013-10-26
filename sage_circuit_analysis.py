@@ -462,7 +462,7 @@ class SmallSignalLinearCircuit:
                 try:
                     self.couplings[kind_id] = {'coupled_inductors': [None, None], 
                                                             'coupling_coefficient': data_kind_strip[2]}
-                    self.circuit_variables += sage.var(kind_id)
+                    self.circuit_variables += [ sage.var(kind_id) ]
                     self.default_substitutions[sage.var(kind_id)] = data_kind_strip[2]
                 except IndexError:
                     self.couplings[kind_id] = {'coupled_inductors': [None, None], 
@@ -474,13 +474,20 @@ class SmallSignalLinearCircuit:
                     if INDUCTOR_EXPR.match(line2):
                         ind_lineptr = INDUCTOR_EXPR.match(line2)
                         ind_id = line2[:ind_lineptr.end()].strip()
-                        self.coupled_inductors_data[ind_id] = get_inductor_data(line2)
+                        self.coupled_inductors_data[ind_id] = \
+                            get_inductor_data(line2,
+                                              ignore_all_ic=ignore_all_ic,
+                                              set_default_ic_to_zero=set_default_ic_to_zero)
+                                                                                
                         if ind_id == data_kind_strip[0]:
                             self.couplings[kind_id]['coupled_inductors'][0] = line2       
                         elif ind_id == data_kind_strip[1]:
                             self.couplings[kind_id]['coupled_inductors'][1] = line2
-
+        for ind_id in self.coupled_inductors_data.keys():
+            if not ind_id in self.coupled_inductors_matrix.keys():
+                self.coupled_inductors_data.pop(ind_id)
         #coupled_inductor_matrix and coupling factors constructed.
+        
         for ind_id in self.coupled_inductors_data.keys():
             self.circuit_variables += self.coupled_inductors_data[ind_id]['circuit_variables']
             self.nodal_voltages += self.coupled_inductors_data[ind_id]['nodal_voltages']
@@ -490,17 +497,16 @@ class SmallSignalLinearCircuit:
                 self.circuit_graph.add_edge(self.coupled_inductors_data[ind_id]['node0'],
                                             self.coupled_inductors_data[ind_id]['node1'],
                                             type='L', id=self.coupled_inductors_data[ind_id]['id'],
-                                            coupled_to=self.couplings[ind_id],
-                                            value=self.coupled_inductors_data[ind_id]['value'])
-            except KeyError:
-                self.circuit_graph.add_edge(self.coupled_inductors_data[ind_id]['node0'],
-                                            self.coupled_inductors_data[ind_id]['node1'],
-                                            type='L', id=self.coupled_inductors_data[ind_id]['id'],
-                                            coupled_to=self.couplings[ind_id])                
+                                            coupled_to={'coupled_inductors':self.coupled_inductors_matrix[ind_id],
+                                                        'coupling_coefficient_data':self.couplings},
+                                            value=self.coupled_inductors_data[ind_id]['value_in_line'])
+            except:
+                raise RunTimeError("An error has occurred")
         for cpld_inductor in self.coupled_inductors_matrix:
             #compute voltages equations and then nodal equations
             #to do: finish
-            raise RuntimeError("Not implemented")
+            # raise RuntimeError("Not implemented")
+            pass
         #coupled inductors handled
                             
 
@@ -1396,6 +1402,30 @@ class SmallSignalLinearCircuit:
             remove = []
         try:
             for node in shorts.keys():
+                try:
+                    edges1 = self.circuit_graph.adj[node][shorts[node]]
+                except:
+                    edges1 = {}
+                try:
+                    edges2 = self.circuit_graph.adj[shorts[node]][node]
+                except:
+                    edges2 = {}
+                edges = edges1.values() + edges2.values()
+                for edge in edges:
+                    if edge['type'] == 'L' and edge['coupled_to']['coupled_inductors'].keys() != []:
+                        print("Cannot short a coupled inductor")
+                        raise WrongUse("WrongUse: Cannot short a coupled inductor")
+            for edge in remove:
+                if edge in self.coupled_inductors_matrix.keys():
+                    print("Cannot remove a coupled inductor")
+                    raise WrongUse("WrongUse: Cannot remove a coupled inductor")
+        except WrongUse:
+            raise
+        except:
+            pass 
+                
+        try:
+            for node in shorts.keys():
                 if not sage.var('V_' + node) in self.nodal_voltages \
                     + [sage.var('V_0'), sage.var('V_gnd'),
                        sage.var('V_GND')]:
@@ -1491,7 +1521,7 @@ class SmallSignalLinearCircuit:
             except:
                 raise Exception('Error in export_lin_circuit_string')
             if not 'ngspice_line_data' in edge[3].keys():
-                circuit_string += edge[3]['id'] + '  ' + edge[0] + ' ' \
+                circuit_string += edge[3]['id'] + ' ' + edge[0] + ' ' \
                     + edge[1] + ' ' + fields_string + ' \n'
             else:
                 tmp = ''
@@ -1499,6 +1529,10 @@ class SmallSignalLinearCircuit:
                     tmp += ' ' + nod
                 circuit_string += edge[3]['id'] + ' ' + tmp + ' ' \
                     + fields_string + ' \n'
+        for key in self.couplings:
+            circuit_string += key + ' ' + self.couplings[key]['coupled_inductors'][0].split()[0] \
+                    + ' ' + self.couplings[key]['coupled_inductors'][1].split()[0] \
+                    + ' ' + self.couplings[key]['coupling_coefficient'] + ' \n'
         if write_to_file != None:
             try:
                 out_file = open(write_to_file, 'w')
@@ -1586,6 +1620,12 @@ def extract_value(data):
             return float(data[:ptrnumfield.end()]) * float(factor)
         else:
             return sage.var(data[1:-1])  # intended for symbolic variables
+
+class WrongUse:
+    def __init__(self, data):
+        print 'A wrong use was made of the class SmallSignalLinearCircuit'
+        print data
+        self.data = data
 
 
 class WrongData:
@@ -1693,12 +1733,14 @@ def rational_func(large_expression):
         raise ValueError("Expansion to rational function not successfull")
 
 
-def get_inductor_data(line):
+def get_inductor_data(line, ignore_all_ic, set_default_ic_to_zero):
     return_dict = {}
     return_dict['circuit_variables'] = []
     return_dict['nodal_voltages'] = []
     return_dict['initial_conditions'] = []
     return_dict['default_substitutions'] = {}
+    return_dict['line'] = line
+    return_dict['value_in_line'] = line.split()[3:]
     lineptr = INDUCTOR_EXPR.match(line)
     line_data = line[lineptr.end():]
     iid = line[:lineptr.end()].strip()
@@ -1739,7 +1781,7 @@ def get_inductor_data(line):
         except:
             raise Exception('Error in reading initial condition for coupled inductor ' + iid)
     else:    
-        return_dict['default_substitutions']][sage.var('I_initial_'
+        return_dict['default_substitutions'][sage.var('I_initial_'
                                                        + iid + '_'
                                                        + data_strip[0] + '_'
                                                        + data_strip[1])] = '0'
