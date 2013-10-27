@@ -159,6 +159,10 @@ class SmallSignalLinearCircuit:
         self.initial_conditions = []
         self.thermal_voltages = {}
         self.nodal_voltages = []
+        self.I_cpld_ind_solutions = None
+        self.V_cpld_ind = {}
+        self.I_cpld_ind = {}
+        self.M_cpld = {}
         self.operating_regions = {}  # remember the operating regions for the semiconductor devices
         self.temp = 300.15  # default value. Can be overridden if a .temp line is present
         pos = 0
@@ -502,11 +506,69 @@ class SmallSignalLinearCircuit:
                                             value=self.coupled_inductors_data[ind_id]['value_in_line'])
             except:
                 raise RunTimeError("An error has occurred")
-        for cpld_inductor in self.coupled_inductors_matrix:
+        #beginning of computation for voltages on coupled inductors and for currents in nodal equations for coupled inductors
+        self.I_cpld_ind = {}
+        self.I_cpld_ind_list = []
+        self.V_cpld_ind = {}
+        self.M_cpld = {}
+        for inductor_init in self.coupled_inductors_matrix.keys():
+            self.V_cpld_ind[inductor_init] = 0
+            self.I_cpld_ind[inductor_init] = None
+        # initialization to None
+        for cpld_inductor in self.coupled_inductors_matrix.keys():
             #compute voltages equations and then nodal equations
-            #to do: finish
-            # raise RuntimeError("Not implemented")
-            pass
+            cpld_inductor_data = self.coupled_inductors_data[cpld_inductor]
+            cpld_inductor_node = {}
+            cpld_inductor_node[0] = cpld_inductor_data['node0']
+            cpld_inductor_node[1] = cpld_inductor_data['node1']
+            try:
+                K_coeff = 0
+                for inductor in self.coupled_inductors_matrix[cpld_inductor].keys():
+                    inductor_node0 = self.coupled_inductors_data[inductor]['node0']
+                    inductor_node1 = self.coupled_inductors_data[inductor]['node1']
+                    K_coeff = sage.var(self.coupled_inductors_matrix[cpld_inductor][inductor])
+                    try:
+                        self.M_cpld[cpld_inductor].update({inductor: K_coeff*sage.sqrt(sage.var(cpld_inductor)\
+                                                                             *sage.var(inductor))})
+                    except KeyError:
+                        self.M_cpld[cpld_inductor] = {inductor: K_coeff*sage.sqrt(sage.var(cpld_inductor)\
+                                                                             *sage.var(inductor))}
+                    self.V_cpld_ind[cpld_inductor] = self.V_cpld_ind[cpld_inductor] \
+                        + sage.var('s')*self.M_cpld[cpld_inductor][inductor]*sage.var('I_'+inductor)\
+                        - self.M_cpld[cpld_inductor][inductor]*sage.var('I_initial_'+inductor +'_'\
+                                                                       + inductor_node0 + '_'\
+                                                                       + inductor_node1)
+                    if self.I_cpld_ind[inductor] == None:
+                        self.I_cpld_ind[inductor] = (sage.var('I_'+inductor), inductor_node0,
+                                                     inductor_node1)
+                        self.I_cpld_ind_list += [ sage.var('I_'+inductor) ]
+                self.V_cpld_ind[cpld_inductor] = self.V_cpld_ind[cpld_inductor] \
+                    + sage.var('s')*sage.var(self.coupled_inductors_data[cpld_inductor]['id'])*\
+                    sage.var('I_'+cpld_inductor) - \
+                    sage.var(self.coupled_inductors_data[cpld_inductor]['id'])*\
+                    sage.var('I_initial_'+cpld_inductor +'_'+ cpld_inductor_node[0] +'_'+
+                             cpld_inductor_node[1])
+                if self.I_cpld_ind[cpld_inductor] == None:
+                    self.I_cpld_ind[cpld_inductor] = (sage.var('I_'+cpld_inductor),
+                                                      cpld_inductor_node[0],
+                                                      cpld_inductor_node[1])
+                    self.I_cpld_ind_list += [ sage.var('I_'+cpld_inductor) ]
+            except:
+                raise Exception("An error has occurred")
+
+        temp_dict = {}
+        for eqn in self.V_cpld_ind.keys():
+            temp_dict[eqn] = self.V_cpld_ind[eqn] == sage.var('V_' + eqn)
+        self.V_cpld_ind = temp_dict
+        # voltage equations across inductors are constructed
+        # the signs follow the dot convention: see ngspice documentation on coupled 
+        # mutual inductors
+        #voltage equations for coupled inductors are stated: now thay has to be solved
+        self.I_cpld_ind_solutions = sage.solve(self.V_cpld_ind.values(), self.I_cpld_ind_list) 
+        #to do: continue here
+                
+                
+        #to do: finish
         #coupled inductors handled
                             
 
@@ -999,7 +1061,7 @@ class SmallSignalLinearCircuit:
                     raise IndexError('Provide a symbolic or numeric value for the vccs '
                              + vccs_id)
                 except WrongData, w_dat:
-                    raise Exception('Error in data conversion. Error in converting '
+                    raise WrongData('Error in data conversion. Error in converting '
                                      + w_dat.data)
 
                 self.circuit_graph.add_edge(
@@ -1092,7 +1154,7 @@ class SmallSignalLinearCircuit:
                 + key
             print 'Error with ' + w_dat.data
             self.print_information()
-            raise Exception('Error in data conversion. Error with '
+            raise WrongData('Error in data conversion. Error with '
                             + w_dat.data)
 
     # leave this at the very end of the constructor - in the right order !
@@ -1412,17 +1474,23 @@ class SmallSignalLinearCircuit:
                     edges2 = {}
                 edges = edges1.values() + edges2.values()
                 for edge in edges:
-                    if edge['type'] == 'L' and edge['coupled_to']['coupled_inductors'].keys() != []:
-                        print("Cannot short a coupled inductor")
-                        raise WrongUse("WrongUse: Cannot short a coupled inductor")
+                    try:
+                        if edge['type'] == 'L' and edge['coupled_to']['coupled_inductors'].keys() != []:
+                            print("Cannot short a coupled inductor")
+                            raise WrongUse("WrongUse: Cannot short a coupled inductor")
+                    except KeyError:
+                        pass
             for edge in remove:
-                if edge in self.coupled_inductors_matrix.keys():
-                    print("Cannot remove a coupled inductor")
-                    raise WrongUse("WrongUse: Cannot remove a coupled inductor")
+                try:
+                    if edge in self.coupled_inductors_matrix.keys():
+                        print("Cannot remove a coupled inductor")
+                        raise WrongUse("WrongUse: Cannot remove a coupled inductor")
+                except IndexError:
+                    pass
         except WrongUse:
-            raise
+            raise 
         except:
-            pass 
+            raise Exception("An error occurres")
                 
         try:
             for node in shorts.keys():
@@ -1621,19 +1689,20 @@ def extract_value(data):
         else:
             return sage.var(data[1:-1])  # intended for symbolic variables
 
-class WrongUse:
+class WrongUse(Exception):
     def __init__(self, data):
         print 'A wrong use was made of the class SmallSignalLinearCircuit'
         print data
         self.data = data
+        Exception.__init__(self, data)
 
-
-class WrongData:
+class WrongData(Exception):
 
     def __init__(self, data):
         print 'An exception occurred trying to process the following numerical data value:',
         print data
         self.data = data
+        Exception.__init__(self, data)
 
 def simplify_sum(expr, dictionary, treshhold=0):
     if treshhold > 1 or treshhold < 0:
@@ -1745,6 +1814,7 @@ def get_inductor_data(line, ignore_all_ic, set_default_ic_to_zero):
     line_data = line[lineptr.end():]
     iid = line[:lineptr.end()].strip()
     return_dict['id'] = iid
+    return_dict['circuit_variables'] += [ sage.var(iid) ]
     data = DATA_FIELD.findall(line_data)
     data_strip = []
     for element in data:
@@ -1753,7 +1823,7 @@ def get_inductor_data(line, ignore_all_ic, set_default_ic_to_zero):
     return_dict['node1'] = data_strip[1]
     for index in range(2):
         return_dict['circuit_variables'] += [ sage.var('V_' + data_strip[index]) ]
-        if data_strip[index] != 'gnd' and data_strip[index] != 'GND':
+        if data_strip[index] != '0' and data_strip[index] != 'gnd' and data_strip[index] != 'GND':
             return_dict['nodal_voltages'] += [ sage.var('V_' + data_strip[index]) ]
     return_dict['circuit_variables'] += [ sage.var('I_initial_' + iid + '_' 
                                                    + data_strip[0] + '_' + data_strip[1]) ]
