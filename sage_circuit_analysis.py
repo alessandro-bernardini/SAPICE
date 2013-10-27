@@ -564,11 +564,38 @@ class SmallSignalLinearCircuit:
         # the signs follow the dot convention: see ngspice documentation on coupled 
         # mutual inductors
         #voltage equations for coupled inductors are stated: now thay has to be solved
-        self.I_cpld_ind_solutions = sage.solve(self.V_cpld_ind.values(), self.I_cpld_ind_list) 
-        #to do: continue here
-                
-                
-        #to do: finish
+        self.I_cpld_ind_solutions = sage.solve(self.V_cpld_ind.values(), self.I_cpld_ind_list)
+        if len(self.I_cpld_ind_list) <= 1:
+            raise WrongUse("If coupled inductors are used there must be at least two mutually coupled inductors")
+        cpld_voltage_subst = {}
+        for inductor in self.coupled_inductors_matrix.keys():
+            cpld_voltage_subst[sage.var('V_'+inductor)] = sage.var('V_' + self.coupled_inductors_data[inductor]['node0']) \
+                - sage.var('V_' + self.coupled_inductors_data[inductor]['node1'])
+        simpl_temp = []
+        for inductor_current in self.I_cpld_ind_solutions[0]:
+            simpl_temp += [inductor_current.full_simplify()]
+        self.I_cpld_ind_solutions[0] = simpl_temp
+        for inductor in self.coupled_inductors_matrix.keys():
+            for inductor_current in self.I_cpld_ind_solutions[0]:
+                if (inductor_current.lhs() == sage.var('I_'+inductor)).test_relation():
+                    if self.coupled_inductors_data[inductor]['node0'] not in ['0', 'gnd', 'GND']:
+                        try:
+                            self.nodal_equations[self.coupled_inductors_data[inductor]['node0']] = \
+                                self.nodal_equations[self.coupled_inductors_data[inductor]['node0']] \
+                                + inductor_current.rhs().substitute(cpld_voltage_subst)
+                        except KeyError:
+                             self.nodal_equations[self.coupled_inductors_data[inductor]['node0']] = \
+                                inductor_current.rhs().substitute(cpld_voltage_subst)
+                    if self.coupled_inductors_data[inductor]['node1'] not in ['0', 'gnd', 'GND']:
+                        try:
+                            self.nodal_equations[self.coupled_inductors_data[inductor]['node1']] = \
+                                self.nodal_equations[self.coupled_inductors_data[inductor]['node1']] \
+                                - inductor_current.rhs().substitute(cpld_voltage_subst)
+                        except KeyError:
+                             self.nodal_equations[self.coupled_inductors_data[inductor]['node1']] = \
+                                - inductor_current.rhs().substitute(cpld_voltage_subst)
+                     
+        #nodal equations for coupled inductors branches are stated.
         #coupled inductors handled
                             
 
