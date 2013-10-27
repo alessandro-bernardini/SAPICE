@@ -61,7 +61,8 @@ I_EXPR = re.compile('^(\s)*(I|i)\w+')
 VCCS_EXPR = re.compile('^(\s)*(G|g)\w+')
 BJT_EXPR = re.compile('^(\s)*(Q|q)\w+')
 KIND_EXPR = re.compile('^(\s)*(K|k)\w+')
-DATA_FIELD = re.compile('\s+\w+\=-?\w*\.?\w+|\s+-?\w*\.?\w+|\s+\{\w+\}')
+#DATA_FIELD = re.compile('\s+\w+\=-?\w*\.?\w+|\s+-?\w*\.?\w+|\s+\{\w+\}')
+DATA_FIELD = re.compile('\s+\w+\=[-\+]?\w*\.?\w+[-\+]?\d*|\s+[-\+]?\w*\.?\w+[-\+]?\d*|\s+\{\w+\}')
 TEMP_EXPR = re.compile('^(\s)*(\.temp)\s+\w+', re.IGNORECASE)
 
 
@@ -565,7 +566,7 @@ class SmallSignalLinearCircuit:
         # mutual inductors
         #voltage equations for coupled inductors are stated: now thay has to be solved
         self.I_cpld_ind_solutions = sage.solve(self.V_cpld_ind.values(), self.I_cpld_ind_list)
-        if len(self.I_cpld_ind_list) <= 1:
+        if len(self.I_cpld_ind_list) == 1:
             raise WrongUse("If coupled inductors are used there must be at least two mutually coupled inductors")
         cpld_voltage_subst = {}
         for inductor in self.coupled_inductors_matrix.keys():
@@ -1291,8 +1292,8 @@ class SmallSignalLinearCircuit:
     
 
     def solve_nodal_equations_num(self,
-            set_ind_ss_sources_to_zero=False):
-        if not set_ind_ss_sources_to_zero:
+            set_ind_ss_src_to_zero=False):
+        if not set_ind_ss_src_to_zero:
             if len(self.nodal_voltages) > 1:
                 return sage.solve(self.nodal_equations_substitutions,
                                   self.nodal_voltages)
@@ -1401,10 +1402,165 @@ class SmallSignalLinearCircuit:
                     - v_node0).substitute_function(sage.function(circ_imp_calc.sources_names[0]),
                     (1 + 0 * sage.var('s')).function(sage.var('s')))
         else:
-            #to do: finish
-            raise RuntimeError("Not implemented")
+            #calcualte numerical impedance with numerical solutions of the node equations
+            node_voltages = \
+                circ_imp_calc.solve_nodal_equations_num(set_ind_ss_src_to_zero=False)
+            try:
+                if node_voltages[0][0] == []:
+                    raise Exception('An error has occurred')
+            except:
 
+                # re-raise exception or index error
 
+                raise
+            v_node0 = 0
+            v_node1 = 0
+            for eqn in node_voltages[0]:
+                if sage.var('V_' + port[0]) == eqn.lhs():
+                    v_node0 = eqn.rhs()
+                if sage.var('V_' + port[1]) == eqn.lhs():
+                    v_node1 = eqn.rhs()
+            if sage.var('V_' + port[0]) in [sage.var('V_0'),
+                    sage.var('V_gnd'), sage.var('V_GND')]:
+                v_node0 = 0
+            if sage.var('V_' + port[1]) in [sage.var('V_0'),
+                    sage.var('V_gnd'), sage.var('V_GND')]:
+                v_node1 = 0
+            if len(circ_imp_calc.sources) != 1:
+                raise Exception('An error has occurred')
+            return (v_node1
+                    - v_node0).substitute_function(sage.function(circ_imp_calc.sources_names[0]),
+                    (1 + 0 * sage.var('s')).function(sage.var('s')))
+ 
+            
+            
+    def transimpedance(self, port_I_in, port_V_out, with_substitutions=True, symbolic=True):
+        try:
+            if type(port_I_in) != tuple or type(port_V_out) != tuple:
+                raise Exception("Pass a tuple of two nodes (strings) as an argument in the form ('N1','N2') "
+                                )
+            elif len(port_I_in) != 2 or len(port_V_out) != 2:
+                raise Exception("Pass a port as a tuple of TWO nodes (string) for calculating a transimpedance ('N1', 'N2') "
+                                )
+            elif sage.var('V_' + port_I_in[0]) not in self.nodal_voltages \
+                + [sage.var('V_0'), sage.var('V_gnd'), sage.var('V_GND')] or \
+                   sage.var('V_' + port_V_out[0]) not in self.nodal_voltages \
+                   +[sage.var('V_0'), sage.var('V_gnd'), sage.var('V_GND')]:
+                raise Exception('First node of one of the ports (tuples) '
+                                'is not a valid node (must be a string describing a node) '
+                                )
+            elif sage.var('V_' + port_I_in[1]) not in self.nodal_voltages \
+                + [sage.var('V_0'), sage.var('V_gnd'), sage.var('V_GND')] or \
+                   sage.var('V_' + port_V_out[1]) not in self.nodal_voltages \
+                   +[sage.var('V_0'), sage.var('V_gnd'), sage.var('V_GND')]:
+                raise Exception('Second node of one of the ports (tuples) '
+                                'is not a valid node (must be a string describing a node)'
+                                )
+        except:
+
+            # re-raise the exception
+
+            raise
+
+        # get the present circuit as a string and remove 
+        # the independent sources (for now current sources)
+        # when implementing modified nodal analysis replace independent 
+        # voltage sources with a short
+
+        circ_without_sources = \
+            self.export_lin_circuit_string(remove=self.sources_component_id,
+                with_substitutions=with_substitutions)
+        if not sage.var('Iss_imp') in self.sources_component_id:
+            circ_imp_calc_string = circ_without_sources + 'Iss_imp' \
+                + '  ' + port_I_in[0] + ' ' + port_I_in[1] + ' \n'
+        else:
+            count = 0
+            while sage.var('Iss_imp' + str(count)) \
+                in self.sources_component_id:
+                count += 1
+            circ_imp_calc_string = circ_without_sources + 'Iss_imp' \
+                + str(count) + '  ' + port_I_in[0] + ' ' + port_I_in[1] + ' \n'
+
+        # now we create a circuit for the transimpedance calculation, with all 
+        # initial condition set to zero and containing only the independent 
+        # source described with src.
+
+        circ_imp_calc = \
+            SmallSignalLinearCircuit(circuit_netlist=circ_imp_calc_string,
+                ignore_all_ic=True)
+        if symbolic:
+            node_voltages = \
+                circ_imp_calc.solve_nodal_equations_symb(set_ind_ss_src_to_zero=False)
+            try:
+                if node_voltages[0][0] == []:
+                    raise Exception('An error has occurred')
+            except:
+
+                # re-raise exception or index error
+
+                raise
+            v_node0 = 0
+            v_node1 = 0
+            for eqn in node_voltages[0]:
+                if sage.var('V_' + port_V_out[0]) == eqn.lhs():
+                    v_node0 = eqn.rhs()
+                if sage.var('V_' + port_V_out[1]) == eqn.lhs():
+                    v_node1 = eqn.rhs()
+            if sage.var('V_' + port_V_out[0]) in [sage.var('V_0'),
+                    sage.var('V_gnd'), sage.var('V_GND')]:
+                v_node0 = 0
+            if sage.var('V_' + port_V_out[1]) in [sage.var('V_0'),
+                    sage.var('V_gnd'), sage.var('V_GND')]:
+                v_node1 = 0
+            if len(circ_imp_calc.sources) != 1:
+                raise Exception('An error has occurred')
+            return (v_node1
+                    - v_node0).substitute_function(sage.function(circ_imp_calc.sources_names[0]),
+                    (1 + 0 * sage.var('s')).function(sage.var('s')))
+        else:
+            #calculate numeric transimpedance with numeric solution of nodal equations 
+            node_voltages = \
+                circ_imp_calc.solve_nodal_equations_num(set_ind_ss_src_to_zero=False)
+            try:
+                if node_voltages[0][0] == []:
+                    raise Exception('An error has occurred')
+            except:
+
+                # re-raise exception or index error
+
+                raise
+            v_node0 = 0
+            v_node1 = 0
+            for eqn in node_voltages[0]:
+                if sage.var('V_' + port_V_out[0]) == eqn.lhs():
+                    v_node0 = eqn.rhs()
+                if sage.var('V_' + port_V_out[1]) == eqn.lhs():
+                    v_node1 = eqn.rhs()
+            if sage.var('V_' + port_V_out[0]) in [sage.var('V_0'),
+                    sage.var('V_gnd'), sage.var('V_GND')]:
+                v_node0 = 0
+            if sage.var('V_' + port_V_out[1]) in [sage.var('V_0'),
+                    sage.var('V_gnd'), sage.var('V_GND')]:
+                v_node1 = 0
+            if len(circ_imp_calc.sources) != 1:
+                raise Exception('An error has occurred')
+            return (v_node1
+                    - v_node0).substitute_function(sage.function(circ_imp_calc.sources_names[0]),
+                    (1 + 0 * sage.var('s')).function(sage.var('s')))
+
+    def z_parameters(self, port_in, port_out, with_substitutions=True,
+                     symbolic=True):
+        z11 = self.impedance(port=port_in, with_substitutions=with_substitutions,
+                             symbolic=symbolic)
+        z22 = self.impedance(port=port_out, with_substitutions=with_substitutions,
+                             symbolic=symbolic)
+        z12 = self.transimpedance(port_I_in=port_out, port_V_out=port_in, 
+                                  with_substitutions=with_substitutions, 
+                                  symbolic=symbolic)
+        z21 = self.transimpedance(port_I_in=port_in, port_V_out=port_out, 
+                                  with_substitutions=with_substitutions, 
+                                  symbolic=symbolic)
+        return sage.matrix([[z11, z12],[z21, z22]])
 
 
     def dict_default_vals(self):
