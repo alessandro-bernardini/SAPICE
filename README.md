@@ -3,6 +3,8 @@ SAPICE
 
 Symbolic analysis of electronic circuits in SAGE (sagemath) starting from a SPICE (ngspice) netlist.
 
+Please see the documentation provided with the project and the documentation generated with doxygen (see corresponding directories).
+
 This software will read a simple ngspice circuit netlist and compute the nodal equations for the corresponding linearized small circuit both symbolically and numerically.
 
 The nodal equations can then be solved with the sage computer algebra system and it is possible to compute impedances and two-port network parameters both symbolically and numerically. Functions for automatic simplification of large expressions are provided.
