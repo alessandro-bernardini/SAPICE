@@ -1,0 +1,577 @@
+\begin{theindex}
+
+  \item {\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}\_\discretionary {-}{}{}init\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}\_\discretionary {-}{}{}}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{15}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Wrong\discretionary {-}{}{}Data}, 
+		\hyperpage{22}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Wrong\discretionary {-}{}{}Use}, 
+		\hyperpage{23}
+
+  \indexspace
+
+  \item {add\discretionary {-}{}{}\_\discretionary {-}{}{}eq\discretionary {-}{}{}\_\discretionary {-}{}{}sol}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{19}
+
+  \indexspace
+
+  \item {B\discretionary {-}{}{}J\discretionary {-}{}{}T\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}E\discretionary {-}{}{}X\discretionary {-}{}{}P\discretionary {-}{}{}R}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis}, 
+		\hyperpage{10}
+  \item {bjt\discretionary {-}{}{}\_\discretionary {-}{}{}id}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{19}
+  \item {bjt\discretionary {-}{}{}\_\discretionary {-}{}{}line\discretionary {-}{}{}\_\discretionary {-}{}{}data}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{19}
+  \item {bjt\discretionary {-}{}{}\_\discretionary {-}{}{}lineptr}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{19}
+  \item {bjt\discretionary {-}{}{}\_\discretionary {-}{}{}model\discretionary {-}{}{}\_\discretionary {-}{}{}desc\discretionary {-}{}{}\_\discretionary {-}{}{}reached}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{19}
+  \item {bjt\discretionary {-}{}{}\_\discretionary {-}{}{}reached}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{19}
+
+  \indexspace
+
+  \item {C\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}A\discretionary {-}{}{}C\discretionary {-}{}{}I\discretionary {-}{}{}T\discretionary {-}{}{}O\discretionary {-}{}{}R\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}E\discretionary {-}{}{}X\discretionary {-}{}{}P\discretionary {-}{}{}R}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis}, 
+		\hyperpage{10}
+  \item {cap\discretionary {-}{}{}\_\discretionary {-}{}{}line\discretionary {-}{}{}\_\discretionary {-}{}{}data}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{19}
+  \item {cap\discretionary {-}{}{}\_\discretionary {-}{}{}lineptr}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{19}
+  \item {capacitor\discretionary {-}{}{}\_\discretionary {-}{}{}id}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{19}
+  \item {circuit\discretionary {-}{}{}\_\discretionary {-}{}{}file}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{19}
+  \item {clone}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{16}
+  \item {coupled\discretionary {-}{}{}\_\discretionary {-}{}{}to}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{19}
+  \item {cpld\discretionary {-}{}{}\_\discretionary {-}{}{}inductor\discretionary {-}{}{}\_\discretionary {-}{}{}data}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{20}
+  \item {cpld\discretionary {-}{}{}\_\discretionary {-}{}{}inductor\discretionary {-}{}{}\_\discretionary {-}{}{}node}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{20}
+  \item {cpld\discretionary {-}{}{}\_\discretionary {-}{}{}voltage\discretionary {-}{}{}\_\discretionary {-}{}{}subst}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{20}
+
+  \indexspace
+
+  \item {D\discretionary {-}{}{}A\discretionary {-}{}{}T\discretionary {-}{}{}A\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}F\discretionary {-}{}{}I\discretionary {-}{}{}E\discretionary {-}{}{}L\discretionary {-}{}{}D}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis}, 
+		\hyperpage{10}
+  \item {data}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Wrong\discretionary {-}{}{}Data}, 
+		\hyperpage{22}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Wrong\discretionary {-}{}{}Use}, 
+		\hyperpage{23}
+  \item {data\discretionary {-}{}{}\_\discretionary {-}{}{}bjt}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{20}
+  \item {data\discretionary {-}{}{}\_\discretionary {-}{}{}bjt\discretionary {-}{}{}\_\discretionary {-}{}{}strip}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{20}
+  \item {data\discretionary {-}{}{}\_\discretionary {-}{}{}cap}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{20}
+  \item {data\discretionary {-}{}{}\_\discretionary {-}{}{}cap\discretionary {-}{}{}\_\discretionary {-}{}{}strip}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{20}
+  \item {data\discretionary {-}{}{}\_\discretionary {-}{}{}i}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{20}
+  \item {data\discretionary {-}{}{}\_\discretionary {-}{}{}i\discretionary {-}{}{}\_\discretionary {-}{}{}strip}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{20}
+  \item {data\discretionary {-}{}{}\_\discretionary {-}{}{}ind}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{20}
+  \item {data\discretionary {-}{}{}\_\discretionary {-}{}{}ind\discretionary {-}{}{}\_\discretionary {-}{}{}strip}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{20}
+  \item {data\discretionary {-}{}{}\_\discretionary {-}{}{}kind}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{20}
+  \item {data\discretionary {-}{}{}\_\discretionary {-}{}{}kind\discretionary {-}{}{}\_\discretionary {-}{}{}strip}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{20}
+  \item {data\discretionary {-}{}{}\_\discretionary {-}{}{}res}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{20}
+  \item {data\discretionary {-}{}{}\_\discretionary {-}{}{}res\discretionary {-}{}{}\_\discretionary {-}{}{}strip}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{20}
+  \item {data\discretionary {-}{}{}\_\discretionary {-}{}{}temp}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{20}
+  \item {data\discretionary {-}{}{}\_\discretionary {-}{}{}vccs}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{20}
+  \item {data\discretionary {-}{}{}\_\discretionary {-}{}{}vccs\discretionary {-}{}{}\_\discretionary {-}{}{}strip}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{20}
+  \item {dict\discretionary {-}{}{}\_\discretionary {-}{}{}default\discretionary {-}{}{}\_\discretionary {-}{}{}vals}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{16}
+
+  \indexspace
+
+  \item {export\discretionary {-}{}{}\_\discretionary {-}{}{}lin\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}graph}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{16}
+  \item {export\discretionary {-}{}{}\_\discretionary {-}{}{}lin\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}string}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{17}
+  \item {extract\discretionary {-}{}{}\_\discretionary {-}{}{}value}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis}, 
+		\hyperpage{9}
+
+  \indexspace
+
+  \item {flags}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{20}
+
+  \indexspace
+
+  \item {get\discretionary {-}{}{}\_\discretionary {-}{}{}inductor\discretionary {-}{}{}\_\discretionary {-}{}{}data}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis}, 
+		\hyperpage{9}
+  \item {get\discretionary {-}{}{}\_\discretionary {-}{}{}lin\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}as\discretionary {-}{}{}\_\discretionary {-}{}{}string}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{17}
+
+  \indexspace
+
+  \item {I\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}E\discretionary {-}{}{}X\discretionary {-}{}{}P\discretionary {-}{}{}R}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis}, 
+		\hyperpage{11}
+  \item {i\discretionary {-}{}{}\_\discretionary {-}{}{}id}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{20}
+  \item {i\discretionary {-}{}{}\_\discretionary {-}{}{}line\discretionary {-}{}{}\_\discretionary {-}{}{}data}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{20}
+  \item {i\discretionary {-}{}{}\_\discretionary {-}{}{}lineptr}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{20}
+  \item {I\discretionary {-}{}{}N\discretionary {-}{}{}D\discretionary {-}{}{}U\discretionary {-}{}{}C\discretionary {-}{}{}T\discretionary {-}{}{}O\discretionary {-}{}{}R\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}E\discretionary {-}{}{}X\discretionary {-}{}{}P\discretionary {-}{}{}R}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis}, 
+		\hyperpage{11}
+  \item {id}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{20}
+  \item {ignore\discretionary {-}{}{}\_\discretionary {-}{}{}all\discretionary {-}{}{}\_\discretionary {-}{}{}ic}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{20}
+  \item {impedance}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{17}
+  \item {ind\discretionary {-}{}{}\_\discretionary {-}{}{}id}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{21}
+  \item {ind\discretionary {-}{}{}\_\discretionary {-}{}{}line\discretionary {-}{}{}\_\discretionary {-}{}{}data}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{21}
+  \item {ind\discretionary {-}{}{}\_\discretionary {-}{}{}lineptr}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{21}
+  \item {inductor\discretionary {-}{}{}\_\discretionary {-}{}{}id}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{21}
+  \item {inductor\discretionary {-}{}{}\_\discretionary {-}{}{}node0}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{21}
+  \item {inductor\discretionary {-}{}{}\_\discretionary {-}{}{}node1}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{21}
+
+  \indexspace
+
+  \item {K\discretionary {-}{}{}\_\discretionary {-}{}{}coeff}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{21}
+  \item {K\discretionary {-}{}{}I\discretionary {-}{}{}N\discretionary {-}{}{}D\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}E\discretionary {-}{}{}X\discretionary {-}{}{}P\discretionary {-}{}{}R}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis}, 
+		\hyperpage{11}
+  \item {kind\discretionary {-}{}{}\_\discretionary {-}{}{}id}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{21}
+  \item {kind\discretionary {-}{}{}\_\discretionary {-}{}{}line\discretionary {-}{}{}\_\discretionary {-}{}{}data}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{21}
+  \item {kind\discretionary {-}{}{}\_\discretionary {-}{}{}lineptr}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{21}
+
+  \indexspace
+
+  \item {matchline}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{21}
+  \item {model}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{21}
+  \item {model\discretionary {-}{}{}\_\discretionary {-}{}{}present\discretionary {-}{}{}\_\discretionary {-}{}{}bjt\discretionary {-}{}{}\_\discretionary {-}{}{}reached}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{21}
+
+  \indexspace
+
+  \item {ngspice\discretionary {-}{}{}\_\discretionary {-}{}{}line\discretionary {-}{}{}\_\discretionary {-}{}{}data}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{21}
+
+  \indexspace
+
+  \item {operating\discretionary {-}{}{}\_\discretionary {-}{}{}region}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{21}
+  \item {original\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}file}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{21}
+
+  \indexspace
+
+  \item {pos}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{21}
+  \item {present\discretionary {-}{}{}\_\discretionary {-}{}{}bjt\discretionary {-}{}{}\_\discretionary {-}{}{}reached}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{21}
+  \item {print\discretionary {-}{}{}\_\discretionary {-}{}{}information}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{17}
+  \item {print\discretionary {-}{}{}\_\discretionary {-}{}{}lin\discretionary {-}{}{}\_\discretionary {-}{}{}circuit}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{17}
+  \item {print\discretionary {-}{}{}\_\discretionary {-}{}{}symbols}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{18}
+
+  \indexspace
+
+  \item {R\discretionary {-}{}{}E\discretionary {-}{}{}S\discretionary {-}{}{}I\discretionary {-}{}{}S\discretionary {-}{}{}T\discretionary {-}{}{}O\discretionary {-}{}{}R\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}E\discretionary {-}{}{}X\discretionary {-}{}{}P\discretionary {-}{}{}R}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis}, 
+		\hyperpage{11}
+  \item {rational\discretionary {-}{}{}\_\discretionary {-}{}{}func}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis}, 
+		\hyperpage{10}
+  \item {res\discretionary {-}{}{}\_\discretionary {-}{}{}line\discretionary {-}{}{}\_\discretionary {-}{}{}data}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{21}
+  \item {res\discretionary {-}{}{}\_\discretionary {-}{}{}lineptr}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{21}
+  \item {resistor\discretionary {-}{}{}\_\discretionary {-}{}{}id}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{21}
+
+  \indexspace
+
+  \item {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis}, 
+		\hyperpage{9}
+    \subitem {B\discretionary {-}{}{}J\discretionary {-}{}{}T\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}E\discretionary {-}{}{}X\discretionary {-}{}{}P\discretionary {-}{}{}R}, 
+		\hyperpage{10}
+    \subitem {C\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}A\discretionary {-}{}{}C\discretionary {-}{}{}I\discretionary {-}{}{}T\discretionary {-}{}{}O\discretionary {-}{}{}R\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}E\discretionary {-}{}{}X\discretionary {-}{}{}P\discretionary {-}{}{}R}, 
+		\hyperpage{10}
+    \subitem {D\discretionary {-}{}{}A\discretionary {-}{}{}T\discretionary {-}{}{}A\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}F\discretionary {-}{}{}I\discretionary {-}{}{}E\discretionary {-}{}{}L\discretionary {-}{}{}D}, 
+		\hyperpage{10}
+    \subitem {extract\discretionary {-}{}{}\_\discretionary {-}{}{}value}, 
+		\hyperpage{9}
+    \subitem {get\discretionary {-}{}{}\_\discretionary {-}{}{}inductor\discretionary {-}{}{}\_\discretionary {-}{}{}data}, 
+		\hyperpage{9}
+    \subitem {I\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}E\discretionary {-}{}{}X\discretionary {-}{}{}P\discretionary {-}{}{}R}, 
+		\hyperpage{11}
+    \subitem {I\discretionary {-}{}{}N\discretionary {-}{}{}D\discretionary {-}{}{}U\discretionary {-}{}{}C\discretionary {-}{}{}T\discretionary {-}{}{}O\discretionary {-}{}{}R\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}E\discretionary {-}{}{}X\discretionary {-}{}{}P\discretionary {-}{}{}R}, 
+		\hyperpage{11}
+    \subitem {K\discretionary {-}{}{}I\discretionary {-}{}{}N\discretionary {-}{}{}D\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}E\discretionary {-}{}{}X\discretionary {-}{}{}P\discretionary {-}{}{}R}, 
+		\hyperpage{11}
+    \subitem {R\discretionary {-}{}{}E\discretionary {-}{}{}S\discretionary {-}{}{}I\discretionary {-}{}{}S\discretionary {-}{}{}T\discretionary {-}{}{}O\discretionary {-}{}{}R\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}E\discretionary {-}{}{}X\discretionary {-}{}{}P\discretionary {-}{}{}R}, 
+		\hyperpage{11}
+    \subitem {rational\discretionary {-}{}{}\_\discretionary {-}{}{}func}, 
+		\hyperpage{10}
+    \subitem {simplify\discretionary {-}{}{}\_\discretionary {-}{}{}polynomial}, 
+		\hyperpage{10}
+    \subitem {simplify\discretionary {-}{}{}\_\discretionary {-}{}{}rational\discretionary {-}{}{}\_\discretionary {-}{}{}func}, 
+		\hyperpage{10}
+    \subitem {simplify\discretionary {-}{}{}\_\discretionary {-}{}{}sum}, 
+		\hyperpage{10}
+    \subitem {T\discretionary {-}{}{}E\discretionary {-}{}{}M\discretionary {-}{}{}P\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}E\discretionary {-}{}{}X\discretionary {-}{}{}P\discretionary {-}{}{}R}, 
+		\hyperpage{11}
+    \subitem {V\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}E\discretionary {-}{}{}X\discretionary {-}{}{}P\discretionary {-}{}{}R}, 
+		\hyperpage{11}
+    \subitem {V\discretionary {-}{}{}C\discretionary {-}{}{}C\discretionary {-}{}{}S\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}E\discretionary {-}{}{}X\discretionary {-}{}{}P\discretionary {-}{}{}R}, 
+		\hyperpage{11}
+  \item {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis.\discretionary {-}{}{}py}, 
+		\hyperpage{25}
+  \item {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis.\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{13}
+  \item {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis.\discretionary {-}{}{}Wrong\discretionary {-}{}{}Data}, 
+		\hyperpage{22}
+  \item {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis.\discretionary {-}{}{}Wrong\discretionary {-}{}{}Use}, 
+		\hyperpage{22}
+  \item {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}
+    \subitem {\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}\_\discretionary {-}{}{}init\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}\_\discretionary {-}{}{}}, 
+		\hyperpage{15}
+    \subitem {add\discretionary {-}{}{}\_\discretionary {-}{}{}eq\discretionary {-}{}{}\_\discretionary {-}{}{}sol}, 
+		\hyperpage{19}
+    \subitem {bjt\discretionary {-}{}{}\_\discretionary {-}{}{}id}, 
+		\hyperpage{19}
+    \subitem {bjt\discretionary {-}{}{}\_\discretionary {-}{}{}line\discretionary {-}{}{}\_\discretionary {-}{}{}data}, 
+		\hyperpage{19}
+    \subitem {bjt\discretionary {-}{}{}\_\discretionary {-}{}{}lineptr}, 
+		\hyperpage{19}
+    \subitem {bjt\discretionary {-}{}{}\_\discretionary {-}{}{}model\discretionary {-}{}{}\_\discretionary {-}{}{}desc\discretionary {-}{}{}\_\discretionary {-}{}{}reached}, 
+		\hyperpage{19}
+    \subitem {bjt\discretionary {-}{}{}\_\discretionary {-}{}{}reached}, 
+		\hyperpage{19}
+    \subitem {cap\discretionary {-}{}{}\_\discretionary {-}{}{}line\discretionary {-}{}{}\_\discretionary {-}{}{}data}, 
+		\hyperpage{19}
+    \subitem {cap\discretionary {-}{}{}\_\discretionary {-}{}{}lineptr}, 
+		\hyperpage{19}
+    \subitem {capacitor\discretionary {-}{}{}\_\discretionary {-}{}{}id}, 
+		\hyperpage{19}
+    \subitem {circuit\discretionary {-}{}{}\_\discretionary {-}{}{}file}, 
+		\hyperpage{19}
+    \subitem {clone}, \hyperpage{16}
+    \subitem {coupled\discretionary {-}{}{}\_\discretionary {-}{}{}to}, 
+		\hyperpage{19}
+    \subitem {cpld\discretionary {-}{}{}\_\discretionary {-}{}{}inductor\discretionary {-}{}{}\_\discretionary {-}{}{}data}, 
+		\hyperpage{20}
+    \subitem {cpld\discretionary {-}{}{}\_\discretionary {-}{}{}inductor\discretionary {-}{}{}\_\discretionary {-}{}{}node}, 
+		\hyperpage{20}
+    \subitem {cpld\discretionary {-}{}{}\_\discretionary {-}{}{}voltage\discretionary {-}{}{}\_\discretionary {-}{}{}subst}, 
+		\hyperpage{20}
+    \subitem {data\discretionary {-}{}{}\_\discretionary {-}{}{}bjt}, 
+		\hyperpage{20}
+    \subitem {data\discretionary {-}{}{}\_\discretionary {-}{}{}bjt\discretionary {-}{}{}\_\discretionary {-}{}{}strip}, 
+		\hyperpage{20}
+    \subitem {data\discretionary {-}{}{}\_\discretionary {-}{}{}cap}, 
+		\hyperpage{20}
+    \subitem {data\discretionary {-}{}{}\_\discretionary {-}{}{}cap\discretionary {-}{}{}\_\discretionary {-}{}{}strip}, 
+		\hyperpage{20}
+    \subitem {data\discretionary {-}{}{}\_\discretionary {-}{}{}i}, 
+		\hyperpage{20}
+    \subitem {data\discretionary {-}{}{}\_\discretionary {-}{}{}i\discretionary {-}{}{}\_\discretionary {-}{}{}strip}, 
+		\hyperpage{20}
+    \subitem {data\discretionary {-}{}{}\_\discretionary {-}{}{}ind}, 
+		\hyperpage{20}
+    \subitem {data\discretionary {-}{}{}\_\discretionary {-}{}{}ind\discretionary {-}{}{}\_\discretionary {-}{}{}strip}, 
+		\hyperpage{20}
+    \subitem {data\discretionary {-}{}{}\_\discretionary {-}{}{}kind}, 
+		\hyperpage{20}
+    \subitem {data\discretionary {-}{}{}\_\discretionary {-}{}{}kind\discretionary {-}{}{}\_\discretionary {-}{}{}strip}, 
+		\hyperpage{20}
+    \subitem {data\discretionary {-}{}{}\_\discretionary {-}{}{}res}, 
+		\hyperpage{20}
+    \subitem {data\discretionary {-}{}{}\_\discretionary {-}{}{}res\discretionary {-}{}{}\_\discretionary {-}{}{}strip}, 
+		\hyperpage{20}
+    \subitem {data\discretionary {-}{}{}\_\discretionary {-}{}{}temp}, 
+		\hyperpage{20}
+    \subitem {data\discretionary {-}{}{}\_\discretionary {-}{}{}vccs}, 
+		\hyperpage{20}
+    \subitem {data\discretionary {-}{}{}\_\discretionary {-}{}{}vccs\discretionary {-}{}{}\_\discretionary {-}{}{}strip}, 
+		\hyperpage{20}
+    \subitem {dict\discretionary {-}{}{}\_\discretionary {-}{}{}default\discretionary {-}{}{}\_\discretionary {-}{}{}vals}, 
+		\hyperpage{16}
+    \subitem {export\discretionary {-}{}{}\_\discretionary {-}{}{}lin\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}graph}, 
+		\hyperpage{16}
+    \subitem {export\discretionary {-}{}{}\_\discretionary {-}{}{}lin\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}string}, 
+		\hyperpage{17}
+    \subitem {flags}, \hyperpage{20}
+    \subitem {get\discretionary {-}{}{}\_\discretionary {-}{}{}lin\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}as\discretionary {-}{}{}\_\discretionary {-}{}{}string}, 
+		\hyperpage{17}
+    \subitem {i\discretionary {-}{}{}\_\discretionary {-}{}{}id}, 
+		\hyperpage{20}
+    \subitem {i\discretionary {-}{}{}\_\discretionary {-}{}{}line\discretionary {-}{}{}\_\discretionary {-}{}{}data}, 
+		\hyperpage{20}
+    \subitem {i\discretionary {-}{}{}\_\discretionary {-}{}{}lineptr}, 
+		\hyperpage{20}
+    \subitem {id}, \hyperpage{20}
+    \subitem {ignore\discretionary {-}{}{}\_\discretionary {-}{}{}all\discretionary {-}{}{}\_\discretionary {-}{}{}ic}, 
+		\hyperpage{20}
+    \subitem {impedance}, \hyperpage{17}
+    \subitem {ind\discretionary {-}{}{}\_\discretionary {-}{}{}id}, 
+		\hyperpage{21}
+    \subitem {ind\discretionary {-}{}{}\_\discretionary {-}{}{}line\discretionary {-}{}{}\_\discretionary {-}{}{}data}, 
+		\hyperpage{21}
+    \subitem {ind\discretionary {-}{}{}\_\discretionary {-}{}{}lineptr}, 
+		\hyperpage{21}
+    \subitem {inductor\discretionary {-}{}{}\_\discretionary {-}{}{}id}, 
+		\hyperpage{21}
+    \subitem {inductor\discretionary {-}{}{}\_\discretionary {-}{}{}node0}, 
+		\hyperpage{21}
+    \subitem {inductor\discretionary {-}{}{}\_\discretionary {-}{}{}node1}, 
+		\hyperpage{21}
+    \subitem {K\discretionary {-}{}{}\_\discretionary {-}{}{}coeff}, 
+		\hyperpage{21}
+    \subitem {kind\discretionary {-}{}{}\_\discretionary {-}{}{}id}, 
+		\hyperpage{21}
+    \subitem {kind\discretionary {-}{}{}\_\discretionary {-}{}{}line\discretionary {-}{}{}\_\discretionary {-}{}{}data}, 
+		\hyperpage{21}
+    \subitem {kind\discretionary {-}{}{}\_\discretionary {-}{}{}lineptr}, 
+		\hyperpage{21}
+    \subitem {matchline}, \hyperpage{21}
+    \subitem {model}, \hyperpage{21}
+    \subitem {model\discretionary {-}{}{}\_\discretionary {-}{}{}present\discretionary {-}{}{}\_\discretionary {-}{}{}bjt\discretionary {-}{}{}\_\discretionary {-}{}{}reached}, 
+		\hyperpage{21}
+    \subitem {ngspice\discretionary {-}{}{}\_\discretionary {-}{}{}line\discretionary {-}{}{}\_\discretionary {-}{}{}data}, 
+		\hyperpage{21}
+    \subitem {operating\discretionary {-}{}{}\_\discretionary {-}{}{}region}, 
+		\hyperpage{21}
+    \subitem {original\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}file}, 
+		\hyperpage{21}
+    \subitem {pos}, \hyperpage{21}
+    \subitem {present\discretionary {-}{}{}\_\discretionary {-}{}{}bjt\discretionary {-}{}{}\_\discretionary {-}{}{}reached}, 
+		\hyperpage{21}
+    \subitem {print\discretionary {-}{}{}\_\discretionary {-}{}{}information}, 
+		\hyperpage{17}
+    \subitem {print\discretionary {-}{}{}\_\discretionary {-}{}{}lin\discretionary {-}{}{}\_\discretionary {-}{}{}circuit}, 
+		\hyperpage{17}
+    \subitem {print\discretionary {-}{}{}\_\discretionary {-}{}{}symbols}, 
+		\hyperpage{18}
+    \subitem {res\discretionary {-}{}{}\_\discretionary {-}{}{}line\discretionary {-}{}{}\_\discretionary {-}{}{}data}, 
+		\hyperpage{21}
+    \subitem {res\discretionary {-}{}{}\_\discretionary {-}{}{}lineptr}, 
+		\hyperpage{21}
+    \subitem {resistor\discretionary {-}{}{}\_\discretionary {-}{}{}id}, 
+		\hyperpage{21}
+    \subitem {set\discretionary {-}{}{}\_\discretionary {-}{}{}default\discretionary {-}{}{}\_\discretionary {-}{}{}ic\discretionary {-}{}{}\_\discretionary {-}{}{}to\discretionary {-}{}{}\_\discretionary {-}{}{}zero}, 
+		\hyperpage{21}
+    \subitem {simpl\discretionary {-}{}{}\_\discretionary {-}{}{}temp}, 
+		\hyperpage{21}
+    \subitem {skipnextline}, \hyperpage{21}
+    \subitem {solve\discretionary {-}{}{}\_\discretionary {-}{}{}nodal\discretionary {-}{}{}\_\discretionary {-}{}{}equations\discretionary {-}{}{}\_\discretionary {-}{}{}num}, 
+		\hyperpage{18}
+    \subitem {solve\discretionary {-}{}{}\_\discretionary {-}{}{}nodal\discretionary {-}{}{}\_\discretionary {-}{}{}equations\discretionary {-}{}{}\_\discretionary {-}{}{}symb}, 
+		\hyperpage{18}
+    \subitem {spice\discretionary {-}{}{}\_\discretionary {-}{}{}batch\discretionary {-}{}{}\_\discretionary {-}{}{}output\discretionary {-}{}{}\_\discretionary {-}{}{}file}, 
+		\hyperpage{21}
+    \subitem {subs\discretionary {-}{}{}\_\discretionary {-}{}{}zero\discretionary {-}{}{}\_\discretionary {-}{}{}ic}, 
+		\hyperpage{21}
+    \subitem {temp\discretionary {-}{}{}\_\discretionary {-}{}{}dict}, 
+		\hyperpage{22}
+    \subitem {temperature}, \hyperpage{22}
+    \subitem {transimpedance}, \hyperpage{18}
+    \subitem {type}, \hyperpage{22}
+    \subitem {value}, \hyperpage{22}
+    \subitem {vccs\discretionary {-}{}{}\_\discretionary {-}{}{}id}, 
+		\hyperpage{22}
+    \subitem {vccs\discretionary {-}{}{}\_\discretionary {-}{}{}line\discretionary {-}{}{}\_\discretionary {-}{}{}data}, 
+		\hyperpage{22}
+    \subitem {vccs\discretionary {-}{}{}\_\discretionary {-}{}{}lineptr}, 
+		\hyperpage{22}
+    \subitem {write\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}graph\discretionary {-}{}{}\_\discretionary {-}{}{}dot}, 
+		\hyperpage{18}
+    \subitem {write\discretionary {-}{}{}\_\discretionary {-}{}{}lin\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}to\discretionary {-}{}{}\_\discretionary {-}{}{}file}, 
+		\hyperpage{19}
+    \subitem {z\discretionary {-}{}{}\_\discretionary {-}{}{}parameters}, 
+		\hyperpage{19}
+  \item {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Wrong\discretionary {-}{}{}Data}
+    \subitem {\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}\_\discretionary {-}{}{}init\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}\_\discretionary {-}{}{}}, 
+		\hyperpage{22}
+    \subitem {data}, \hyperpage{22}
+  \item {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Wrong\discretionary {-}{}{}Use}
+    \subitem {\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}\_\discretionary {-}{}{}init\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}\_\discretionary {-}{}{}}, 
+		\hyperpage{23}
+    \subitem {data}, \hyperpage{23}
+  \item {set\discretionary {-}{}{}\_\discretionary {-}{}{}default\discretionary {-}{}{}\_\discretionary {-}{}{}ic\discretionary {-}{}{}\_\discretionary {-}{}{}to\discretionary {-}{}{}\_\discretionary {-}{}{}zero}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{21}
+  \item {simpl\discretionary {-}{}{}\_\discretionary {-}{}{}temp}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{21}
+  \item {simplify\discretionary {-}{}{}\_\discretionary {-}{}{}polynomial}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis}, 
+		\hyperpage{10}
+  \item {simplify\discretionary {-}{}{}\_\discretionary {-}{}{}rational\discretionary {-}{}{}\_\discretionary {-}{}{}func}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis}, 
+		\hyperpage{10}
+  \item {simplify\discretionary {-}{}{}\_\discretionary {-}{}{}sum}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis}, 
+		\hyperpage{10}
+  \item {skipnextline}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{21}
+  \item {solve\discretionary {-}{}{}\_\discretionary {-}{}{}nodal\discretionary {-}{}{}\_\discretionary {-}{}{}equations\discretionary {-}{}{}\_\discretionary {-}{}{}num}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{18}
+  \item {solve\discretionary {-}{}{}\_\discretionary {-}{}{}nodal\discretionary {-}{}{}\_\discretionary {-}{}{}equations\discretionary {-}{}{}\_\discretionary {-}{}{}symb}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{18}
+  \item {spice\discretionary {-}{}{}\_\discretionary {-}{}{}batch\discretionary {-}{}{}\_\discretionary {-}{}{}output\discretionary {-}{}{}\_\discretionary {-}{}{}file}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{21}
+  \item {subs\discretionary {-}{}{}\_\discretionary {-}{}{}zero\discretionary {-}{}{}\_\discretionary {-}{}{}ic}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{21}
+
+  \indexspace
+
+  \item {T\discretionary {-}{}{}E\discretionary {-}{}{}M\discretionary {-}{}{}P\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}E\discretionary {-}{}{}X\discretionary {-}{}{}P\discretionary {-}{}{}R}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis}, 
+		\hyperpage{11}
+  \item {temp\discretionary {-}{}{}\_\discretionary {-}{}{}dict}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{22}
+  \item {temperature}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{22}
+  \item {transimpedance}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{18}
+  \item {type}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{22}
+
+  \indexspace
+
+  \item {V\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}E\discretionary {-}{}{}X\discretionary {-}{}{}P\discretionary {-}{}{}R}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis}, 
+		\hyperpage{11}
+  \item {V\discretionary {-}{}{}C\discretionary {-}{}{}C\discretionary {-}{}{}S\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}E\discretionary {-}{}{}X\discretionary {-}{}{}P\discretionary {-}{}{}R}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis}, 
+		\hyperpage{11}
+  \item {value}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{22}
+  \item {vccs\discretionary {-}{}{}\_\discretionary {-}{}{}id}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{22}
+  \item {vccs\discretionary {-}{}{}\_\discretionary {-}{}{}line\discretionary {-}{}{}\_\discretionary {-}{}{}data}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{22}
+  \item {vccs\discretionary {-}{}{}\_\discretionary {-}{}{}lineptr}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{22}
+
+  \indexspace
+
+  \item {write\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}graph\discretionary {-}{}{}\_\discretionary {-}{}{}dot}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{18}
+  \item {write\discretionary {-}{}{}\_\discretionary {-}{}{}lin\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}to\discretionary {-}{}{}\_\discretionary {-}{}{}file}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{19}
+
+  \indexspace
+
+  \item {z\discretionary {-}{}{}\_\discretionary {-}{}{}parameters}
+    \subitem {sage\discretionary {-}{}{}\_\discretionary {-}{}{}circuit\discretionary {-}{}{}\_\discretionary {-}{}{}analysis\discretionary {-}{}{}::\discretionary {-}{}{}Small\discretionary {-}{}{}Signal\discretionary {-}{}{}Linear\discretionary {-}{}{}Circuit}, 
+		\hyperpage{19}
+
+\end{theindex}
