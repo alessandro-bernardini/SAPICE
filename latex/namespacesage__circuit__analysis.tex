@@ -1,0 +1,184 @@
+\hypertarget{namespacesage__circuit__analysis}{\section{sage\-\_\-circuit\-\_\-analysis Namespace Reference}
+\label{namespacesage__circuit__analysis}\index{sage\-\_\-circuit\-\_\-analysis@{sage\-\_\-circuit\-\_\-analysis}}
+}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit}{Small\-Signal\-Linear\-Circuit}
+\item 
+class \hyperlink{classsage__circuit__analysis_1_1WrongUse}{Wrong\-Use}
+\item 
+class \hyperlink{classsage__circuit__analysis_1_1WrongData}{Wrong\-Data}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespacesage__circuit__analysis_a20195c1f38102dfb151149f38f95648b}{extract\-\_\-value}
+\item 
+def \hyperlink{namespacesage__circuit__analysis_a03dd269825ac5c1abc6cf08aa7f095ca}{simplify\-\_\-sum}
+\item 
+def \hyperlink{namespacesage__circuit__analysis_aaeda7087f11c5bbd3f8c8fe40b70385c}{simplify\-\_\-polynomial}
+\item 
+def \hyperlink{namespacesage__circuit__analysis_a30e35c0ddc7b77121dc41a95d07d356a}{simplify\-\_\-rational\-\_\-func}
+\item 
+def \hyperlink{namespacesage__circuit__analysis_aafa3a82cff9a4b87e42b8118d66e7497}{rational\-\_\-func}
+\item 
+def \hyperlink{namespacesage__circuit__analysis_a862d105ff2299e184caaa8dcd558b687}{get\-\_\-inductor\-\_\-data}
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+tuple \hyperlink{namespacesage__circuit__analysis_ad653e45f39302e51c2249c43c0a2d095}{R\-E\-S\-I\-S\-T\-O\-R\-\_\-\-E\-X\-P\-R} = re.\-compile('$^\wedge$(\textbackslash{}s)$\ast$(R$|$r)\textbackslash{}w+')
+\item 
+tuple \hyperlink{namespacesage__circuit__analysis_ac94c9a30cb3a3008b8cd76472bcac0b1}{C\-A\-P\-A\-C\-I\-T\-O\-R\-\_\-\-E\-X\-P\-R} = re.\-compile('$^\wedge$(\textbackslash{}s)$\ast$(C$|$c)\textbackslash{}w+')
+\item 
+tuple \hyperlink{namespacesage__circuit__analysis_a28ab0d30d46181ac6d7b033ef4cd7b2a}{I\-N\-D\-U\-C\-T\-O\-R\-\_\-\-E\-X\-P\-R} = re.\-compile('$^\wedge$(\textbackslash{}s)$\ast$(L$|$l)\textbackslash{}w+')
+\item 
+tuple \hyperlink{namespacesage__circuit__analysis_af319382f4c361c1e1d38e446e0466769}{V\-\_\-\-E\-X\-P\-R} = re.\-compile('$^\wedge$(\textbackslash{}s)$\ast$(V$|$v)\textbackslash{}w+')
+\item 
+tuple \hyperlink{namespacesage__circuit__analysis_aabc5e7c1a370cb2805023e6eef2ea933}{I\-\_\-\-E\-X\-P\-R} = re.\-compile('$^\wedge$(\textbackslash{}s)$\ast$(I$|$i)\textbackslash{}w+')
+\item 
+tuple \hyperlink{namespacesage__circuit__analysis_a22033439ae0926b745e78c7e9c4aeea7}{V\-C\-C\-S\-\_\-\-E\-X\-P\-R} = re.\-compile('$^\wedge$(\textbackslash{}s)$\ast$(G$|$g)\textbackslash{}w+')
+\item 
+tuple \hyperlink{namespacesage__circuit__analysis_ad9a63538d26a69e4e17043419e7e375d}{B\-J\-T\-\_\-\-E\-X\-P\-R} = re.\-compile('$^\wedge$(\textbackslash{}s)$\ast$(Q$|$q)\textbackslash{}w+')
+\item 
+tuple \hyperlink{namespacesage__circuit__analysis_a4d87352a85623b7cc6ab51c2f07165fb}{K\-I\-N\-D\-\_\-\-E\-X\-P\-R} = re.\-compile('$^\wedge$(\textbackslash{}s)$\ast$(K$|$k)\textbackslash{}w+')
+\item 
+tuple \hyperlink{namespacesage__circuit__analysis_a45b1d5b538d2ca4814b4c5be71ed415f}{D\-A\-T\-A\-\_\-\-F\-I\-E\-L\-D} = re.\-compile('\textbackslash{}s+\textbackslash{}w+\textbackslash{}=\mbox{[}-\/\textbackslash{}+\mbox{]}?\textbackslash{}w$\ast$\textbackslash{}.?\textbackslash{}w+\mbox{[}-\/\textbackslash{}+\mbox{]}?\textbackslash{}d$\ast$$|$\textbackslash{}s+\mbox{[}-\/\textbackslash{}+\mbox{]}?\textbackslash{}w$\ast$\textbackslash{}.?\textbackslash{}w+\mbox{[}-\/\textbackslash{}+\mbox{]}?\textbackslash{}d$\ast$$|$\textbackslash{}s+\textbackslash{}\{\textbackslash{}w+\textbackslash{}\}')
+\item 
+tuple \hyperlink{namespacesage__circuit__analysis_a4164fdd64fbbc924b260c7e813bf61ae}{T\-E\-M\-P\-\_\-\-E\-X\-P\-R} = re.\-compile('$^\wedge$(\textbackslash{}s)$\ast$(\textbackslash{}.temp)\textbackslash{}s+\textbackslash{}w+', re.\-I\-G\-N\-O\-R\-E\-C\-A\-S\-E)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{namespacesage__circuit__analysis_a20195c1f38102dfb151149f38f95648b}{\index{sage\-\_\-circuit\-\_\-analysis@{sage\-\_\-circuit\-\_\-analysis}!extract\-\_\-value@{extract\-\_\-value}}
+\index{extract\-\_\-value@{extract\-\_\-value}!sage_circuit_analysis@{sage\-\_\-circuit\-\_\-analysis}}
+\subsubsection[{extract\-\_\-value}]{\setlength{\rightskip}{0pt plus 5cm}def sage\-\_\-circuit\-\_\-analysis.\-extract\-\_\-value (
+\begin{DoxyParamCaption}
+\item[{}]{data}
+\end{DoxyParamCaption}
+)}}\label{namespacesage__circuit__analysis_a20195c1f38102dfb151149f38f95648b}
+\begin{DoxyVerb}extracts numerical value from a data field. For example 0.003 from 3m. data must be a stripped string\end{DoxyVerb}
+ \hypertarget{namespacesage__circuit__analysis_a862d105ff2299e184caaa8dcd558b687}{\index{sage\-\_\-circuit\-\_\-analysis@{sage\-\_\-circuit\-\_\-analysis}!get\-\_\-inductor\-\_\-data@{get\-\_\-inductor\-\_\-data}}
+\index{get\-\_\-inductor\-\_\-data@{get\-\_\-inductor\-\_\-data}!sage_circuit_analysis@{sage\-\_\-circuit\-\_\-analysis}}
+\subsubsection[{get\-\_\-inductor\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}def sage\-\_\-circuit\-\_\-analysis.\-get\-\_\-inductor\-\_\-data (
+\begin{DoxyParamCaption}
+\item[{}]{line, }
+\item[{}]{ignore\-\_\-all\-\_\-ic, }
+\item[{}]{set\-\_\-default\-\_\-ic\-\_\-to\-\_\-zero}
+\end{DoxyParamCaption}
+)}}\label{namespacesage__circuit__analysis_a862d105ff2299e184caaa8dcd558b687}
+\hypertarget{namespacesage__circuit__analysis_aafa3a82cff9a4b87e42b8118d66e7497}{\index{sage\-\_\-circuit\-\_\-analysis@{sage\-\_\-circuit\-\_\-analysis}!rational\-\_\-func@{rational\-\_\-func}}
+\index{rational\-\_\-func@{rational\-\_\-func}!sage_circuit_analysis@{sage\-\_\-circuit\-\_\-analysis}}
+\subsubsection[{rational\-\_\-func}]{\setlength{\rightskip}{0pt plus 5cm}def sage\-\_\-circuit\-\_\-analysis.\-rational\-\_\-func (
+\begin{DoxyParamCaption}
+\item[{}]{large\-\_\-expression}
+\end{DoxyParamCaption}
+)}}\label{namespacesage__circuit__analysis_aafa3a82cff9a4b87e42b8118d66e7497}
+\hypertarget{namespacesage__circuit__analysis_aaeda7087f11c5bbd3f8c8fe40b70385c}{\index{sage\-\_\-circuit\-\_\-analysis@{sage\-\_\-circuit\-\_\-analysis}!simplify\-\_\-polynomial@{simplify\-\_\-polynomial}}
+\index{simplify\-\_\-polynomial@{simplify\-\_\-polynomial}!sage_circuit_analysis@{sage\-\_\-circuit\-\_\-analysis}}
+\subsubsection[{simplify\-\_\-polynomial}]{\setlength{\rightskip}{0pt plus 5cm}def sage\-\_\-circuit\-\_\-analysis.\-simplify\-\_\-polynomial (
+\begin{DoxyParamCaption}
+\item[{}]{polinom, }
+\item[{}]{dictionary, }
+\item[{}]{treshhold = {\ttfamily 0}, }
+\item[{}]{variable = {\ttfamily sage.var('s')}, }
+\item[{}]{safe\-\_\-check = {\ttfamily True}}
+\end{DoxyParamCaption}
+)}}\label{namespacesage__circuit__analysis_aaeda7087f11c5bbd3f8c8fe40b70385c}
+\begin{DoxyVerb}Returns a tuple  (result, polinom-result)
+where result is an approximation of the polinom polinom given as a sage expression.
+The polynom is considered in the variable variable
+Default: variable=sage.var('s')
+
+dictonary is a dictionary that provides numerical values for the symbolic variables
+in the coefficeints of the polinom.
+
+treshold is a number in [0,1[ that fixes a treshhold: for treshhold=0 result will be equal
+to polinom.
+
+Every coefficient of the polynomial (coefficient made by a sum of terms) will be simplified
+invoking simplify_sum.
+\end{DoxyVerb}
+ \hypertarget{namespacesage__circuit__analysis_a30e35c0ddc7b77121dc41a95d07d356a}{\index{sage\-\_\-circuit\-\_\-analysis@{sage\-\_\-circuit\-\_\-analysis}!simplify\-\_\-rational\-\_\-func@{simplify\-\_\-rational\-\_\-func}}
+\index{simplify\-\_\-rational\-\_\-func@{simplify\-\_\-rational\-\_\-func}!sage_circuit_analysis@{sage\-\_\-circuit\-\_\-analysis}}
+\subsubsection[{simplify\-\_\-rational\-\_\-func}]{\setlength{\rightskip}{0pt plus 5cm}def sage\-\_\-circuit\-\_\-analysis.\-simplify\-\_\-rational\-\_\-func (
+\begin{DoxyParamCaption}
+\item[{}]{rational\-\_\-func, }
+\item[{}]{dictionary, }
+\item[{}]{treshhold = {\ttfamily 0}, }
+\item[{}]{variable = {\ttfamily sage.var('s')}, }
+\item[{}]{safe\-\_\-check = {\ttfamily True}}
+\end{DoxyParamCaption}
+)}}\label{namespacesage__circuit__analysis_a30e35c0ddc7b77121dc41a95d07d356a}
+\begin{DoxyVerb}simplifies a rational function rational_func (a sage expression)
+in the variable variable (default sage.var('s')).
+
+dictonary is a dictionary that provides numerical values for the symbolic variables
+in the coefficeints of the polinom.
+
+treshold is a number in [0,1[ that fixes a treshhold: for treshhold=0 result will be equal
+to polinom.
+
+A simplified numerator and denominator will be computed invoking simplify_polinomial
+
+The result will be a dictionaty
+(result, rational_func - result)
+with result a simplified version of rational_func
+\end{DoxyVerb}
+ \hypertarget{namespacesage__circuit__analysis_a03dd269825ac5c1abc6cf08aa7f095ca}{\index{sage\-\_\-circuit\-\_\-analysis@{sage\-\_\-circuit\-\_\-analysis}!simplify\-\_\-sum@{simplify\-\_\-sum}}
+\index{simplify\-\_\-sum@{simplify\-\_\-sum}!sage_circuit_analysis@{sage\-\_\-circuit\-\_\-analysis}}
+\subsubsection[{simplify\-\_\-sum}]{\setlength{\rightskip}{0pt plus 5cm}def sage\-\_\-circuit\-\_\-analysis.\-simplify\-\_\-sum (
+\begin{DoxyParamCaption}
+\item[{}]{expr, }
+\item[{}]{dictionary, }
+\item[{}]{treshhold = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}}\label{namespacesage__circuit__analysis_a03dd269825ac5c1abc6cf08aa7f095ca}
+\begin{DoxyVerb}Returns a tuple  (simplified_expr, expr-simplified_expr)
+where simplified_expr is an approximation of expr.      
+
+expr is a symbolic sage expression made of terms added together (a sum of terms)
+
+dictonary is a dictionary that provides numerical values for the symbolic variables
+in the expression expr
+
+treshold is a number in [0,1[ that fixes a treshhold.
+
+If the numerical value of a given term is lower than the numerical value of the term
+that evaluates to the maximum (along all terms) multiplied with the trashhold then the
+corresponding term is ignored.
+\end{DoxyVerb}
+ 
+
+\subsection{Variable Documentation}
+\hypertarget{namespacesage__circuit__analysis_ad9a63538d26a69e4e17043419e7e375d}{\index{sage\-\_\-circuit\-\_\-analysis@{sage\-\_\-circuit\-\_\-analysis}!B\-J\-T\-\_\-\-E\-X\-P\-R@{B\-J\-T\-\_\-\-E\-X\-P\-R}}
+\index{B\-J\-T\-\_\-\-E\-X\-P\-R@{B\-J\-T\-\_\-\-E\-X\-P\-R}!sage_circuit_analysis@{sage\-\_\-circuit\-\_\-analysis}}
+\subsubsection[{B\-J\-T\-\_\-\-E\-X\-P\-R}]{\setlength{\rightskip}{0pt plus 5cm}tuple sage\-\_\-circuit\-\_\-analysis.\-B\-J\-T\-\_\-\-E\-X\-P\-R = re.\-compile('$^\wedge$(\textbackslash{}s)$\ast$(Q$|$q)\textbackslash{}w+')}}\label{namespacesage__circuit__analysis_ad9a63538d26a69e4e17043419e7e375d}
+\hypertarget{namespacesage__circuit__analysis_ac94c9a30cb3a3008b8cd76472bcac0b1}{\index{sage\-\_\-circuit\-\_\-analysis@{sage\-\_\-circuit\-\_\-analysis}!C\-A\-P\-A\-C\-I\-T\-O\-R\-\_\-\-E\-X\-P\-R@{C\-A\-P\-A\-C\-I\-T\-O\-R\-\_\-\-E\-X\-P\-R}}
+\index{C\-A\-P\-A\-C\-I\-T\-O\-R\-\_\-\-E\-X\-P\-R@{C\-A\-P\-A\-C\-I\-T\-O\-R\-\_\-\-E\-X\-P\-R}!sage_circuit_analysis@{sage\-\_\-circuit\-\_\-analysis}}
+\subsubsection[{C\-A\-P\-A\-C\-I\-T\-O\-R\-\_\-\-E\-X\-P\-R}]{\setlength{\rightskip}{0pt plus 5cm}tuple sage\-\_\-circuit\-\_\-analysis.\-C\-A\-P\-A\-C\-I\-T\-O\-R\-\_\-\-E\-X\-P\-R = re.\-compile('$^\wedge$(\textbackslash{}s)$\ast$(C$|$c)\textbackslash{}w+')}}\label{namespacesage__circuit__analysis_ac94c9a30cb3a3008b8cd76472bcac0b1}
+\hypertarget{namespacesage__circuit__analysis_a45b1d5b538d2ca4814b4c5be71ed415f}{\index{sage\-\_\-circuit\-\_\-analysis@{sage\-\_\-circuit\-\_\-analysis}!D\-A\-T\-A\-\_\-\-F\-I\-E\-L\-D@{D\-A\-T\-A\-\_\-\-F\-I\-E\-L\-D}}
+\index{D\-A\-T\-A\-\_\-\-F\-I\-E\-L\-D@{D\-A\-T\-A\-\_\-\-F\-I\-E\-L\-D}!sage_circuit_analysis@{sage\-\_\-circuit\-\_\-analysis}}
+\subsubsection[{D\-A\-T\-A\-\_\-\-F\-I\-E\-L\-D}]{\setlength{\rightskip}{0pt plus 5cm}tuple sage\-\_\-circuit\-\_\-analysis.\-D\-A\-T\-A\-\_\-\-F\-I\-E\-L\-D = re.\-compile('\textbackslash{}s+\textbackslash{}w+\textbackslash{}=\mbox{[}-\/\textbackslash{}+\mbox{]}?\textbackslash{}w$\ast$\textbackslash{}.?\textbackslash{}w+\mbox{[}-\/\textbackslash{}+\mbox{]}?\textbackslash{}d$\ast$$|$\textbackslash{}s+\mbox{[}-\/\textbackslash{}+\mbox{]}?\textbackslash{}w$\ast$\textbackslash{}.?\textbackslash{}w+\mbox{[}-\/\textbackslash{}+\mbox{]}?\textbackslash{}d$\ast$$|$\textbackslash{}s+\textbackslash{}\{\textbackslash{}w+\textbackslash{}\}')}}\label{namespacesage__circuit__analysis_a45b1d5b538d2ca4814b4c5be71ed415f}
+\hypertarget{namespacesage__circuit__analysis_aabc5e7c1a370cb2805023e6eef2ea933}{\index{sage\-\_\-circuit\-\_\-analysis@{sage\-\_\-circuit\-\_\-analysis}!I\-\_\-\-E\-X\-P\-R@{I\-\_\-\-E\-X\-P\-R}}
+\index{I\-\_\-\-E\-X\-P\-R@{I\-\_\-\-E\-X\-P\-R}!sage_circuit_analysis@{sage\-\_\-circuit\-\_\-analysis}}
+\subsubsection[{I\-\_\-\-E\-X\-P\-R}]{\setlength{\rightskip}{0pt plus 5cm}tuple sage\-\_\-circuit\-\_\-analysis.\-I\-\_\-\-E\-X\-P\-R = re.\-compile('$^\wedge$(\textbackslash{}s)$\ast$(I$|$i)\textbackslash{}w+')}}\label{namespacesage__circuit__analysis_aabc5e7c1a370cb2805023e6eef2ea933}
+\hypertarget{namespacesage__circuit__analysis_a28ab0d30d46181ac6d7b033ef4cd7b2a}{\index{sage\-\_\-circuit\-\_\-analysis@{sage\-\_\-circuit\-\_\-analysis}!I\-N\-D\-U\-C\-T\-O\-R\-\_\-\-E\-X\-P\-R@{I\-N\-D\-U\-C\-T\-O\-R\-\_\-\-E\-X\-P\-R}}
+\index{I\-N\-D\-U\-C\-T\-O\-R\-\_\-\-E\-X\-P\-R@{I\-N\-D\-U\-C\-T\-O\-R\-\_\-\-E\-X\-P\-R}!sage_circuit_analysis@{sage\-\_\-circuit\-\_\-analysis}}
+\subsubsection[{I\-N\-D\-U\-C\-T\-O\-R\-\_\-\-E\-X\-P\-R}]{\setlength{\rightskip}{0pt plus 5cm}tuple sage\-\_\-circuit\-\_\-analysis.\-I\-N\-D\-U\-C\-T\-O\-R\-\_\-\-E\-X\-P\-R = re.\-compile('$^\wedge$(\textbackslash{}s)$\ast$(L$|$l)\textbackslash{}w+')}}\label{namespacesage__circuit__analysis_a28ab0d30d46181ac6d7b033ef4cd7b2a}
+\hypertarget{namespacesage__circuit__analysis_a4d87352a85623b7cc6ab51c2f07165fb}{\index{sage\-\_\-circuit\-\_\-analysis@{sage\-\_\-circuit\-\_\-analysis}!K\-I\-N\-D\-\_\-\-E\-X\-P\-R@{K\-I\-N\-D\-\_\-\-E\-X\-P\-R}}
+\index{K\-I\-N\-D\-\_\-\-E\-X\-P\-R@{K\-I\-N\-D\-\_\-\-E\-X\-P\-R}!sage_circuit_analysis@{sage\-\_\-circuit\-\_\-analysis}}
+\subsubsection[{K\-I\-N\-D\-\_\-\-E\-X\-P\-R}]{\setlength{\rightskip}{0pt plus 5cm}tuple sage\-\_\-circuit\-\_\-analysis.\-K\-I\-N\-D\-\_\-\-E\-X\-P\-R = re.\-compile('$^\wedge$(\textbackslash{}s)$\ast$(K$|$k)\textbackslash{}w+')}}\label{namespacesage__circuit__analysis_a4d87352a85623b7cc6ab51c2f07165fb}
+\hypertarget{namespacesage__circuit__analysis_ad653e45f39302e51c2249c43c0a2d095}{\index{sage\-\_\-circuit\-\_\-analysis@{sage\-\_\-circuit\-\_\-analysis}!R\-E\-S\-I\-S\-T\-O\-R\-\_\-\-E\-X\-P\-R@{R\-E\-S\-I\-S\-T\-O\-R\-\_\-\-E\-X\-P\-R}}
+\index{R\-E\-S\-I\-S\-T\-O\-R\-\_\-\-E\-X\-P\-R@{R\-E\-S\-I\-S\-T\-O\-R\-\_\-\-E\-X\-P\-R}!sage_circuit_analysis@{sage\-\_\-circuit\-\_\-analysis}}
+\subsubsection[{R\-E\-S\-I\-S\-T\-O\-R\-\_\-\-E\-X\-P\-R}]{\setlength{\rightskip}{0pt plus 5cm}tuple sage\-\_\-circuit\-\_\-analysis.\-R\-E\-S\-I\-S\-T\-O\-R\-\_\-\-E\-X\-P\-R = re.\-compile('$^\wedge$(\textbackslash{}s)$\ast$(R$|$r)\textbackslash{}w+')}}\label{namespacesage__circuit__analysis_ad653e45f39302e51c2249c43c0a2d095}
+\hypertarget{namespacesage__circuit__analysis_a4164fdd64fbbc924b260c7e813bf61ae}{\index{sage\-\_\-circuit\-\_\-analysis@{sage\-\_\-circuit\-\_\-analysis}!T\-E\-M\-P\-\_\-\-E\-X\-P\-R@{T\-E\-M\-P\-\_\-\-E\-X\-P\-R}}
+\index{T\-E\-M\-P\-\_\-\-E\-X\-P\-R@{T\-E\-M\-P\-\_\-\-E\-X\-P\-R}!sage_circuit_analysis@{sage\-\_\-circuit\-\_\-analysis}}
+\subsubsection[{T\-E\-M\-P\-\_\-\-E\-X\-P\-R}]{\setlength{\rightskip}{0pt plus 5cm}tuple sage\-\_\-circuit\-\_\-analysis.\-T\-E\-M\-P\-\_\-\-E\-X\-P\-R = re.\-compile('$^\wedge$(\textbackslash{}s)$\ast$(\textbackslash{}.temp)\textbackslash{}s+\textbackslash{}w+', re.\-I\-G\-N\-O\-R\-E\-C\-A\-S\-E)}}\label{namespacesage__circuit__analysis_a4164fdd64fbbc924b260c7e813bf61ae}
+\hypertarget{namespacesage__circuit__analysis_af319382f4c361c1e1d38e446e0466769}{\index{sage\-\_\-circuit\-\_\-analysis@{sage\-\_\-circuit\-\_\-analysis}!V\-\_\-\-E\-X\-P\-R@{V\-\_\-\-E\-X\-P\-R}}
+\index{V\-\_\-\-E\-X\-P\-R@{V\-\_\-\-E\-X\-P\-R}!sage_circuit_analysis@{sage\-\_\-circuit\-\_\-analysis}}
+\subsubsection[{V\-\_\-\-E\-X\-P\-R}]{\setlength{\rightskip}{0pt plus 5cm}tuple sage\-\_\-circuit\-\_\-analysis.\-V\-\_\-\-E\-X\-P\-R = re.\-compile('$^\wedge$(\textbackslash{}s)$\ast$(V$|$v)\textbackslash{}w+')}}\label{namespacesage__circuit__analysis_af319382f4c361c1e1d38e446e0466769}
+\hypertarget{namespacesage__circuit__analysis_a22033439ae0926b745e78c7e9c4aeea7}{\index{sage\-\_\-circuit\-\_\-analysis@{sage\-\_\-circuit\-\_\-analysis}!V\-C\-C\-S\-\_\-\-E\-X\-P\-R@{V\-C\-C\-S\-\_\-\-E\-X\-P\-R}}
+\index{V\-C\-C\-S\-\_\-\-E\-X\-P\-R@{V\-C\-C\-S\-\_\-\-E\-X\-P\-R}!sage_circuit_analysis@{sage\-\_\-circuit\-\_\-analysis}}
+\subsubsection[{V\-C\-C\-S\-\_\-\-E\-X\-P\-R}]{\setlength{\rightskip}{0pt plus 5cm}tuple sage\-\_\-circuit\-\_\-analysis.\-V\-C\-C\-S\-\_\-\-E\-X\-P\-R = re.\-compile('$^\wedge$(\textbackslash{}s)$\ast$(G$|$g)\textbackslash{}w+')}}\label{namespacesage__circuit__analysis_a22033439ae0926b745e78c7e9c4aeea7}

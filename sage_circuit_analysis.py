@@ -1,12 +1,61 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-'''
-Version: 0.2.1.
+## @package sage_circuit_analysis
+# \mainpage
+# Author: Alessandro Bernardini
+#
+#     alessandro.bernardini@tum.de
+#
+# https://github.com/alessandro-bernardini/SAPICE
+#
+# http://alessandro-bernardini.github.io/SAPICE/
+#
+# License: GNU GPL
+#
+# Disclaimer: THERE IS NO WARRANTY FOR THE PROGRAM (SAPICE and all its provided 
+# components), TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE
+# STATED IN WRITING THE COPYRIGHT HOLDERS (Alessandro Bernardini) AND/OR OTHER 
+# PARTIES PROVIDE THE PROGRAM AS IS WITHOUT WARRANTY OF ANY KIND, EITHER 
+# EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES 
+# OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS 
+# TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM 
+# PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR 
+# CORRECTION.
+#
+# IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL ANY 
+# COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR CONVEYS THE PROGRAM 
+# AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, 
+# SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR 
+# INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR 
+# DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR 
+# A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH 
+# HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+#
+# THIS PROGRAM WAS NOT WELL TESTED !
+#
+# Project home:
+# https://github.com/alessandro-bernardini/SAPICE
+#
+# Requires: ngspice revision 24; sage version 5.6. Other version of ngspice or 
+# sage should work well too.
+#
+# http://www.sagemath.org/
+#
+# http://ngspice.sourceforge.net/download.html
+# 
+# See documentation and license
+#
+#
+
+"""@package docstring
+Version: 0.3
 
 Author: Alessandro Bernardini
 
-alessandro.bernardini.tum@gmail.com
+alessandro.bernardini.tum@gmail.com    	
+https://github.com/alessandro-bernardini/SAPICE
+http://alessandro-bernardini.github.io/SAPICE/
 
 License: GNU GPL.
 http://www.gnu.org/licenses/gpl.html
@@ -44,14 +93,14 @@ http://ngspice.sourceforge.net/download.html
 
 See documentation and license
 
-'''
+"""
 
 import sage.all as sage
 import networkx as nx
 import re
-import sys
+#import sys
 import copy
-import string
+#import string
 
 RESISTOR_EXPR = re.compile('^(\s)*(R|r)\w+')
 CAPACITOR_EXPR = re.compile('^(\s)*(C|c)\w+')
@@ -67,6 +116,66 @@ TEMP_EXPR = re.compile('^(\s)*(\.temp)\s+\w+', re.IGNORECASE)
 
 
 class SmallSignalLinearCircuit:
+    """PROJECT HOME:
+
+    	https://github.com/alessandro-bernardini/SAPICE
+    	http://alessandro-bernardini.github.io/SAPICE/
+    
+    This class implements nodal analysis for linear electrical circuits.
+    If a nonlinear circuit is given then the linearized small signal circuit is
+    considered.
+    This class is designed to be used WITHIN the sage computer algebra system
+
+    	http://www.sagemath.org/
+
+    and in conjunction with ngspice (open source version of spice):
+
+    	http://ngspice.sourceforge.net/
+
+    So you have to install sage and ngspice first (see relative documentation).
+
+    Then run	
+
+    	sage
+
+    from the shell
+    then in the sage prompt import the present module
+
+    	import sage_circuit_analysis
+
+    and the create a SmallSignalLinearCircuit object
+
+    	circuit = sage_circuit_analysis.SmallSignalLinearCircuit('circuitfile.cir')
+
+    with circuitfile.cir a spice netllist (see additional information below
+    and in the help of the constructor).
+
+    You can read-in a ngspice netlist and typically you will provide the operating
+    point data and other information via an ngspice batch output file
+    that you have to generate with the command (from the shell):
+    
+    	ngspice -b circuitfile.cir -o batchoutput.log
+
+    where circuitfile.cir is the spice netlist
+    and batchoutput.log is the log file containing the output data of interest.
+    Both files circuitfile.cir and batchoutput.log must be passed
+    to a SmallSignalLinearCircuit object when invoking the constructor.
+
+    The nodal equations can be solved both numerically (if numerical values
+    are provided) and symbolically.
+
+    You can compute impedances and two port network parameters and do
+    the computation of poles and zeroes if a symbolic closed form solutions
+    exists.
+
+    It is possible to compute symbolic approximations to the exact solution
+    where only dominant terms are considered.
+
+    NOTE: numerical solutions usually means a polynom or a rational function
+    dependent on the complex variable s and on independent sources.
+
+    Usually all quantities are complex.
+    """
 
     # when implementing modified nodal analysis a set of MNA_equations will 
     # be needed togheter with additional MNA_unknowns, that usually will 
@@ -81,20 +190,31 @@ class SmallSignalLinearCircuit:
         set_default_ic_to_zero=True,
         ignore_all_ic=False,
         ):
-        """constructor
-    
+        """filename='circuitfile.cir'
+	where circuitfile.cir is a ngspice (spice) netlist.
+
+	spice_batch_output_file='batchoutput.log'
+	a file needed when operating point data must be considered
+	You have to run from the shell the command
+	ngspice -b circuitfile.cir -o batchoutput.log
+	fog generating the batchoutput.log file
+
+	in alternative
+	circuit_netlist=CIRCUIT_STRING
+	can be used where CIRCUIT_STRING is a string containing
+	the circuit netlist (in place of circuitfile.cir)
+
         with check_operating_region=True a linearized model in dependence of the 
         operating region will be choosen for each semiconductor devices. 
-        Otherwise it will be assumed that a standard model is valid. ( for 
+        Otherwise it will be assumed that a default model is valid. (for 
         BJT transistors the active region small signal model will be this 
-        standard model)
+        default model)
     
         ignore_all_IC=True will ignore all initial conditions for both symbolic
         and numeric computations
     
         set_default_ic_to_zero=True will set initial conditions to zero for
         capacitors or inductors where no initial condition is specified
-    
         """
 
         if filename != None:
@@ -506,7 +626,7 @@ class SmallSignalLinearCircuit:
                                                         'coupling_coefficient_data':self.couplings},
                                             value=self.coupled_inductors_data[ind_id]['value_in_line'])
             except:
-                raise RunTimeError("An error has occurred")
+                raise RuntimeError("An error has occurred")
         #beginning of computation for voltages on coupled inductors and for currents in nodal equations for coupled inductors
         self.I_cpld_ind = {}
         self.I_cpld_ind_list = []
@@ -1250,6 +1370,8 @@ class SmallSignalLinearCircuit:
 # end of constructor
 
     def clone(self):
+	"""returns a deepcopy of the object
+	"""
         return copy.deepcopy(self)
 
     # when implementing modified nodal analysis, include modified nodal 
@@ -1263,7 +1385,8 @@ class SmallSignalLinearCircuit:
         side the symbolic expression representing the solution.
         
         set_ind_ss_src_to_zero=True will set all the independent small signal
-        sources (in the small signal linearized circuit) to zero
+        sources (in the small signal linearized circuit) to zero when computing
+	the solution
         """
         
         if not set_ind_ss_src_to_zero:
@@ -1293,6 +1416,17 @@ class SmallSignalLinearCircuit:
 
     def solve_nodal_equations_num(self,
             set_ind_ss_src_to_zero=False):
+        """Returns a numeric solutions of the nodal equations. 
+        
+        The solution will be a list containing a list of equations that
+        have on the left hand side the nodal voltages and on the right hand 
+        side the symbolic expression representing the solution.
+        
+        set_ind_ss_src_to_zero=True will set all the independent small signal
+        sources (in the small signal linearized circuit) to zero when computing
+	the solution
+        """
+
         if not set_ind_ss_src_to_zero:
             if len(self.nodal_voltages) > 1:
                 return sage.solve(self.nodal_equations_substitutions,
@@ -1323,6 +1457,28 @@ class SmallSignalLinearCircuit:
         with_substitutions=True,
         symbolic=True,
         ):
+	"""computes the impedance between two nodes in the circuit
+
+	port=('node1','node2')
+	is the pair of nodes considered for the impedance computations, for example
+	port=('0','1')
+	will compute the impedance between node '1' (if a node '1' is given 
+	in the circuit) and ground (node '0').
+
+	with_substitutions=True
+	(default) will consider the actual values of all small signal circuit parameters
+	that results from the consideration of the operating point of nonlinear devices.
+	Otherwise those parameters will be left symbolic.
+	(affects the computation of numerical impedance values)
+
+	symbolic=True
+	impedance is computed symbolically. (symbolic=False will compute a numeric
+	impedance value)
+
+	All internal sources and all the initial conditions will be ignored (set to zero appropriately).
+
+	See also the help for the transimpedance method.
+	"""
         try:
             if type(port) != tuple:
                 raise Exception("Pass a tuple of two nodes (strings) as an argument in the form ('N1','N2') "
@@ -1435,6 +1591,27 @@ class SmallSignalLinearCircuit:
             
             
     def transimpedance(self, port_I_in, port_V_out, with_substitutions=True, symbolic=True):
+	"""computes the trans-impedance between two nodes in the circuit
+
+	port_I_in=('node1','node2')
+	is the pair of nodes considered for the current input
+	where the (positive) impressed input current flows into node2 (and out of node1)
+
+	port_V_out=('node3','node4')
+	is the pair of nodes considered for the output voltage:
+	output_voltage = Vnode4 - Vnode3
+
+	the transimpedance will then be the output voltage/input current
+
+	symbolic=True
+	computes a symbolic expression as solution
+
+	with_substitutions=True
+	consider the operating point data (affects numerical results with symbolic=False).
+
+	internal sources or initial conditions are ignored.
+	"""
+    
         try:
             if type(port_I_in) != tuple or type(port_V_out) != tuple:
                 raise Exception("Pass a tuple of two nodes (strings) as an argument in the form ('N1','N2') "
@@ -1550,6 +1727,17 @@ class SmallSignalLinearCircuit:
 
     def z_parameters(self, port_in, port_out, with_substitutions=True,
                      symbolic=True):
+	"""returns a sage matrix containing the two port network z-parameters
+	port_in=('node1', 'node2')
+	port_out=('node3', 'node4')
+
+	where nodei is a node identifier
+
+	for any port
+	port_x=('nodea', 'nodeb')
+	the positive port voltages are nodeb - nodea
+	and the positive currents are flowing into nodeb (and out of nodea)
+	"""
         z11 = self.impedance(port=port_in, with_substitutions=with_substitutions,
                              symbolic=symbolic)
         z22 = self.impedance(port=port_out, with_substitutions=with_substitutions,
@@ -1564,6 +1752,18 @@ class SmallSignalLinearCircuit:
 
 
     def dict_default_vals(self):
+	"""returns a pair of dictionaries (dict_num, dict_sym)
+	where
+	dict_num is a dictionary containing as keys the circuit parameters and
+	as values the corrisponding numerical values
+
+	dict_sym is a dictionary containing as keys the circuit parameters for
+	which a numerical value was not explicitly determined and as values the symbolic
+	expressions associated with the considered circuit parameter.
+
+	If all numerical values can be explicitly computed then
+	dict_sym will be empty.
+	"""
         dict_num = {}
         dict_sym = {}
         for key in self.default_substitutions_values.keys():
@@ -1580,6 +1780,8 @@ class SmallSignalLinearCircuit:
         return (dict_num, dict_sym)
         
     def print_information(self):
+	"""prints some information about the circuit
+	"""
         print 'Sources: '
         print self.sources
         print
@@ -1617,16 +1819,23 @@ class SmallSignalLinearCircuit:
         print self.temp
 
     def print_lin_circuit(self):
+	"""prints the linear (or linearized) circuit netlist
+	"""
         for i in self.circuit_file:
             print i,
 
     def get_lin_circuit_as_string(self):
+	"""returns a string containing the linear circuit 
+	(or linearized circuit) netlist
+	"""
         ret_val = ''
         for i in self.circuit_file:
             ret_val = ret_val + i
         return ret_val
 
     def write_lin_circuit_to_file(self, filename):
+	"""writes the linear circuit netlist to file 'filename'
+	"""
         try:
             lin_cir_file = open(filename, 'w')
         except:
@@ -1641,6 +1850,27 @@ class SmallSignalLinearCircuit:
         remove=None,
         with_substitutions=True,
         ):
+	"""returns a graph (a networkx object) of the linear circuit
+
+	shorts is a dictionary {'node1':'node2', 'node3':'node4'}
+	where node1 will be shorted with node2
+	and node3 will be shorted with node 4
+	etc.
+	A key node should not also be a value node for preventing conflicts, so
+	when shorting multiple nodes together the proper ordering is important.
+
+	remove is a list of components to remove (replace with open circuit)
+	For example remove=['R1','C1']
+	will remove the resistor R1 and the capacitor C1
+	from the netlist.
+
+	with_substitutions=True
+	will explicitly consider numerical values resulting from the operating point
+	of nonlinear devices	
+	with_substitutions=False will leave the values of parameters resulting from the
+	operating point of nonlinear devices as a symbolic expression
+
+	"""
         if shorts == None:
             shorts = {}
         if remove == None:
@@ -1761,6 +1991,27 @@ class SmallSignalLinearCircuit:
         with_substitutions=True,
         write_to_file=None,
         ):
+	"""returns a string describing the netlist of the linear(ized) circuit
+
+	shorts is a dictionary {'node1':'node2', 'node3':'node4'}
+	where node1 will be shorted with node2
+	and node3 will be shorted with node 4
+	etc.
+	A key node should not also be a value node for preventing conflicts, so
+	when shorting multiple nodes together the proper ordering is important.
+
+	remove is a list of components to remove (replace with open circuit)
+	For example remove=['R1','C1']
+	will remove the resistor R1 and the capacitor C1
+	from the netlist.
+
+	with_substitutions=True
+	will explicitly consider numerical values resulting from the operating point
+	of nonlinear devices
+	with_substitutions=False will leave the values of parameters resulting from the
+	operating point of nonlinear devices as a symbolic expression
+	"""
+
         lin_cir_graph = self.export_lin_circuit_graph(shorts=shorts,
                 remove=remove, with_substitutions=with_substitutions)
         circuit_string = ''
@@ -1794,7 +2045,7 @@ class SmallSignalLinearCircuit:
         return circuit_string
 
     def print_symbols(self):
-        '''displays information on the symbols adopted by the program'''
+        '''displays information on the symbols adopted by the program (incomplete)'''
 
         infodict = {
             'V': 'V_nodeid = voltage at node nodeid',
@@ -1813,6 +2064,17 @@ class SmallSignalLinearCircuit:
         with_substitutions=True,
         edge_labels=True,
         ):
+	"""generates a dot file in which a representation of the circuit graph is given.
+
+	output_graoh_file='circuit_graph.dot'
+	file in which the graph representation will be written.
+
+	with_substitutions=True
+	will consider numerical values resulting from the operating point of nonlinear devices
+
+	edge_labels=True
+	will labels edge with informations.
+	"""
         try:
             if with_substitutions:
                 cir_graph_subst = \
@@ -1888,6 +2150,20 @@ class WrongData(Exception):
         Exception.__init__(self, data)
 
 def simplify_sum(expr, dictionary, treshhold=0):
+    """Returns a tuple  (simplified_expr, expr-simplified_expr)
+    where simplified_expr is an approximation of expr.	
+    
+    expr is a symbolic sage expression made of terms added together (a sum of terms)
+
+    dictonary is a dictionary that provides numerical values for the symbolic variables
+    in the expression expr
+
+    treshold is a number in [0,1[ that fixes a treshhold.
+
+    If the numerical value of a given term is lower than the numerical value of the term
+    that evaluates to the maximum (along all terms) multiplied with the trashhold then the
+    corresponding term is ignored.
+    """
     if treshhold > 1 or treshhold < 0:
         raise ValueError("treshhold must be between 0 and 1")
     try:
@@ -1919,6 +2195,21 @@ def simplify_sum(expr, dictionary, treshhold=0):
         return (expr, 0)
         
 def simplify_polynomial(polinom, dictionary, treshhold=0, variable=sage.var('s'), safe_check=True):
+    """Returns a tuple  (result, polinom-result)
+    where result is an approximation of the polinom polinom given as a sage expression.
+    The polynom is considered in the variable variable
+    Default: variable=sage.var('s')
+    
+    dictonary is a dictionary that provides numerical values for the symbolic variables
+    in the coefficeints of the polinom.
+
+    treshold is a number in [0,1[ that fixes a treshhold: for treshhold=0 result will be equal
+    to polinom.
+
+    Every coefficient of the polynomial (coefficient made by a sum of terms) will be simplified
+    invoking simplify_sum.
+    """
+
     if treshhold < 0 or treshhold > 1:
         raise ValueError("treshhold must be between 0 and 1")
     if safe_check:
@@ -1936,6 +2227,22 @@ def simplify_polynomial(polinom, dictionary, treshhold=0, variable=sage.var('s')
         return (polinom, 0)
 
 def simplify_rational_func(rational_func, dictionary, treshhold=0, variable=sage.var('s'), safe_check=True):
+    """simplifies a rational function rational_func (a sage expression)
+    in the variable variable (default sage.var('s')).
+
+    dictonary is a dictionary that provides numerical values for the symbolic variables
+    in the coefficeints of the polinom.
+
+    treshold is a number in [0,1[ that fixes a treshhold: for treshhold=0 result will be equal
+    to polinom.
+
+    A simplified numerator and denominator will be computed invoking simplify_polinomial
+
+    The result will be a dictionaty
+    (result, rational_func - result)
+    with result a simplified version of rational_func
+    """
+
     if treshhold < 0 or treshhold > 1:
         raise ValueError("treshhold must be between 0 and 1")
     try:

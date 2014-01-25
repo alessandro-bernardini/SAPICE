@@ -1,0 +1,797 @@
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit}{\section{sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit Class Reference}
+\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit}\index{sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit}}
+}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a0f30f016489667a4704544306abe456d}{\-\_\-\-\_\-init\-\_\-\-\_\-}
+\item 
+def \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_aeafe17db122efcb3d3f745192294a071}{clone}
+\item 
+def \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_ae7f58ba8a7203ea441675341dc1f30ca}{solve\-\_\-nodal\-\_\-equations\-\_\-symb}
+\item 
+def \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_add2f95c8b64b32634a740065050a8bfa}{solve\-\_\-nodal\-\_\-equations\-\_\-num}
+\item 
+def \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a8cd930bc0a3a289fc228ffd93eab6eac}{impedance}
+\item 
+def \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a99eec5cf22c2386890dce8dec5b52cda}{transimpedance}
+\item 
+def \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a839630f7334fe6977c46e262a36ed6ca}{z\-\_\-parameters}
+\item 
+def \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a25ddb5c3ab3e8eb469f902fd38cb416b}{dict\-\_\-default\-\_\-vals}
+\item 
+def \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a14e7ed8816cd597b144bff47065ea653}{print\-\_\-information}
+\item 
+def \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_ae97653d935fec765536c343a0827bafb}{print\-\_\-lin\-\_\-circuit}
+\item 
+def \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_aca45143faaf4fe06bb5e38a302bd7069}{get\-\_\-lin\-\_\-circuit\-\_\-as\-\_\-string}
+\item 
+def \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a681f13f2b035b543339e9f7771c9cfb6}{write\-\_\-lin\-\_\-circuit\-\_\-to\-\_\-file}
+\item 
+def \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a3565f93dcf8b309fe5c6da97e7ea07b1}{export\-\_\-lin\-\_\-circuit\-\_\-graph}
+\item 
+def \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_aebbc52269ad587325b870fa133a89b0c}{export\-\_\-lin\-\_\-circuit\-\_\-string}
+\item 
+def \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a9d706bbbc9e13395bd3a819d26036260}{print\-\_\-symbols}
+\item 
+def \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a205879306341def47d57565543e61cc9}{write\-\_\-circuit\-\_\-graph\-\_\-dot}
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_ae7aff4af6a42a3d63d6c4dce56118bfd}{circuit\-\_\-file}
+\item 
+\hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a17b36735653af2250cda753cd48b3b5a}{original\-\_\-circuit\-\_\-file}
+\item 
+\hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a5f24f3d1bcd6305d49c81dbd632e0c16}{spice\-\_\-batch\-\_\-output\-\_\-file}
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a40e559d5cb9c403ba04b5eda16cd4e2e}{pos} = 0
+\item 
+tuple \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_aa1d8a76cfbbe1fe586d26ce644fdb993}{data\-\_\-temp} = D\-A\-T\-A\-\_\-\-F\-I\-E\-L\-D.\-findall(line)
+\item 
+list \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_ae1ee383cac9037f0e46097d52f564fb7}{temperature} = \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_aa1d8a76cfbbe1fe586d26ce644fdb993}{data\-\_\-temp}\mbox{[}0\mbox{]}
+\item 
+tuple \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a80d33b2587c9c3bf642678e2f4fa6a3b}{bjt\-\_\-lineptr} = B\-J\-T\-\_\-\-E\-X\-P\-R.\-match(line)
+\item 
+list \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a4010a5982eb6b7d5cd263f4c38ac3fff}{bjt\-\_\-line\-\_\-data} = line\mbox{[}bjt\-\_\-lineptr.\-end()\-:\mbox{]}
+\item 
+list \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a220f269787a83488cd8d3b559fea2193}{bjt\-\_\-id} = line\mbox{[}\-:bjt\-\_\-lineptr.\-end()\mbox{]}
+\item 
+string \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a161fcc3267d15de71683c9ef6ebd6edc}{operating\-\_\-region} = 'unknown'
+\item 
+tuple \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a84ae57694d12e012d04bc13249f5b864}{data\-\_\-bjt} = D\-A\-T\-A\-\_\-\-F\-I\-E\-L\-D.\-findall(\hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a4010a5982eb6b7d5cd263f4c38ac3fff}{bjt\-\_\-line\-\_\-data})
+\item 
+list \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a4000b520524485f11cad047c3be83ecf}{data\-\_\-bjt\-\_\-strip} = \mbox{[}$\,$\mbox{]}
+\item 
+list \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a97cef0f5bbc88e9957746b1841f88942}{model} = \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a4000b520524485f11cad047c3be83ecf}{data\-\_\-bjt\-\_\-strip}\mbox{[}3\mbox{]}
+\item 
+\hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a469278fe5ac7694dd2287b50b0e2d1b9}{bjt\-\_\-model\-\_\-desc\-\_\-reached} = False
+\item 
+\hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a350126ddf605351a760c4367f2061c90}{model\-\_\-present\-\_\-bjt\-\_\-reached} = False
+\item 
+\hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a9fbbbc2bb3294beeecf3d6270c1996c5}{skipnextline} = False
+\item 
+\hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a1c773903fae5f212ae0e23e952de482b}{flags} = re.\-I\-G\-N\-O\-R\-E\-C\-A\-S\-E)!None\-:
+\item 
+\hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_ab8ff2e3e2ad4f9d24fb54fb08eb69566}{matchline} = \textbackslash{}
+\item 
+\hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a0a963cfd08ac31ee28bf607ffd51da46}{bjt\-\_\-reached} = False
+\item 
+\hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a17a57846a93924c77174b5ec392b6b21}{present\-\_\-bjt\-\_\-reached} = False
+\item 
+\hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a8b2afa223336bbdcbe708a2aca461d0c}{add\-\_\-eq\-\_\-sol} = \textbackslash{}
+\item 
+tuple \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a0c320f651aea96aa531713dd28e17752}{kind\-\_\-lineptr} = K\-I\-N\-D\-\_\-\-E\-X\-P\-R.\-match(line)
+\item 
+list \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a06d139ba1b6ae057950ca8b6620a7e6a}{kind\-\_\-line\-\_\-data} = line\mbox{[}kind\-\_\-lineptr.\-end()\-:\mbox{]}
+\item 
+list \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_aa8b02260c5b339c7d6d5411c0503737f}{kind\-\_\-id} = line\mbox{[}\-:kind\-\_\-lineptr.\-end()\mbox{]}
+\item 
+tuple \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a7b99b433325d89efb35e8d97eab61600}{data\-\_\-kind} = D\-A\-T\-A\-\_\-\-F\-I\-E\-L\-D.\-findall(\hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a06d139ba1b6ae057950ca8b6620a7e6a}{kind\-\_\-line\-\_\-data})
+\item 
+list \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a4831b9e65fbf534e51609b61d77ba5bb}{data\-\_\-kind\-\_\-strip} = \mbox{[}$\,$\mbox{]}
+\item 
+tuple \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_aa045da71701aadbb57ef81c21fe7235f}{ind\-\_\-lineptr} = I\-N\-D\-U\-C\-T\-O\-R\-\_\-\-E\-X\-P\-R.\-match(line2)
+\item 
+list \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a82e6a3b8c901095d370e58ac0a0f467d}{ind\-\_\-id} = line2\mbox{[}\-:ind\-\_\-lineptr.\-end()\mbox{]}
+\item 
+\hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a49efaff802c990c307d76328be61bcc0}{ignore\-\_\-all\-\_\-ic} = ignore\-\_\-all\-\_\-ic,
+\item 
+\hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a4631eadabfed776f026004c799a0ebcb}{set\-\_\-default\-\_\-ic\-\_\-to\-\_\-zero} = set\-\_\-default\-\_\-ic\-\_\-to\-\_\-zero)
+\item 
+string \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a290c9e4b629f2145df24cd8fd369ec57}{type} = 'L'
+\item 
+dictionary \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a9797e65af0cef424fd7e514ded67854c}{coupled\-\_\-to}
+\item 
+list \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a75969708c9b719729e1e334f146a4e92}{value} = self.\-coupled\-\_\-inductors\-\_\-data\mbox{[}\hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a82e6a3b8c901095d370e58ac0a0f467d}{ind\-\_\-id}\mbox{]}
+\item 
+list \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_ae12c94c0a4cee8ca416fc9895b68d57f}{cpld\-\_\-inductor\-\_\-data} = self.\-coupled\-\_\-inductors\-\_\-data\mbox{[}cpld\-\_\-inductor\mbox{]}
+\item 
+dictionary \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_ac3a317f5bf6cb5aa26bd44881904130c}{cpld\-\_\-inductor\-\_\-node} = \{\}
+\item 
+int \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a31b504e6f11875560fc819cc591a5283}{K\-\_\-coeff} = 0
+\item 
+list \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a312e37d45615698fd4f29220fab24d7f}{inductor\-\_\-node0} = self.\-coupled\-\_\-inductors\-\_\-data\mbox{[}inductor\mbox{]}
+\item 
+list \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_ace8f665b6eea554df79bfed3fecbca90}{inductor\-\_\-node1} = self.\-coupled\-\_\-inductors\-\_\-data\mbox{[}inductor\mbox{]}
+\item 
+tuple \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a9d21174a0350225ee439c9b509035c34}{K\-\_\-coeff} = sage.\-var(self.\-coupled\-\_\-inductors\-\_\-matrix\mbox{[}cpld\-\_\-inductor\mbox{]}\mbox{[}inductor\mbox{]})
+\item 
+dictionary \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a658b1156885db3147258661884092df7}{temp\-\_\-dict} = \{\}
+\item 
+dictionary \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a294c9d4ae2e8cc4ff716b80cc605f251}{cpld\-\_\-voltage\-\_\-subst} = \{\}
+\item 
+list \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a9b0bc8ae5c71e493b0d6d7c342eb076a}{simpl\-\_\-temp} = \mbox{[}$\,$\mbox{]}
+\item 
+tuple \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a484b5a464c4658b66aaff522264ece21}{i\-\_\-lineptr} = I\-\_\-\-E\-X\-P\-R.\-match(line)
+\item 
+list \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a819b64951a0eca799e6acf35843144dc}{i\-\_\-line\-\_\-data} = line\mbox{[}i\-\_\-lineptr.\-end()\-:\mbox{]}
+\item 
+list \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_acede0d2722f0ac9c236c6a0d4ba406c8}{i\-\_\-id} = line\mbox{[}\-:i\-\_\-lineptr.\-end()\mbox{]}
+\item 
+tuple \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a662be7a3e5ce9c105591c4084687cee5}{data\-\_\-i} = D\-A\-T\-A\-\_\-\-F\-I\-E\-L\-D.\-findall(\hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a819b64951a0eca799e6acf35843144dc}{i\-\_\-line\-\_\-data})
+\item 
+list \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_af10504fc9a6ed527011be0b0f833f2de}{data\-\_\-i\-\_\-strip} = \mbox{[}$\,$\mbox{]}
+\item 
+\hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_af96e861cd3bbea68a6a29fee525a593c}{id} = \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_acede0d2722f0ac9c236c6a0d4ba406c8}{i\-\_\-id},
+\item 
+list \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a3a5187d07369572c10a3c227b1267f16}{ngspice\-\_\-line\-\_\-data} = \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_af10504fc9a6ed527011be0b0f833f2de}{data\-\_\-i\-\_\-strip}\mbox{[}0\-:2\mbox{]}
+\item 
+tuple \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a429f5b11846e8c6d6aec2e53d1cd4db7}{res\-\_\-lineptr} = R\-E\-S\-I\-S\-T\-O\-R\-\_\-\-E\-X\-P\-R.\-match(line)
+\item 
+list \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a46746c7471ab6b7d6cf9c971a1f4482c}{res\-\_\-line\-\_\-data} = line\mbox{[}res\-\_\-lineptr.\-end()\-:\mbox{]}
+\item 
+list \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_aafd92208ecc409ca26df39d085191cfe}{resistor\-\_\-id} = line\mbox{[}\-:res\-\_\-lineptr.\-end()\mbox{]}
+\item 
+tuple \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_ab7ea0c010477e7f5e6437df84968481e}{data\-\_\-res} = D\-A\-T\-A\-\_\-\-F\-I\-E\-L\-D.\-findall(\hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a46746c7471ab6b7d6cf9c971a1f4482c}{res\-\_\-line\-\_\-data})
+\item 
+list \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a3a9a6dfb6208d84920f57da4def51bd7}{data\-\_\-res\-\_\-strip} = \mbox{[}$\,$\mbox{]}
+\item 
+list \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_af96e861cd3bbea68a6a29fee525a593c}{id} = \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_aafd92208ecc409ca26df39d085191cfe}{resistor\-\_\-id},valuedata\-\_\-res\-\_\-strip\mbox{[}2\-:\mbox{]}
+\item 
+tuple \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a07da7f8ba546601c47d6a1b7354fe5cd}{cap\-\_\-lineptr} = C\-A\-P\-A\-C\-I\-T\-O\-R\-\_\-\-E\-X\-P\-R.\-match(line)
+\item 
+list \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a1f2f8638bd60e5047abeeaeac630fcf2}{cap\-\_\-line\-\_\-data} = line\mbox{[}cap\-\_\-lineptr.\-end()\-:\mbox{]}
+\item 
+list \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_aac5fa5ade85f5cdb7fa2cd57c58acea0}{capacitor\-\_\-id} = line\mbox{[}\-:cap\-\_\-lineptr.\-end()\mbox{]}
+\item 
+tuple \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a73d1263036c6955af8d9ae5b1c17344b}{data\-\_\-cap} = D\-A\-T\-A\-\_\-\-F\-I\-E\-L\-D.\-findall(\hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a1f2f8638bd60e5047abeeaeac630fcf2}{cap\-\_\-line\-\_\-data})
+\item 
+list \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_aacff1784dfd554fb7978d4f4ac173e17}{data\-\_\-cap\-\_\-strip} = \mbox{[}$\,$\mbox{]}
+\item 
+list \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_ab6403cd28f6175b97ec548c76bada2c1}{ind\-\_\-line\-\_\-data} = line\mbox{[}ind\-\_\-lineptr.\-end()\-:\mbox{]}
+\item 
+list \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a76cb5cf53a673b999a9209557fe68d43}{inductor\-\_\-id} = line\mbox{[}\-:ind\-\_\-lineptr.\-end()\mbox{]}
+\item 
+tuple \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a0ab535620d613766af041f56e90dc25d}{data\-\_\-ind} = D\-A\-T\-A\-\_\-\-F\-I\-E\-L\-D.\-findall(\hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_ab6403cd28f6175b97ec548c76bada2c1}{ind\-\_\-line\-\_\-data})
+\item 
+list \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_ab693d2fb55cdc265d81723077b2fb0b7}{data\-\_\-ind\-\_\-strip} = \mbox{[}$\,$\mbox{]}
+\item 
+tuple \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_ad9e4262088a5c3f8c4a9192d8a4c87bc}{vccs\-\_\-lineptr} = V\-C\-C\-S\-\_\-\-E\-X\-P\-R.\-match(line)
+\item 
+list \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_af5783933e230a77ac5f5c00a8f48670f}{vccs\-\_\-line\-\_\-data} = line\mbox{[}vccs\-\_\-lineptr.\-end()\-:\mbox{]}
+\item 
+list \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a4a91a18a481b2b820786b4a898b20a05}{vccs\-\_\-id} = line\mbox{[}\-:vccs\-\_\-lineptr.\-end()\mbox{]}
+\item 
+tuple \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a9513ea4a394dd0823a536eb8bcd79a68}{data\-\_\-vccs} = D\-A\-T\-A\-\_\-\-F\-I\-E\-L\-D.\-findall(\hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_af5783933e230a77ac5f5c00a8f48670f}{vccs\-\_\-line\-\_\-data})
+\item 
+list \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_aa226f92e04b7403d7dc855fa76037661}{data\-\_\-vccs\-\_\-strip} = \mbox{[}$\,$\mbox{]}
+\item 
+\hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_aa2e5ba22e9018f37678c41afcc46f540}{data\-\_\-vccs\-\_\-strip} = data\-\_\-vccs\-\_\-strip\textbackslash{}
+\item 
+dictionary \hyperlink{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a426f0a105f7ef0a01f4d28ff20b4ff03}{subs\-\_\-zero\-\_\-ic} = \{\}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyVerb}PROJECT HOME:
+
+    https://github.com/alessandro-bernardini/SAPICE
+    http://alessandro-bernardini.github.io/SAPICE/
+
+This class implements nodal analysis for linear electrical circuits.
+If a nonlinear circuit is given then the linearized small signal circuit is
+considered.
+This class is designed to be used WITHIN the sage computer algebra system
+
+    http://www.sagemath.org/
+
+and in conjunction with ngspice (open source version of spice):
+
+    http://ngspice.sourceforge.net/
+
+So you have to install sage and ngspice first (see relative documentation).
+
+Then run        
+
+    sage
+
+from the shell
+then in the sage prompt import the present module
+
+    import sage_circuit_analysis
+
+and the create a SmallSignalLinearCircuit object
+
+    circuit = sage_circuit_analysis.SmallSignalLinearCircuit('circuitfile.cir')
+
+with circuitfile.cir a spice netllist (see additional information below
+and in the help of the constructor).
+
+You can read-in a ngspice netlist and typically you will provide the operating
+point data and other information via an ngspice batch output file
+that you have to generate with the command (from the shell):
+
+    ngspice -b circuitfile.cir -o batchoutput.log
+
+where circuitfile.cir is the spice netlist
+and batchoutput.log is the log file containing the output data of interest.
+Both files circuitfile.cir and batchoutput.log must be passed
+to a SmallSignalLinearCircuit object when invoking the constructor.
+
+The nodal equations can be solved both numerically (if numerical values
+are provided) and symbolically.
+
+You can compute impedances and two port network parameters and do
+the computation of poles and zeroes if a symbolic closed form solutions
+exists.
+
+It is possible to compute symbolic approximations to the exact solution
+where only dominant terms are considered.
+
+NOTE: numerical solutions usually means a polynom or a rational function
+dependent on the complex variable s and on independent sources.
+
+Usually all quantities are complex.
+\end{DoxyVerb}
+ 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a0f30f016489667a4704544306abe456d}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!\-\_\-\-\_\-init\-\_\-\-\_\-@{\-\_\-\-\_\-init\-\_\-\-\_\-}}
+\index{\-\_\-\-\_\-init\-\_\-\-\_\-@{\-\_\-\-\_\-init\-\_\-\-\_\-}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{\-\_\-\-\_\-init\-\_\-\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}def sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-\_\-\-\_\-init\-\_\-\-\_\- (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{filename = {\ttfamily None}, }
+\item[{}]{spice\-\_\-batch\-\_\-output\-\_\-file = {\ttfamily None}, }
+\item[{}]{circuit\-\_\-netlist = {\ttfamily None}, }
+\item[{}]{check\-\_\-operating\-\_\-region = {\ttfamily True}, }
+\item[{}]{set\-\_\-default\-\_\-ic\-\_\-to\-\_\-zero = {\ttfamily True}, }
+\item[{}]{ignore\-\_\-all\-\_\-ic = {\ttfamily False}}
+\end{DoxyParamCaption}
+)}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a0f30f016489667a4704544306abe456d}
+\begin{DoxyVerb}filename='circuitfile.cir'
+where circuitfile.cir is a ngspice (spice) netlist.
+
+spice_batch_output_file='batchoutput.log'
+a file needed when operating point data must be considered
+You have to run from the shell the command
+ngspice -b circuitfile.cir -o batchoutput.log
+fog generating the batchoutput.log file
+
+in alternative
+circuit_netlist=CIRCUIT_STRING
+can be used where CIRCUIT_STRING is a string containing
+the circuit netlist (in place of circuitfile.cir)
+
+with check_operating_region=True a linearized model in dependence of the 
+operating region will be choosen for each semiconductor devices. 
+Otherwise it will be assumed that a default model is valid. (for 
+BJT transistors the active region small signal model will be this 
+default model)
+    
+ignore_all_IC=True will ignore all initial conditions for both symbolic
+and numeric computations
+    
+set_default_ic_to_zero=True will set initial conditions to zero for
+capacitors or inductors where no initial condition is specified
+\end{DoxyVerb}
+ 
+
+\subsection{Member Function Documentation}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_aeafe17db122efcb3d3f745192294a071}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!clone@{clone}}
+\index{clone@{clone}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{clone}]{\setlength{\rightskip}{0pt plus 5cm}def sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-clone (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_aeafe17db122efcb3d3f745192294a071}
+\begin{DoxyVerb}returns a deepcopy of the object
+\end{DoxyVerb}
+ \hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a25ddb5c3ab3e8eb469f902fd38cb416b}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!dict\-\_\-default\-\_\-vals@{dict\-\_\-default\-\_\-vals}}
+\index{dict\-\_\-default\-\_\-vals@{dict\-\_\-default\-\_\-vals}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{dict\-\_\-default\-\_\-vals}]{\setlength{\rightskip}{0pt plus 5cm}def sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-dict\-\_\-default\-\_\-vals (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a25ddb5c3ab3e8eb469f902fd38cb416b}
+\begin{DoxyVerb}returns a pair of dictionaries (dict_num, dict_sym)
+where
+dict_num is a dictionary containing as keys the circuit parameters and
+as values the corrisponding numerical values
+
+dict_sym is a dictionary containing as keys the circuit parameters for
+which a numerical value was not explicitly determined and as values the symbolic
+expressions associated with the considered circuit parameter.
+
+If all numerical values can be explicitly computed then
+dict_sym will be empty.
+\end{DoxyVerb}
+ \hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a3565f93dcf8b309fe5c6da97e7ea07b1}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!export\-\_\-lin\-\_\-circuit\-\_\-graph@{export\-\_\-lin\-\_\-circuit\-\_\-graph}}
+\index{export\-\_\-lin\-\_\-circuit\-\_\-graph@{export\-\_\-lin\-\_\-circuit\-\_\-graph}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{export\-\_\-lin\-\_\-circuit\-\_\-graph}]{\setlength{\rightskip}{0pt plus 5cm}def sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-export\-\_\-lin\-\_\-circuit\-\_\-graph (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{shorts = {\ttfamily None}, }
+\item[{}]{remove = {\ttfamily None}, }
+\item[{}]{with\-\_\-substitutions = {\ttfamily True}}
+\end{DoxyParamCaption}
+)}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a3565f93dcf8b309fe5c6da97e7ea07b1}
+\begin{DoxyVerb}returns a graph (a networkx object) of the linear circuit
+
+shorts is a dictionary {'node1':'node2', 'node3':'node4'}
+where node1 will be shorted with node2
+and node3 will be shorted with node 4
+etc.
+A key node should not also be a value node for preventing conflicts, so
+when shorting multiple nodes together the proper ordering is important.
+
+remove is a list of components to remove (replace with open circuit)
+For example remove=['R1','C1']
+will remove the resistor R1 and the capacitor C1
+from the netlist.
+
+with_substitutions=True
+will explicitly consider numerical values resulting from the operating point
+of nonlinear devices    
+with_substitutions=False will leave the values of parameters resulting from the
+operating point of nonlinear devices as a symbolic expression\end{DoxyVerb}
+ \hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_aebbc52269ad587325b870fa133a89b0c}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!export\-\_\-lin\-\_\-circuit\-\_\-string@{export\-\_\-lin\-\_\-circuit\-\_\-string}}
+\index{export\-\_\-lin\-\_\-circuit\-\_\-string@{export\-\_\-lin\-\_\-circuit\-\_\-string}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{export\-\_\-lin\-\_\-circuit\-\_\-string}]{\setlength{\rightskip}{0pt plus 5cm}def sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-export\-\_\-lin\-\_\-circuit\-\_\-string (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{shorts = {\ttfamily None}, }
+\item[{}]{remove = {\ttfamily None}, }
+\item[{}]{with\-\_\-substitutions = {\ttfamily True}, }
+\item[{}]{write\-\_\-to\-\_\-file = {\ttfamily None}}
+\end{DoxyParamCaption}
+)}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_aebbc52269ad587325b870fa133a89b0c}
+\begin{DoxyVerb}returns a string describing the netlist of the linear(ized) circuit
+
+shorts is a dictionary {'node1':'node2', 'node3':'node4'}
+where node1 will be shorted with node2
+and node3 will be shorted with node 4
+etc.
+A key node should not also be a value node for preventing conflicts, so
+when shorting multiple nodes together the proper ordering is important.
+
+remove is a list of components to remove (replace with open circuit)
+For example remove=['R1','C1']
+will remove the resistor R1 and the capacitor C1
+from the netlist.
+
+with_substitutions=True
+will explicitly consider numerical values resulting from the operating point
+of nonlinear devices
+with_substitutions=False will leave the values of parameters resulting from the
+operating point of nonlinear devices as a symbolic expression
+\end{DoxyVerb}
+ \hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_aca45143faaf4fe06bb5e38a302bd7069}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!get\-\_\-lin\-\_\-circuit\-\_\-as\-\_\-string@{get\-\_\-lin\-\_\-circuit\-\_\-as\-\_\-string}}
+\index{get\-\_\-lin\-\_\-circuit\-\_\-as\-\_\-string@{get\-\_\-lin\-\_\-circuit\-\_\-as\-\_\-string}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{get\-\_\-lin\-\_\-circuit\-\_\-as\-\_\-string}]{\setlength{\rightskip}{0pt plus 5cm}def sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-get\-\_\-lin\-\_\-circuit\-\_\-as\-\_\-string (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_aca45143faaf4fe06bb5e38a302bd7069}
+\begin{DoxyVerb}returns a string containing the linear circuit 
+(or linearized circuit) netlist
+\end{DoxyVerb}
+ \hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a8cd930bc0a3a289fc228ffd93eab6eac}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!impedance@{impedance}}
+\index{impedance@{impedance}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{impedance}]{\setlength{\rightskip}{0pt plus 5cm}def sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-impedance (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{port, }
+\item[{}]{with\-\_\-substitutions = {\ttfamily True}, }
+\item[{}]{symbolic = {\ttfamily True}}
+\end{DoxyParamCaption}
+)}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a8cd930bc0a3a289fc228ffd93eab6eac}
+\begin{DoxyVerb}computes the impedance between two nodes in the circuit
+
+port=('node1','node2')
+is the pair of nodes considered for the impedance computations, for example
+port=('0','1')
+will compute the impedance between node '1' (if a node '1' is given 
+in the circuit) and ground (node '0').
+
+with_substitutions=True
+(default) will consider the actual values of all small signal circuit parameters
+that results from the consideration of the operating point of nonlinear devices.
+Otherwise those parameters will be left symbolic.
+(affects the computation of numerical impedance values)
+
+symbolic=True
+impedance is computed symbolically. (symbolic=False will compute a numeric
+impedance value)
+
+All internal sources and all the initial conditions will be ignored (set to zero appropriately).
+
+See also the help for the transimpedance method.
+\end{DoxyVerb}
+ \hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a14e7ed8816cd597b144bff47065ea653}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!print\-\_\-information@{print\-\_\-information}}
+\index{print\-\_\-information@{print\-\_\-information}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{print\-\_\-information}]{\setlength{\rightskip}{0pt plus 5cm}def sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-print\-\_\-information (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a14e7ed8816cd597b144bff47065ea653}
+\begin{DoxyVerb}prints some information about the circuit
+\end{DoxyVerb}
+ \hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_ae97653d935fec765536c343a0827bafb}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!print\-\_\-lin\-\_\-circuit@{print\-\_\-lin\-\_\-circuit}}
+\index{print\-\_\-lin\-\_\-circuit@{print\-\_\-lin\-\_\-circuit}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{print\-\_\-lin\-\_\-circuit}]{\setlength{\rightskip}{0pt plus 5cm}def sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-print\-\_\-lin\-\_\-circuit (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_ae97653d935fec765536c343a0827bafb}
+\begin{DoxyVerb}prints the linear (or linearized) circuit netlist
+\end{DoxyVerb}
+ \hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a9d706bbbc9e13395bd3a819d26036260}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!print\-\_\-symbols@{print\-\_\-symbols}}
+\index{print\-\_\-symbols@{print\-\_\-symbols}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{print\-\_\-symbols}]{\setlength{\rightskip}{0pt plus 5cm}def sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-print\-\_\-symbols (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a9d706bbbc9e13395bd3a819d26036260}
+\begin{DoxyVerb}displays information on the symbols adopted by the program (incomplete)\end{DoxyVerb}
+ \hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_add2f95c8b64b32634a740065050a8bfa}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!solve\-\_\-nodal\-\_\-equations\-\_\-num@{solve\-\_\-nodal\-\_\-equations\-\_\-num}}
+\index{solve\-\_\-nodal\-\_\-equations\-\_\-num@{solve\-\_\-nodal\-\_\-equations\-\_\-num}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{solve\-\_\-nodal\-\_\-equations\-\_\-num}]{\setlength{\rightskip}{0pt plus 5cm}def sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-solve\-\_\-nodal\-\_\-equations\-\_\-num (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{set\-\_\-ind\-\_\-ss\-\_\-src\-\_\-to\-\_\-zero = {\ttfamily False}}
+\end{DoxyParamCaption}
+)}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_add2f95c8b64b32634a740065050a8bfa}
+\begin{DoxyVerb}Returns a numeric solutions of the nodal equations. 
+
+The solution will be a list containing a list of equations that
+have on the left hand side the nodal voltages and on the right hand 
+side the symbolic expression representing the solution.
+
+set_ind_ss_src_to_zero=True will set all the independent small signal
+sources (in the small signal linearized circuit) to zero when computing
+the solution
+\end{DoxyVerb}
+ \hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_ae7f58ba8a7203ea441675341dc1f30ca}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!solve\-\_\-nodal\-\_\-equations\-\_\-symb@{solve\-\_\-nodal\-\_\-equations\-\_\-symb}}
+\index{solve\-\_\-nodal\-\_\-equations\-\_\-symb@{solve\-\_\-nodal\-\_\-equations\-\_\-symb}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{solve\-\_\-nodal\-\_\-equations\-\_\-symb}]{\setlength{\rightskip}{0pt plus 5cm}def sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-solve\-\_\-nodal\-\_\-equations\-\_\-symb (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{set\-\_\-ind\-\_\-ss\-\_\-src\-\_\-to\-\_\-zero = {\ttfamily False}}
+\end{DoxyParamCaption}
+)}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_ae7f58ba8a7203ea441675341dc1f30ca}
+\begin{DoxyVerb}Returns a symbolic solutions of the nodal equations. 
+
+The solution will be a list containing a list of equations that
+have on the left hand side the nodal voltages and on the right hand 
+side the symbolic expression representing the solution.
+
+set_ind_ss_src_to_zero=True will set all the independent small signal
+sources (in the small signal linearized circuit) to zero when computing
+the solution
+\end{DoxyVerb}
+ \hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a99eec5cf22c2386890dce8dec5b52cda}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!transimpedance@{transimpedance}}
+\index{transimpedance@{transimpedance}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{transimpedance}]{\setlength{\rightskip}{0pt plus 5cm}def sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-transimpedance (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{port\-\_\-\-I\-\_\-in, }
+\item[{}]{port\-\_\-\-V\-\_\-out, }
+\item[{}]{with\-\_\-substitutions = {\ttfamily True}, }
+\item[{}]{symbolic = {\ttfamily True}}
+\end{DoxyParamCaption}
+)}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a99eec5cf22c2386890dce8dec5b52cda}
+\begin{DoxyVerb}computes the trans-impedance between two nodes in the circuit
+
+port_I_in=('node1','node2')
+is the pair of nodes considered for the current input
+where the (positive) impressed input current flows into node2 (and out of node1)
+
+port_V_out=('node3','node4')
+is the pair of nodes considered for the output voltage:
+output_voltage = Vnode4 - Vnode3
+
+the transimpedance will then be the output voltage/input current
+
+symbolic=True
+computes a symbolic expression as solution
+
+with_substitutions=True
+consider the operating point data (affects numerical results with symbolic=False).
+
+internal sources or initial conditions are ignored.
+\end{DoxyVerb}
+ \hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a205879306341def47d57565543e61cc9}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!write\-\_\-circuit\-\_\-graph\-\_\-dot@{write\-\_\-circuit\-\_\-graph\-\_\-dot}}
+\index{write\-\_\-circuit\-\_\-graph\-\_\-dot@{write\-\_\-circuit\-\_\-graph\-\_\-dot}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{write\-\_\-circuit\-\_\-graph\-\_\-dot}]{\setlength{\rightskip}{0pt plus 5cm}def sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-write\-\_\-circuit\-\_\-graph\-\_\-dot (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{output\-\_\-graph\-\_\-file = {\ttfamily 'circuit\-\_\-graph.dot'}, }
+\item[{}]{with\-\_\-substitutions = {\ttfamily True}, }
+\item[{}]{edge\-\_\-labels = {\ttfamily True}}
+\end{DoxyParamCaption}
+)}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a205879306341def47d57565543e61cc9}
+\begin{DoxyVerb}generates a dot file in which a representation of the circuit graph is given.
+
+output_graoh_file='circuit_graph.dot'
+file in which the graph representation will be written.
+
+with_substitutions=True
+will consider numerical values resulting from the operating point of nonlinear devices
+
+edge_labels=True
+will labels edge with informations.
+\end{DoxyVerb}
+ \hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a681f13f2b035b543339e9f7771c9cfb6}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!write\-\_\-lin\-\_\-circuit\-\_\-to\-\_\-file@{write\-\_\-lin\-\_\-circuit\-\_\-to\-\_\-file}}
+\index{write\-\_\-lin\-\_\-circuit\-\_\-to\-\_\-file@{write\-\_\-lin\-\_\-circuit\-\_\-to\-\_\-file}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{write\-\_\-lin\-\_\-circuit\-\_\-to\-\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}def sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-write\-\_\-lin\-\_\-circuit\-\_\-to\-\_\-file (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{filename}
+\end{DoxyParamCaption}
+)}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a681f13f2b035b543339e9f7771c9cfb6}
+\begin{DoxyVerb}writes the linear circuit netlist to file 'filename'
+\end{DoxyVerb}
+ \hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a839630f7334fe6977c46e262a36ed6ca}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!z\-\_\-parameters@{z\-\_\-parameters}}
+\index{z\-\_\-parameters@{z\-\_\-parameters}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{z\-\_\-parameters}]{\setlength{\rightskip}{0pt plus 5cm}def sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-z\-\_\-parameters (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{port\-\_\-in, }
+\item[{}]{port\-\_\-out, }
+\item[{}]{with\-\_\-substitutions = {\ttfamily True}, }
+\item[{}]{symbolic = {\ttfamily True}}
+\end{DoxyParamCaption}
+)}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a839630f7334fe6977c46e262a36ed6ca}
+\begin{DoxyVerb}returns a sage matrix containing the two port network z-parameters
+port_in=('node1', 'node2')
+port_out=('node3', 'node4')
+
+where nodei is a node identifier
+
+for any port
+port_x=('nodea', 'nodeb')
+the positive port voltages are nodeb - nodea
+and the positive currents are flowing into nodeb (and out of nodea)
+\end{DoxyVerb}
+ 
+
+\subsection{Member Data Documentation}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a8b2afa223336bbdcbe708a2aca461d0c}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!add\-\_\-eq\-\_\-sol@{add\-\_\-eq\-\_\-sol}}
+\index{add\-\_\-eq\-\_\-sol@{add\-\_\-eq\-\_\-sol}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{add\-\_\-eq\-\_\-sol}]{\setlength{\rightskip}{0pt plus 5cm}sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-add\-\_\-eq\-\_\-sol = \textbackslash{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a8b2afa223336bbdcbe708a2aca461d0c}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a220f269787a83488cd8d3b559fea2193}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!bjt\-\_\-id@{bjt\-\_\-id}}
+\index{bjt\-\_\-id@{bjt\-\_\-id}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{bjt\-\_\-id}]{\setlength{\rightskip}{0pt plus 5cm}list sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-bjt\-\_\-id = line\mbox{[}\-:bjt\-\_\-lineptr.\-end()\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a220f269787a83488cd8d3b559fea2193}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a4010a5982eb6b7d5cd263f4c38ac3fff}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!bjt\-\_\-line\-\_\-data@{bjt\-\_\-line\-\_\-data}}
+\index{bjt\-\_\-line\-\_\-data@{bjt\-\_\-line\-\_\-data}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{bjt\-\_\-line\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}list sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-bjt\-\_\-line\-\_\-data = line\mbox{[}bjt\-\_\-lineptr.\-end()\-:\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a4010a5982eb6b7d5cd263f4c38ac3fff}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a80d33b2587c9c3bf642678e2f4fa6a3b}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!bjt\-\_\-lineptr@{bjt\-\_\-lineptr}}
+\index{bjt\-\_\-lineptr@{bjt\-\_\-lineptr}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{bjt\-\_\-lineptr}]{\setlength{\rightskip}{0pt plus 5cm}tuple sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-bjt\-\_\-lineptr = B\-J\-T\-\_\-\-E\-X\-P\-R.\-match(line)\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a80d33b2587c9c3bf642678e2f4fa6a3b}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a469278fe5ac7694dd2287b50b0e2d1b9}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!bjt\-\_\-model\-\_\-desc\-\_\-reached@{bjt\-\_\-model\-\_\-desc\-\_\-reached}}
+\index{bjt\-\_\-model\-\_\-desc\-\_\-reached@{bjt\-\_\-model\-\_\-desc\-\_\-reached}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{bjt\-\_\-model\-\_\-desc\-\_\-reached}]{\setlength{\rightskip}{0pt plus 5cm}sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-bjt\-\_\-model\-\_\-desc\-\_\-reached = False\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a469278fe5ac7694dd2287b50b0e2d1b9}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a0a963cfd08ac31ee28bf607ffd51da46}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!bjt\-\_\-reached@{bjt\-\_\-reached}}
+\index{bjt\-\_\-reached@{bjt\-\_\-reached}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{bjt\-\_\-reached}]{\setlength{\rightskip}{0pt plus 5cm}sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-bjt\-\_\-reached = False\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a0a963cfd08ac31ee28bf607ffd51da46}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a1f2f8638bd60e5047abeeaeac630fcf2}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!cap\-\_\-line\-\_\-data@{cap\-\_\-line\-\_\-data}}
+\index{cap\-\_\-line\-\_\-data@{cap\-\_\-line\-\_\-data}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{cap\-\_\-line\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}list sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-cap\-\_\-line\-\_\-data = line\mbox{[}cap\-\_\-lineptr.\-end()\-:\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a1f2f8638bd60e5047abeeaeac630fcf2}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a07da7f8ba546601c47d6a1b7354fe5cd}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!cap\-\_\-lineptr@{cap\-\_\-lineptr}}
+\index{cap\-\_\-lineptr@{cap\-\_\-lineptr}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{cap\-\_\-lineptr}]{\setlength{\rightskip}{0pt plus 5cm}tuple sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-cap\-\_\-lineptr = C\-A\-P\-A\-C\-I\-T\-O\-R\-\_\-\-E\-X\-P\-R.\-match(line)\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a07da7f8ba546601c47d6a1b7354fe5cd}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_aac5fa5ade85f5cdb7fa2cd57c58acea0}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!capacitor\-\_\-id@{capacitor\-\_\-id}}
+\index{capacitor\-\_\-id@{capacitor\-\_\-id}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{capacitor\-\_\-id}]{\setlength{\rightskip}{0pt plus 5cm}list sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-capacitor\-\_\-id = line\mbox{[}\-:cap\-\_\-lineptr.\-end()\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_aac5fa5ade85f5cdb7fa2cd57c58acea0}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_ae7aff4af6a42a3d63d6c4dce56118bfd}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!circuit\-\_\-file@{circuit\-\_\-file}}
+\index{circuit\-\_\-file@{circuit\-\_\-file}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{circuit\-\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-circuit\-\_\-file}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_ae7aff4af6a42a3d63d6c4dce56118bfd}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a9797e65af0cef424fd7e514ded67854c}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!coupled\-\_\-to@{coupled\-\_\-to}}
+\index{coupled\-\_\-to@{coupled\-\_\-to}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{coupled\-\_\-to}]{\setlength{\rightskip}{0pt plus 5cm}dictionary sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-coupled\-\_\-to\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a9797e65af0cef424fd7e514ded67854c}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+\{\textcolor{stringliteral}{'coupled\_inductors'}:self.coupled\_inductors\_matrix[ind\_id],
+                                                        \textcolor{stringliteral}{'
+      coupling\_coefficient\_data'}:self.couplings\}
+\end{DoxyCode}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_ae12c94c0a4cee8ca416fc9895b68d57f}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!cpld\-\_\-inductor\-\_\-data@{cpld\-\_\-inductor\-\_\-data}}
+\index{cpld\-\_\-inductor\-\_\-data@{cpld\-\_\-inductor\-\_\-data}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{cpld\-\_\-inductor\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}list sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-cpld\-\_\-inductor\-\_\-data = self.\-coupled\-\_\-inductors\-\_\-data\mbox{[}cpld\-\_\-inductor\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_ae12c94c0a4cee8ca416fc9895b68d57f}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_ac3a317f5bf6cb5aa26bd44881904130c}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!cpld\-\_\-inductor\-\_\-node@{cpld\-\_\-inductor\-\_\-node}}
+\index{cpld\-\_\-inductor\-\_\-node@{cpld\-\_\-inductor\-\_\-node}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{cpld\-\_\-inductor\-\_\-node}]{\setlength{\rightskip}{0pt plus 5cm}dictionary sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-cpld\-\_\-inductor\-\_\-node = \{\}\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_ac3a317f5bf6cb5aa26bd44881904130c}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a294c9d4ae2e8cc4ff716b80cc605f251}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!cpld\-\_\-voltage\-\_\-subst@{cpld\-\_\-voltage\-\_\-subst}}
+\index{cpld\-\_\-voltage\-\_\-subst@{cpld\-\_\-voltage\-\_\-subst}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{cpld\-\_\-voltage\-\_\-subst}]{\setlength{\rightskip}{0pt plus 5cm}dictionary sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-cpld\-\_\-voltage\-\_\-subst = \{\}\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a294c9d4ae2e8cc4ff716b80cc605f251}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a84ae57694d12e012d04bc13249f5b864}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!data\-\_\-bjt@{data\-\_\-bjt}}
+\index{data\-\_\-bjt@{data\-\_\-bjt}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{data\-\_\-bjt}]{\setlength{\rightskip}{0pt plus 5cm}tuple sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-data\-\_\-bjt = D\-A\-T\-A\-\_\-\-F\-I\-E\-L\-D.\-findall({\bf bjt\-\_\-line\-\_\-data})\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a84ae57694d12e012d04bc13249f5b864}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a4000b520524485f11cad047c3be83ecf}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!data\-\_\-bjt\-\_\-strip@{data\-\_\-bjt\-\_\-strip}}
+\index{data\-\_\-bjt\-\_\-strip@{data\-\_\-bjt\-\_\-strip}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{data\-\_\-bjt\-\_\-strip}]{\setlength{\rightskip}{0pt plus 5cm}list sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-data\-\_\-bjt\-\_\-strip = \mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a4000b520524485f11cad047c3be83ecf}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a73d1263036c6955af8d9ae5b1c17344b}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!data\-\_\-cap@{data\-\_\-cap}}
+\index{data\-\_\-cap@{data\-\_\-cap}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{data\-\_\-cap}]{\setlength{\rightskip}{0pt plus 5cm}tuple sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-data\-\_\-cap = D\-A\-T\-A\-\_\-\-F\-I\-E\-L\-D.\-findall({\bf cap\-\_\-line\-\_\-data})\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a73d1263036c6955af8d9ae5b1c17344b}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_aacff1784dfd554fb7978d4f4ac173e17}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!data\-\_\-cap\-\_\-strip@{data\-\_\-cap\-\_\-strip}}
+\index{data\-\_\-cap\-\_\-strip@{data\-\_\-cap\-\_\-strip}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{data\-\_\-cap\-\_\-strip}]{\setlength{\rightskip}{0pt plus 5cm}list sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-data\-\_\-cap\-\_\-strip = \mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_aacff1784dfd554fb7978d4f4ac173e17}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a662be7a3e5ce9c105591c4084687cee5}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!data\-\_\-i@{data\-\_\-i}}
+\index{data\-\_\-i@{data\-\_\-i}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{data\-\_\-i}]{\setlength{\rightskip}{0pt plus 5cm}tuple sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-data\-\_\-i = D\-A\-T\-A\-\_\-\-F\-I\-E\-L\-D.\-findall({\bf i\-\_\-line\-\_\-data})\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a662be7a3e5ce9c105591c4084687cee5}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_af10504fc9a6ed527011be0b0f833f2de}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!data\-\_\-i\-\_\-strip@{data\-\_\-i\-\_\-strip}}
+\index{data\-\_\-i\-\_\-strip@{data\-\_\-i\-\_\-strip}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{data\-\_\-i\-\_\-strip}]{\setlength{\rightskip}{0pt plus 5cm}list sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-data\-\_\-i\-\_\-strip = \mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_af10504fc9a6ed527011be0b0f833f2de}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a0ab535620d613766af041f56e90dc25d}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!data\-\_\-ind@{data\-\_\-ind}}
+\index{data\-\_\-ind@{data\-\_\-ind}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{data\-\_\-ind}]{\setlength{\rightskip}{0pt plus 5cm}tuple sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-data\-\_\-ind = D\-A\-T\-A\-\_\-\-F\-I\-E\-L\-D.\-findall({\bf ind\-\_\-line\-\_\-data})\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a0ab535620d613766af041f56e90dc25d}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_ab693d2fb55cdc265d81723077b2fb0b7}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!data\-\_\-ind\-\_\-strip@{data\-\_\-ind\-\_\-strip}}
+\index{data\-\_\-ind\-\_\-strip@{data\-\_\-ind\-\_\-strip}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{data\-\_\-ind\-\_\-strip}]{\setlength{\rightskip}{0pt plus 5cm}list sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-data\-\_\-ind\-\_\-strip = \mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_ab693d2fb55cdc265d81723077b2fb0b7}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a7b99b433325d89efb35e8d97eab61600}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!data\-\_\-kind@{data\-\_\-kind}}
+\index{data\-\_\-kind@{data\-\_\-kind}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{data\-\_\-kind}]{\setlength{\rightskip}{0pt plus 5cm}tuple sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-data\-\_\-kind = D\-A\-T\-A\-\_\-\-F\-I\-E\-L\-D.\-findall({\bf kind\-\_\-line\-\_\-data})\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a7b99b433325d89efb35e8d97eab61600}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a4831b9e65fbf534e51609b61d77ba5bb}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!data\-\_\-kind\-\_\-strip@{data\-\_\-kind\-\_\-strip}}
+\index{data\-\_\-kind\-\_\-strip@{data\-\_\-kind\-\_\-strip}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{data\-\_\-kind\-\_\-strip}]{\setlength{\rightskip}{0pt plus 5cm}list sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-data\-\_\-kind\-\_\-strip = \mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a4831b9e65fbf534e51609b61d77ba5bb}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_ab7ea0c010477e7f5e6437df84968481e}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!data\-\_\-res@{data\-\_\-res}}
+\index{data\-\_\-res@{data\-\_\-res}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{data\-\_\-res}]{\setlength{\rightskip}{0pt plus 5cm}tuple sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-data\-\_\-res = D\-A\-T\-A\-\_\-\-F\-I\-E\-L\-D.\-findall({\bf res\-\_\-line\-\_\-data})\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_ab7ea0c010477e7f5e6437df84968481e}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a3a9a6dfb6208d84920f57da4def51bd7}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!data\-\_\-res\-\_\-strip@{data\-\_\-res\-\_\-strip}}
+\index{data\-\_\-res\-\_\-strip@{data\-\_\-res\-\_\-strip}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{data\-\_\-res\-\_\-strip}]{\setlength{\rightskip}{0pt plus 5cm}list sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-data\-\_\-res\-\_\-strip = \mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a3a9a6dfb6208d84920f57da4def51bd7}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_aa1d8a76cfbbe1fe586d26ce644fdb993}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!data\-\_\-temp@{data\-\_\-temp}}
+\index{data\-\_\-temp@{data\-\_\-temp}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{data\-\_\-temp}]{\setlength{\rightskip}{0pt plus 5cm}tuple sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-data\-\_\-temp = D\-A\-T\-A\-\_\-\-F\-I\-E\-L\-D.\-findall(line)\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_aa1d8a76cfbbe1fe586d26ce644fdb993}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a9513ea4a394dd0823a536eb8bcd79a68}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!data\-\_\-vccs@{data\-\_\-vccs}}
+\index{data\-\_\-vccs@{data\-\_\-vccs}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{data\-\_\-vccs}]{\setlength{\rightskip}{0pt plus 5cm}tuple sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-data\-\_\-vccs = D\-A\-T\-A\-\_\-\-F\-I\-E\-L\-D.\-findall({\bf vccs\-\_\-line\-\_\-data})\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a9513ea4a394dd0823a536eb8bcd79a68}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_aa226f92e04b7403d7dc855fa76037661}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!data\-\_\-vccs\-\_\-strip@{data\-\_\-vccs\-\_\-strip}}
+\index{data\-\_\-vccs\-\_\-strip@{data\-\_\-vccs\-\_\-strip}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{data\-\_\-vccs\-\_\-strip}]{\setlength{\rightskip}{0pt plus 5cm}list sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-data\-\_\-vccs\-\_\-strip = \mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_aa226f92e04b7403d7dc855fa76037661}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_aa2e5ba22e9018f37678c41afcc46f540}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!data\-\_\-vccs\-\_\-strip@{data\-\_\-vccs\-\_\-strip}}
+\index{data\-\_\-vccs\-\_\-strip@{data\-\_\-vccs\-\_\-strip}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{data\-\_\-vccs\-\_\-strip}]{\setlength{\rightskip}{0pt plus 5cm}sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-data\-\_\-vccs\-\_\-strip = data\-\_\-vccs\-\_\-strip\textbackslash{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_aa2e5ba22e9018f37678c41afcc46f540}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a1c773903fae5f212ae0e23e952de482b}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!flags@{flags}}
+\index{flags@{flags}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{flags}]{\setlength{\rightskip}{0pt plus 5cm}sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-flags = re.\-I\-G\-N\-O\-R\-E\-C\-A\-S\-E)!None\-:\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a1c773903fae5f212ae0e23e952de482b}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_acede0d2722f0ac9c236c6a0d4ba406c8}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!i\-\_\-id@{i\-\_\-id}}
+\index{i\-\_\-id@{i\-\_\-id}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{i\-\_\-id}]{\setlength{\rightskip}{0pt plus 5cm}list sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-i\-\_\-id = line\mbox{[}\-:i\-\_\-lineptr.\-end()\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_acede0d2722f0ac9c236c6a0d4ba406c8}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a819b64951a0eca799e6acf35843144dc}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!i\-\_\-line\-\_\-data@{i\-\_\-line\-\_\-data}}
+\index{i\-\_\-line\-\_\-data@{i\-\_\-line\-\_\-data}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{i\-\_\-line\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}list sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-i\-\_\-line\-\_\-data = line\mbox{[}i\-\_\-lineptr.\-end()\-:\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a819b64951a0eca799e6acf35843144dc}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a484b5a464c4658b66aaff522264ece21}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!i\-\_\-lineptr@{i\-\_\-lineptr}}
+\index{i\-\_\-lineptr@{i\-\_\-lineptr}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{i\-\_\-lineptr}]{\setlength{\rightskip}{0pt plus 5cm}tuple sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-i\-\_\-lineptr = I\-\_\-\-E\-X\-P\-R.\-match(line)\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a484b5a464c4658b66aaff522264ece21}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_af96e861cd3bbea68a6a29fee525a593c}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!id@{id}}
+\index{id@{id}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{id}]{\setlength{\rightskip}{0pt plus 5cm}list sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-id = {\bf i\-\_\-id},\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_af96e861cd3bbea68a6a29fee525a593c}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_af96e861cd3bbea68a6a29fee525a593c}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!id@{id}}
+\index{id@{id}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{id}]{\setlength{\rightskip}{0pt plus 5cm}list sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-id = {\bf resistor\-\_\-id},valuedata\-\_\-res\-\_\-strip\mbox{[}2\-:\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_af96e861cd3bbea68a6a29fee525a593c}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a49efaff802c990c307d76328be61bcc0}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!ignore\-\_\-all\-\_\-ic@{ignore\-\_\-all\-\_\-ic}}
+\index{ignore\-\_\-all\-\_\-ic@{ignore\-\_\-all\-\_\-ic}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{ignore\-\_\-all\-\_\-ic}]{\setlength{\rightskip}{0pt plus 5cm}sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-ignore\-\_\-all\-\_\-ic = ignore\-\_\-all\-\_\-ic,\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a49efaff802c990c307d76328be61bcc0}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a82e6a3b8c901095d370e58ac0a0f467d}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!ind\-\_\-id@{ind\-\_\-id}}
+\index{ind\-\_\-id@{ind\-\_\-id}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{ind\-\_\-id}]{\setlength{\rightskip}{0pt plus 5cm}list sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-ind\-\_\-id = line2\mbox{[}\-:ind\-\_\-lineptr.\-end()\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a82e6a3b8c901095d370e58ac0a0f467d}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_ab6403cd28f6175b97ec548c76bada2c1}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!ind\-\_\-line\-\_\-data@{ind\-\_\-line\-\_\-data}}
+\index{ind\-\_\-line\-\_\-data@{ind\-\_\-line\-\_\-data}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{ind\-\_\-line\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}list sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-ind\-\_\-line\-\_\-data = line\mbox{[}ind\-\_\-lineptr.\-end()\-:\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_ab6403cd28f6175b97ec548c76bada2c1}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_aa045da71701aadbb57ef81c21fe7235f}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!ind\-\_\-lineptr@{ind\-\_\-lineptr}}
+\index{ind\-\_\-lineptr@{ind\-\_\-lineptr}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{ind\-\_\-lineptr}]{\setlength{\rightskip}{0pt plus 5cm}tuple sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-ind\-\_\-lineptr = I\-N\-D\-U\-C\-T\-O\-R\-\_\-\-E\-X\-P\-R.\-match(line2)\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_aa045da71701aadbb57ef81c21fe7235f}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a76cb5cf53a673b999a9209557fe68d43}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!inductor\-\_\-id@{inductor\-\_\-id}}
+\index{inductor\-\_\-id@{inductor\-\_\-id}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{inductor\-\_\-id}]{\setlength{\rightskip}{0pt plus 5cm}list sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-inductor\-\_\-id = line\mbox{[}\-:ind\-\_\-lineptr.\-end()\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a76cb5cf53a673b999a9209557fe68d43}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a312e37d45615698fd4f29220fab24d7f}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!inductor\-\_\-node0@{inductor\-\_\-node0}}
+\index{inductor\-\_\-node0@{inductor\-\_\-node0}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{inductor\-\_\-node0}]{\setlength{\rightskip}{0pt plus 5cm}list sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-inductor\-\_\-node0 = self.\-coupled\-\_\-inductors\-\_\-data\mbox{[}inductor\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a312e37d45615698fd4f29220fab24d7f}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_ace8f665b6eea554df79bfed3fecbca90}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!inductor\-\_\-node1@{inductor\-\_\-node1}}
+\index{inductor\-\_\-node1@{inductor\-\_\-node1}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{inductor\-\_\-node1}]{\setlength{\rightskip}{0pt plus 5cm}list sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-inductor\-\_\-node1 = self.\-coupled\-\_\-inductors\-\_\-data\mbox{[}inductor\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_ace8f665b6eea554df79bfed3fecbca90}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a31b504e6f11875560fc819cc591a5283}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!K\-\_\-coeff@{K\-\_\-coeff}}
+\index{K\-\_\-coeff@{K\-\_\-coeff}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{K\-\_\-coeff}]{\setlength{\rightskip}{0pt plus 5cm}int sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-K\-\_\-coeff = 0\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a31b504e6f11875560fc819cc591a5283}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a9d21174a0350225ee439c9b509035c34}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!K\-\_\-coeff@{K\-\_\-coeff}}
+\index{K\-\_\-coeff@{K\-\_\-coeff}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{K\-\_\-coeff}]{\setlength{\rightskip}{0pt plus 5cm}tuple sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-K\-\_\-coeff = sage.\-var(self.\-coupled\-\_\-inductors\-\_\-matrix\mbox{[}cpld\-\_\-inductor\mbox{]}\mbox{[}inductor\mbox{]})\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a9d21174a0350225ee439c9b509035c34}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_aa8b02260c5b339c7d6d5411c0503737f}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!kind\-\_\-id@{kind\-\_\-id}}
+\index{kind\-\_\-id@{kind\-\_\-id}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{kind\-\_\-id}]{\setlength{\rightskip}{0pt plus 5cm}list sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-kind\-\_\-id = line\mbox{[}\-:kind\-\_\-lineptr.\-end()\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_aa8b02260c5b339c7d6d5411c0503737f}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a06d139ba1b6ae057950ca8b6620a7e6a}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!kind\-\_\-line\-\_\-data@{kind\-\_\-line\-\_\-data}}
+\index{kind\-\_\-line\-\_\-data@{kind\-\_\-line\-\_\-data}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{kind\-\_\-line\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}list sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-kind\-\_\-line\-\_\-data = line\mbox{[}kind\-\_\-lineptr.\-end()\-:\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a06d139ba1b6ae057950ca8b6620a7e6a}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a0c320f651aea96aa531713dd28e17752}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!kind\-\_\-lineptr@{kind\-\_\-lineptr}}
+\index{kind\-\_\-lineptr@{kind\-\_\-lineptr}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{kind\-\_\-lineptr}]{\setlength{\rightskip}{0pt plus 5cm}tuple sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-kind\-\_\-lineptr = K\-I\-N\-D\-\_\-\-E\-X\-P\-R.\-match(line)\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a0c320f651aea96aa531713dd28e17752}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_ab8ff2e3e2ad4f9d24fb54fb08eb69566}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!matchline@{matchline}}
+\index{matchline@{matchline}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{matchline}]{\setlength{\rightskip}{0pt plus 5cm}sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-matchline = \textbackslash{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_ab8ff2e3e2ad4f9d24fb54fb08eb69566}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a97cef0f5bbc88e9957746b1841f88942}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!model@{model}}
+\index{model@{model}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{model}]{\setlength{\rightskip}{0pt plus 5cm}list sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-model = {\bf data\-\_\-bjt\-\_\-strip}\mbox{[}3\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a97cef0f5bbc88e9957746b1841f88942}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a350126ddf605351a760c4367f2061c90}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!model\-\_\-present\-\_\-bjt\-\_\-reached@{model\-\_\-present\-\_\-bjt\-\_\-reached}}
+\index{model\-\_\-present\-\_\-bjt\-\_\-reached@{model\-\_\-present\-\_\-bjt\-\_\-reached}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{model\-\_\-present\-\_\-bjt\-\_\-reached}]{\setlength{\rightskip}{0pt plus 5cm}sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-model\-\_\-present\-\_\-bjt\-\_\-reached = False\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a350126ddf605351a760c4367f2061c90}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a3a5187d07369572c10a3c227b1267f16}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!ngspice\-\_\-line\-\_\-data@{ngspice\-\_\-line\-\_\-data}}
+\index{ngspice\-\_\-line\-\_\-data@{ngspice\-\_\-line\-\_\-data}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{ngspice\-\_\-line\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}list sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-ngspice\-\_\-line\-\_\-data = {\bf data\-\_\-i\-\_\-strip}\mbox{[}0\-:2\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a3a5187d07369572c10a3c227b1267f16}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a161fcc3267d15de71683c9ef6ebd6edc}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!operating\-\_\-region@{operating\-\_\-region}}
+\index{operating\-\_\-region@{operating\-\_\-region}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{operating\-\_\-region}]{\setlength{\rightskip}{0pt plus 5cm}string sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-operating\-\_\-region = 'unknown'\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a161fcc3267d15de71683c9ef6ebd6edc}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a17b36735653af2250cda753cd48b3b5a}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!original\-\_\-circuit\-\_\-file@{original\-\_\-circuit\-\_\-file}}
+\index{original\-\_\-circuit\-\_\-file@{original\-\_\-circuit\-\_\-file}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{original\-\_\-circuit\-\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-original\-\_\-circuit\-\_\-file}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a17b36735653af2250cda753cd48b3b5a}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a40e559d5cb9c403ba04b5eda16cd4e2e}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!pos@{pos}}
+\index{pos@{pos}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{pos}]{\setlength{\rightskip}{0pt plus 5cm}int sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-pos = 0\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a40e559d5cb9c403ba04b5eda16cd4e2e}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a17a57846a93924c77174b5ec392b6b21}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!present\-\_\-bjt\-\_\-reached@{present\-\_\-bjt\-\_\-reached}}
+\index{present\-\_\-bjt\-\_\-reached@{present\-\_\-bjt\-\_\-reached}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{present\-\_\-bjt\-\_\-reached}]{\setlength{\rightskip}{0pt plus 5cm}sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-present\-\_\-bjt\-\_\-reached = False\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a17a57846a93924c77174b5ec392b6b21}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a46746c7471ab6b7d6cf9c971a1f4482c}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!res\-\_\-line\-\_\-data@{res\-\_\-line\-\_\-data}}
+\index{res\-\_\-line\-\_\-data@{res\-\_\-line\-\_\-data}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{res\-\_\-line\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}list sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-res\-\_\-line\-\_\-data = line\mbox{[}res\-\_\-lineptr.\-end()\-:\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a46746c7471ab6b7d6cf9c971a1f4482c}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a429f5b11846e8c6d6aec2e53d1cd4db7}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!res\-\_\-lineptr@{res\-\_\-lineptr}}
+\index{res\-\_\-lineptr@{res\-\_\-lineptr}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{res\-\_\-lineptr}]{\setlength{\rightskip}{0pt plus 5cm}tuple sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-res\-\_\-lineptr = R\-E\-S\-I\-S\-T\-O\-R\-\_\-\-E\-X\-P\-R.\-match(line)\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a429f5b11846e8c6d6aec2e53d1cd4db7}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_aafd92208ecc409ca26df39d085191cfe}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!resistor\-\_\-id@{resistor\-\_\-id}}
+\index{resistor\-\_\-id@{resistor\-\_\-id}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{resistor\-\_\-id}]{\setlength{\rightskip}{0pt plus 5cm}list sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-resistor\-\_\-id = line\mbox{[}\-:res\-\_\-lineptr.\-end()\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_aafd92208ecc409ca26df39d085191cfe}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a4631eadabfed776f026004c799a0ebcb}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!set\-\_\-default\-\_\-ic\-\_\-to\-\_\-zero@{set\-\_\-default\-\_\-ic\-\_\-to\-\_\-zero}}
+\index{set\-\_\-default\-\_\-ic\-\_\-to\-\_\-zero@{set\-\_\-default\-\_\-ic\-\_\-to\-\_\-zero}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{set\-\_\-default\-\_\-ic\-\_\-to\-\_\-zero}]{\setlength{\rightskip}{0pt plus 5cm}sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-set\-\_\-default\-\_\-ic\-\_\-to\-\_\-zero = set\-\_\-default\-\_\-ic\-\_\-to\-\_\-zero)\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a4631eadabfed776f026004c799a0ebcb}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a9b0bc8ae5c71e493b0d6d7c342eb076a}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!simpl\-\_\-temp@{simpl\-\_\-temp}}
+\index{simpl\-\_\-temp@{simpl\-\_\-temp}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{simpl\-\_\-temp}]{\setlength{\rightskip}{0pt plus 5cm}list sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-simpl\-\_\-temp = \mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a9b0bc8ae5c71e493b0d6d7c342eb076a}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a9fbbbc2bb3294beeecf3d6270c1996c5}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!skipnextline@{skipnextline}}
+\index{skipnextline@{skipnextline}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{skipnextline}]{\setlength{\rightskip}{0pt plus 5cm}sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-skipnextline = False\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a9fbbbc2bb3294beeecf3d6270c1996c5}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a5f24f3d1bcd6305d49c81dbd632e0c16}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!spice\-\_\-batch\-\_\-output\-\_\-file@{spice\-\_\-batch\-\_\-output\-\_\-file}}
+\index{spice\-\_\-batch\-\_\-output\-\_\-file@{spice\-\_\-batch\-\_\-output\-\_\-file}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{spice\-\_\-batch\-\_\-output\-\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-spice\-\_\-batch\-\_\-output\-\_\-file}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a5f24f3d1bcd6305d49c81dbd632e0c16}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a426f0a105f7ef0a01f4d28ff20b4ff03}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!subs\-\_\-zero\-\_\-ic@{subs\-\_\-zero\-\_\-ic}}
+\index{subs\-\_\-zero\-\_\-ic@{subs\-\_\-zero\-\_\-ic}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{subs\-\_\-zero\-\_\-ic}]{\setlength{\rightskip}{0pt plus 5cm}dictionary sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-subs\-\_\-zero\-\_\-ic = \{\}\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a426f0a105f7ef0a01f4d28ff20b4ff03}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a658b1156885db3147258661884092df7}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!temp\-\_\-dict@{temp\-\_\-dict}}
+\index{temp\-\_\-dict@{temp\-\_\-dict}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{temp\-\_\-dict}]{\setlength{\rightskip}{0pt plus 5cm}dictionary sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-temp\-\_\-dict = \{\}\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a658b1156885db3147258661884092df7}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_ae1ee383cac9037f0e46097d52f564fb7}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!temperature@{temperature}}
+\index{temperature@{temperature}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{temperature}]{\setlength{\rightskip}{0pt plus 5cm}list sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-temperature = {\bf data\-\_\-temp}\mbox{[}0\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_ae1ee383cac9037f0e46097d52f564fb7}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a290c9e4b629f2145df24cd8fd369ec57}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!type@{type}}
+\index{type@{type}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{type}]{\setlength{\rightskip}{0pt plus 5cm}string sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-type = 'L'\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a290c9e4b629f2145df24cd8fd369ec57}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a75969708c9b719729e1e334f146a4e92}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!value@{value}}
+\index{value@{value}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{value}]{\setlength{\rightskip}{0pt plus 5cm}list sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-value = self.\-coupled\-\_\-inductors\-\_\-data\mbox{[}{\bf ind\-\_\-id}\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a75969708c9b719729e1e334f146a4e92}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a4a91a18a481b2b820786b4a898b20a05}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!vccs\-\_\-id@{vccs\-\_\-id}}
+\index{vccs\-\_\-id@{vccs\-\_\-id}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{vccs\-\_\-id}]{\setlength{\rightskip}{0pt plus 5cm}list sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-vccs\-\_\-id = line\mbox{[}\-:vccs\-\_\-lineptr.\-end()\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_a4a91a18a481b2b820786b4a898b20a05}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_af5783933e230a77ac5f5c00a8f48670f}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!vccs\-\_\-line\-\_\-data@{vccs\-\_\-line\-\_\-data}}
+\index{vccs\-\_\-line\-\_\-data@{vccs\-\_\-line\-\_\-data}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{vccs\-\_\-line\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}list sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-vccs\-\_\-line\-\_\-data = line\mbox{[}vccs\-\_\-lineptr.\-end()\-:\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_af5783933e230a77ac5f5c00a8f48670f}
+\hypertarget{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_ad9e4262088a5c3f8c4a9192d8a4c87bc}{\index{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}!vccs\-\_\-lineptr@{vccs\-\_\-lineptr}}
+\index{vccs\-\_\-lineptr@{vccs\-\_\-lineptr}!sage_circuit_analysis::SmallSignalLinearCircuit@{sage\-\_\-circuit\-\_\-analysis\-::\-Small\-Signal\-Linear\-Circuit}}
+\subsubsection[{vccs\-\_\-lineptr}]{\setlength{\rightskip}{0pt plus 5cm}tuple sage\-\_\-circuit\-\_\-analysis.\-Small\-Signal\-Linear\-Circuit.\-vccs\-\_\-lineptr = V\-C\-C\-S\-\_\-\-E\-X\-P\-R.\-match(line)\hspace{0.3cm}{\ttfamily [static]}}}\label{classsage__circuit__analysis_1_1SmallSignalLinearCircuit_ad9e4262088a5c3f8c4a9192d8a4c87bc}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{sage__circuit__analysis_8py}{sage\-\_\-circuit\-\_\-analysis.\-py}\end{DoxyCompactItemize}

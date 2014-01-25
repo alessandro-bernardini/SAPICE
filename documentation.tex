@@ -1,10 +1,10 @@
 \documentclass[a4paper]{article}
 \usepackage{hyperref}
-\title{SAPICE~v.0.1\\ {\normalsize Symbolic Analysis from sPICE netlists in sagemath\\SAge+ngsPICE}}
+\title{SAPICE~=~SAGE + NGSPICE\\ {\normalsize Symbolic Analysis from sPICE netlists in SAgemath}}
 \author{Alessandro Bernardini}
 \begin{document}
 \maketitle
-Version: $0.1$ (initial commit).\\
+Version: $0.3$.\\
 
 Author: Alessandro Bernardini\\
 
@@ -32,12 +32,19 @@ Requires: ngspice revision 24; sage version 5.6. Other version of ngspice or sag
 
 Date: June 2013
 \section{Overview}
+Note: consider the generated doxygen documentation also in the project home. See:
+
+\url{https://github.com/alessandro-bernardini/SAPICE}
+
+\url{http://alessandro-bernardini.github.io/SAPICE/}
+
+(in the corresponding subdirectories)\\
 
 The program SAPICE for now consists of the python module {\tt sage\_circuit\_analysis.py}
 
 This python package is intended for use in SAGE. ngspice is required too.
 
-It provides the class  {\tt small\_signal\_linear\_circuit} which reads an NGSPICE netlist and computes in symbolic form the nodal equations for the linearized small signal circuit in the Laplace domain. Those nodal equations in the Laplace domain can be fully symbolic or the numerical values read from the NGSPICE netlist can be substituted for the circuit parameters.
+It provides the class  {\tt SmallSignalLinearCircuit} which reads an NGSPICE netlist and computes in symbolic form the nodal equations for the linearized small signal circuit in the Laplace domain. Those nodal equations in the Laplace domain can be fully symbolic or the numerical values read from the NGSPICE netlist can be substituted for the circuit parameters.
 
 The so obtained equations can be solved with SAGE.\\
 
@@ -78,20 +85,30 @@ ngspice -b circuitfile.cir -o batchoutput.log
 
 Then start SAGE.
 
-From the sage prompt load the file containing the {\tt small\_signal\_linear\_circuit} class description with\footnote{here we assume the file beeing in the current directory, see {\tt pwd}}:
+From the sage prompt 
 \begin{verbatim}
-load("sage_circuit_analysis.py")
+import sage_circuit_analysis as sca
 \end{verbatim}
-Now you can use the classes provided in the module. From SAGE prompt:
-\begin{verbatim}
-circuitinstance = small_signal_linear_circuit("circuitfile.cir", "batchoutput.log)
-\end{verbatim}
-{\tt circuitinstance} will be an object that symbolically describes the circuit in SAGE.
+assuming that the file is found in the current directory.\\
 
-You can provide additional options in the constructor of the {\tt small\_signal\_circuit}: {\tt check\_operating\_region=False} will assume that the transistors are in the forward active region of operation without checking if this is true; {\tt set\_default\_IC\_to\_zero=False} will not consider a default zero initial condition when initial conditions are \emph{not} provided; {\tt ignore\_all\_IC=True} will set to zero every initial condition, even those explicitly specified and this both for symbolic nodal equations and for nodal equations with substituted numerical values regarding the circuit parameters.
+Now you can use the classes provided in the module.
+
+For example: from SAGE prompt:
+\begin{verbatim}
+ circuit = sca.SmallSignalLinearCircuit(
+ 	"examples/colpitts/colpitts_bjtmodel.cir", 
+	"examples/colpitts/colpitts_bjtmodel.log")
+\end{verbatim}
+{\tt circuit} will be an object that symbolically describes the circuit in SAGE (write all in one line in the sage prompt).
+
+(The log file must have been generated previously as described above)
+
+You can provide additional options in the constructor of the: {\tt check\_operating\_region=False} will assume that the transistors are in the forward active region of operation without checking if this is true; {\tt set\_default\_ic\_to\_zero=False} will not consider a default zero initial condition when initial conditions are \emph{not} provided; {\tt ignore\_all\_ic=True} will set to zero every initial condition, even those explicitly specified and this both for symbolic nodal equations and for nodal equations with substituted numerical values regarding the circuit parameters.
 
 \section{Description of methods and data members} 
-We will describe the main methods and data members of the class {\tt small\_signal\_linear\_circuit}. Clearly there are invoked with {\tt circuitinstance.member()} or {\tt circuitinstance.data}\\
+See the provided doxygen documentation and the docstrings.\\
+
+We will describe the main methods and data members of the class {SmallSignalLinearCircuit}.\\
 
 {\tt .nodal\_equations}
 
@@ -103,15 +120,15 @@ prints the nodal equations for the small signal linearized circuit in the Laplac
 
 {\tt .print\_information()}
 
-prints informations about the circuit and the equations.\\
+prints (not still complete) informations about the circuit and the equations.\\
 
-{\tt .solve\_nodal\_equations()}
+{\tt .solve\_nodal\_equations\_symb()}
 
-solves the nodal equations for nodal analysis of the small signal linearized circuit in the Laplace domain in symbolic form. The computation can take time. The result is a list containing a single element which is a list which contains the nodal voltages in symbolic form\footnote{more precisely the nodal voltages are given in the form $Vnodename == expression$.}.\\
+solves the nodal equations for nodal analysis of the small signal linearized circuit in the Laplace domain in symbolic form. The computation can take time. The result is a list containing a single element which is a list which contains the nodal voltages in symbolic form\footnote{more precisely the nodal voltages are given as sage expressions in the form $Vnodename == expression$.}.\\
 
-{\tt .solve\_nodal\_equations\_with\_substitutions()}
+{\tt .solve\_nodal\_equations\_num()}
 
-solves the nodal equations for the nodal analysis of the small signal linearized circuit in the Laplace domain replacing the numerical values for the circuit parameters. The type of the result is as for the symbolic case. \\
+solves the nodal equations for the nodal analysis of the small signal linearized circuit in the Laplace domain replacing the numerical values for the circuit parameters. The type of the result is as for the symbolic case. The nodal voltages are now given as polynoms in $s$ with numeric coefficients.\\
 
 {\tt .additional\_equations}
 
@@ -141,9 +158,9 @@ retuns the initial conditions for (small signal equivalent) circuit elements.\\
 
 retuns the nodal voltages as a list.\\
 
-{\tt .print\_symbol()}
+{\tt .print\_symbols()}
 
-prints an explanation of used symbols.
+prints an (incomplete) explanation of used symbols.
 
 \section{Some typical uses}
 \subsection{Computation of poles and zeros}
@@ -157,8 +174,8 @@ Follow the steps previously described in this documentation.\\
 
 Once the {\tt circuitinstance} is created (as previously described) do:
 \begin{verbatim}
-NODALVOLTAGES = circuitinstance.solve_nodal_equations()
-NODALVOLTAGESNUM = circuitinstance.solve_nodal_equations_with_substitutions()
+NODALVOLTAGES = circuit.solve_nodal_equations_symb()
+NODALVOLTAGESNUM = circuit.solve_nodal_equations_num()
 \end{verbatim}
 With
 \begin{verbatim}
@@ -174,16 +191,20 @@ NODALVOLTAGESNUM[0][n]
 \end{verbatim}
 you obtain the expressions for the nodal voltages in symbolic and numerical form. {\tt n=}$number\_of\_nodes$ (different from ground).\\
 
-For the numerical computation of the poles do 
+For the numerical computation of the poles do (always in the sage prompt):
 \begin{verbatim}
+s = var('s')
 R = RR[s]
-R(NODALVOLTAGESNUM[0][index].rhs().denominator()).roots(CDF)
+R(NODALVOLTAGESNUM[0][0].rhs().denominator()).roots(CDF)
 \end{verbatim}
-with {\tt index} in $0,\ldots, n $ (for example {\tt index=0}).\\
+Instead of NODEVOLTAGESNUM[0][0] try different nodes also
+NODEVOLTAGENUM[0][1], etc\ldots\\
 
-This will return the complex roots of the denominator of the expression for the voltage {\tt NODALVOLTAGESNUM[0][index].lhs()} for the considered $index$.\\
+This will return the complex roots of the denominator of the expression for the voltage {\tt NODALVOLTAGESNUM[0][i].lhs()} for the considered node $i$ (in the example $i=0$).\\
 
-See the sagemath documentation for details.
+See the sagemath documentation for details.\\
+
+Also see the doctstrings and/or the doxygen documentation in the project directory.
 
 
 \section{Known issues}
