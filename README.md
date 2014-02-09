@@ -15,6 +15,4 @@ The symbolic solution in this case will only be possible if the degree of the po
 
 Otherwise (symbolic) approximations are possible and of course a numerical solution can be computed.
 
-Notice: the simple documentation file is at the moment out-of-date and needs to be rewritten. Please look at the code itself directly !
-
 License: GNU GPL with absolutely no warranty !
