@@ -236,9 +236,9 @@ class SmallSignalLinearCircuit:
                     except:
                         raise IOError(spice_batch_output_file
                                 + ' file does not exist')
-                    self.spice_batch_output_file = bof.readlines()
+                    self.spice_batch_output_file_original = bof.readlines()
                 else:
-                    self.spice_batch_output_file = []
+                    self.spice_batch_output_file_original = []
         else:
             if circuit_netlist == None:
                 raise Exception('Provide a circuit file or a linear circuit '
@@ -284,9 +284,11 @@ class SmallSignalLinearCircuit:
         self.V_cpld_ind = {}
         self.I_cpld_ind = {}
         self.M_cpld = {}
+	self.BJT_unknowns = []
         self.operating_regions = {}  # remember the operating regions for the semiconductor devices
         self.temp = 300.15  # default value. Can be overridden if a .temp line is present
         pos = 0
+	self.spice_batch_output_file = self._preprocessngspicelog(self.spice_batch_output_file_original)
 
 # first for loop over self.circuit_file lines
 # in this part preliminary preparatives are taken for a later nodal analysis.
@@ -536,7 +538,7 @@ class SmallSignalLinearCircuit:
                             + data_bjt_strip[2] + ' {RPI_' + bjt_id
                             + '} \t\t\n'] + self.circuit_file[pos:]
                     try:
-                        add_eq_sol = \
+                        '''add_eq_sol = \
                             sage.solve(self.additional_equations, [
                             sage.var('RO_' + bjt_id),
                             sage.var('GM_' + bjt_id),
@@ -547,13 +549,20 @@ class SmallSignalLinearCircuit:
                             sage.var(bjt_id + '_VCE_Q'),
                             sage.var(bjt_id + '_VT'),
                             ], solution_dict=True)
+			'''    
+			self.BJT_unknowns += [sage.var('RO_' + bjt_id),\
+                            sage.var('GM_' + bjt_id),\
+                            sage.var('CBE_' + bjt_id),\
+                            sage.var('CBC_' + bjt_id),\
+                            sage.var('RPI_' + bjt_id),\
+                            sage.var(bjt_id + '_BFop'),\
+                            sage.var(bjt_id + '_VCE_Q'),\
+                            sage.var(bjt_id + '_VT')]
+			add_eq_sol = sage.solve(self.additional_equations, self.BJT_unknowns, solution_dict=True)
+
                         if len(add_eq_sol) == 1:
                             self.additional_equations_explicit.update(add_eq_sol[0])
                         else:
-
-                    # updates the explicit form of the additional equations 
-                    # obtained solving for the important quantities
-
                             raise RuntimeError
                     except:
                         raise Exception('An error has occurred in solving the additional equations for '
@@ -2088,6 +2097,43 @@ class SmallSignalLinearCircuit:
         except:
             raise Exception('Error in generating dot file')
 
+    def _preprocessngspicelog(self, logfilelines):
+	    position = 0
+	    bjt_reached = False
+	    for line in logfilelines:
+		    position += 1
+		    if re.match('^\sBJT: Bipolar Junction Transistor', line):
+			    initial_logfile_lines = logfilelines[0:position-1]
+			    bjt_reached = True
+			    break
+	    if bjt_reached:
+		    position += 1
+		    line = logfilelines[position-1]
+		    devices = logfilelines[position-1].split()
+		    number_of_devices = len(devices) - 1
+		    parameters = []
+		    while not re.match('\s*\n', line):
+			    position += 1
+			    line = logfilelines[position-1]
+			    if logfilelines[position-1].split() != []:
+				    parameters += [ logfilelines[position-1].split() ]
+		    new_data = {} 
+		    for bjtnum in xrange(1,number_of_devices+1):
+		    	new_data[devices[bjtnum]] = '\tdevice \t' + devices[bjtnum]
+		    for parameter in parameters:
+			    for bjtnum in xrange(1,number_of_devices+1):
+				    new_data[devices[bjtnum]] += '\n'+ \
+					'\t' + parameter[0] + '\t' + parameter[bjtnum]
+		    return_lines = initial_logfile_lines
+		    for bjtnum in xrange(1,number_of_devices+1):
+			    return_lines += [' BJT: Bipolar Junction Transistor\n']
+			    for newline in new_data[devices[bjtnum]].splitlines():
+			    	return_lines += [ newline + '\n' ]
+			    return_lines += ['\n']
+		    return_lines += logfilelines[position:]
+		    return return_lines
+	    else:
+		    return logfilelines
 
 def extract_value(data):
     '''extracts numerical value from a data field. For example 0.003 from 3m. data must be a stripped string'''

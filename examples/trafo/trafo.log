@@ -1,0 +1,99 @@
+
+Circuit: * trafo
+
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+
+No. of Data Rows : 1
+	Node                                  Voltage
+	----                                  -------
+	----	-------
+	V(2)                             0.000000e+00
+	V(1)                             0.000000e+00
+
+	Source	Current
+	------	-------
+
+	l1#branch                        1.000000e+00
+	l2#branch                        0.000000e+00
+
+ Inductor models (Fixed inductor)
+      model                     L
+
+        ind                     0
+        tc1                     0
+        tc2                     0
+      csect                     0
+     length                     0
+         nt                     0
+         mu                     0
+
+ Resistor models (Simple linear resistor)
+      model                     R
+
+        rsh                     0
+     narrow                     0
+      short                     0
+        tc1                     0
+        tc2                     0
+       defw                 1e-05
+         kf                     0
+         af                     0
+
+ Inductor: Fixed inductor
+     device                    l2                    l1
+      model                     L                     L
+ inductance                     1                   0.1
+      dtemp                     0                     0
+         nt                     0                     0
+       flux                     0                     0
+          v                     0                     0
+          i                     0                     1
+          p                     0                     0
+
+ mutual: Mutual inductors
+     device                    k1
+          k              0.313065
+  inductor1                    l1
+  inductor2                    l2
+
+ Isource: Independent current source
+     device                    i1
+         dc                    -1
+      acmag                     0
+      pulse         -
+       sine         -
+        sin         -
+        exp         -
+        pwl         -
+       sffm         -
+         am         -
+    trnoise         -
+   trrandom         -
+          v                     0
+          p                     0
+    current                    -1
+
+ Resistor: Simple linear resistor
+     device                   ri1                    rl
+      model                     R                     R
+ resistance                   0.1                   100
+         ac                   0.1                   100
+      dtemp                     0                     0
+      noisy                     1                     1
+          i                     0                     0
+          p                     0                     0
+
+elapsed time since last call: 0.014 seconds.
+
+Total elapsed time: 0.014 seconds.
+
+Total DRAM available = 7816.363281 MB.
+DRAM currently available = 4013.589844 MB.
+Total ngspice program size = 5.488281 MB.
+Resident set size = 716.000 kB.
+Shared ngspice pages = 535.000 kB.
+Text (code) pages = 1.095703 MB.
+Stack = 0 bytes.
+Library pages = 3.060547 MB.
+
