@@ -1,10 +1,14 @@
 * trafo
 
-L1 1 0 100m
-L2 2 0 1
+L1 1bis 0 100m
+L2 2bis 0 1
+RL1 1bis 1 0.1
+RL2 2bis 2 0.1
 K1 L1 L2 0.99
 RL 2 0 100
+CL 2 0 1m
 I1 1 0 -1
 RI1 1 0 0.1
+Iac 1 0 AC=1
 
 .op

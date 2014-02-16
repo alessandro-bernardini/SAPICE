@@ -24,7 +24,6 @@ K2 L3 L2 0.99
 K3 L1 L2 0.99
 K4 L1 L3 0.99
 C2 9 0 250p
-
 .op
 
 .model Q2N3866 NPN (

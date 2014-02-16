@@ -216,7 +216,8 @@ class SmallSignalLinearCircuit:
         set_default_ic_to_zero=True will set initial conditions to zero for
         capacitors or inductors where no initial condition is specified
         """
-
+	
+	self.spice_batch_output_file_original = []
         if filename != None:
             if circuit_netlist != None:
                 raise Exception('You cannot give both a circuit file and a '
