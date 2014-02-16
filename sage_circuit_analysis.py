@@ -1458,6 +1458,53 @@ class SmallSignalLinearCircuit:
 
     # when implementing modified nodal analysis replace all independent voltage
     # sources with a short
+    def solve_nodal_equations_mixed(self, set_ind_ss_src_to_zero=False, numerical_values={}):
+        """Returns a symbolic solutions of the nodal equations where some quantities 
+	are considered with their numerical values (this simplifies the
+	computation of the solution to the nodal equations).
+
+	numeical_values is a dictionary {QUANTITY: numerical_value}.
+	For example numerical_values={R1: 1, R2: 1000}
+        
+        The solution will be a list containing a list of equations that
+        have on the left hand side the nodal voltages and on the right hand 
+        side the symbolic expression representing the solution.
+        
+        set_ind_ss_src_to_zero=True will set all the independent small signal
+        sources (in the small signal linearized circuit) to zero when computing
+	the solution
+        """
+	try:
+		for item in numerical_values.items():
+			numerical_values[item[0]] = extract_value(str(item[1]))
+		equations_to_solve = []
+		for eqn in self.nodal_equations.values():
+			equations_to_solve += [eqn.substitute(numerical_values)]
+	except:
+		raise ValueError("Check the dictionary numerical_values passed to "
+				"solve_nodal_equations_mixed")
+        
+        if not set_ind_ss_src_to_zero:
+            if len(self.nodal_voltages) > 1:
+                return sage.solve(equations_to_solve,
+                                  self.nodal_voltages)
+            else:
+                return [ sage.solve(equations_to_solve.values(),
+                                    self.nodal_voltages) ]
+        else:
+            nod_eqn = equations_to_solve
+            nod_eqn_adj = []
+            for eqn in nod_eqn:
+                for i in self.sources_names:
+		    #TO DO: CHECK if function or sage.function is correct
+                    eqn = eqn.substitute_function(sage.function(i), (0
+                            * sage.var('s')).function(sage.var('s')))
+                nod_eqn_adj += [eqn]
+            if len(self.nodal_voltages) > 1:
+                return sage.solve(nod_eqn_adj, self.nodal_voltages)
+            else:
+                return [ sage.solve(nod_eqn_adj, self.nodal_voltages) ]
+
 
         
     def impedance(
