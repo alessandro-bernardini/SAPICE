@@ -423,6 +423,10 @@ class SmallSignalLinearCircuit:
         + '_' + matchline.group('field').upper() + '_Q')] = \
     matchline.group('value')
                             skipnextline = False
+			    if re.match('^\s*\n', key_neq)!=None:
+				    bjt_reached=False
+				    present_bjt_reached=False
+				    skipnextline = False
                         elif re.match('^\s*\n', key_neq) != None:
                             bjt_reached = False
                             present_bjt_reached = False
